@@ -7,4 +7,5 @@
 <sqlMapConfig>
 
 	<settings useStatementNamespaces="true"/>
+	<settings useStatementNamespaces="false"/>
 </sqlMapConfig>
