@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.DpFileInfo">
+	<typeAlias alias="DpFileInfo" type="com.cssweb.payment.account.pojo.DpFileInfo"/>
+
+	<resultMap id="DpFileInfoResultMap" class="DpFileInfo">
+		<result property="fileName" column="file_name"/>
+		<result property="filePath" column="file_path"/>
+		<result property="createDatetime" column="create_datetime"/>
+		<result property="reserve1" column="reserve1"/>
+		<result property="reserve2" column="reserve2"/>
+		<result property="reserve3" column="reserve3"/>
+		<result property="reserve4" column="reserve4"/>
+		<result property="updateDatetime" column="update_datetime"/>
+	</resultMap>
+
+	<sql id="columns">
+		file_name,file_path,
+		create_datetime, reserve1, reserve2, reserve3, reserve4, update_datetime
+	</sql>
+
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="fileName" prepend="AND">
+	    		file_name = #fileName#
+	    	</isNotNull>
+	    	<isNotNull property="filePath" prepend="AND">
+	    		file_path = #filePath#
+	    	</isNotNull>
+			<isNotNull property="createDatetime" prepend="AND">
+				create_datetime = #createDatetime#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend="AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend="AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend="AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend="AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend="AND">
+				update_datetime = #updateDatetime#
+			</isNotNull>    		
+    	</dynamic>		
+	</sql>
+	
+    <insert id="insert" parameterClass="DpFileInfo">
+    	INSERT INTO 
+    		acm_dp_file_info
+    	VALUES 
+    		(#fileName#,#filePath#,
+    		 #createDatetime#, #reserve1#, #reserve2#, #reserve3#, #reserve4#, #updateDatetime#)
+    </insert>
+    
+    <update id="update">
+    	UPDATE
+    		acm_dp_file_info
+    	<dynamic prepend="SET">
+			<isNotNull property="fileName" prepend=",">
+	    		file_name = #fileName#
+	    	</isNotNull>
+	    	<isNotNull property="filePath" prepend=",">
+	    		file_path = #filePath#
+	    	</isNotNull>
+			<isNotNull property="createDatetime" prepend=",">
+				create_datetime = #createDatetime#
+			</isNotNull>
+			<isNotNull property="reserve1"  prepend=",">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend=",">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3"  prepend=",">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend=",">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime"  prepend=",">
+				update_datetime = #updateDatetime#
+			</isNotNull>				    	
+    	</dynamic>
+    	<include refid="conditions"/>
+    </update>
+    
+	<select id="select" parameterClass="DpFileInfo" resultMap="DpFileInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_dp_file_info
+		<include refid="conditions"/>
+    </select>
+    
+    <select id="selectList" parameterClass="DpFileInfo" resultMap="DpFileInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_dp_file_info
+    	
+		<include refid="conditions"/>
+    </select>
+
+	<select id="selectCount" parameterClass="DpFileInfo" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_dp_file_info
+		<include refid="conditions"/>
+    </select>
+
+</sqlMap>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.BusinessInfo">
+    <typeAlias alias="BusinessInfo" type="com.cssweb.payment.account.pojo.BusinessInfo"/>
+    <resultMap id="BusinessInfoMap" class="BusinessInfo">
+        <result property = "id" column = "id"/>  
+        <result property = "userId" column = "user_id"/> 
+        <result property = "merchKey" column = "merch_key"/>   
+        <result property = "expDate" column = "exp_date"/>    
+        <result property = "gateType" column = "gate_type"/>   
+        <result property = "channelType" column = "channel_type"/>    
+        <result property = "status" column = "status"/>  
+        <result property = "ctNumber" column = "ct_number"/>   
+        <result property = "ctWebUrl" column = "ct_web_url"/>  
+        <result property = "interEn" column = "inter_en"/>    
+        <result property = "createDatetime" column = "create_datetime"/> 
+        <result property = "reserve1" column = "reserve1"/>    
+        <result property = "reserve2" column = "reserve2"/>    
+        <result property = "reserve3" column = "reserve3"/>    
+        <result property = "reserve4" column = "reserve4"/>    
+        <result property = "updateDatetime" column = "update_datetime"/> 
+            </resultMap>
+
+    <sql id = "tableName">
+        acm_business_info
+    </sql>
+    
+    <sql id="db_columns">
+        id,
+        user_id,
+        merch_key,
+        exp_date,
+        gate_type,
+        channel_type,
+        status,
+        ct_number,
+        ct_web_url,
+        inter_en,
+        create_datetime,
+        reserve1,
+        reserve2,
+        reserve3,
+        reserve4,
+        update_datetime
+    </sql>
+    
+    <sql id = "java_fields">
+        #id#,
+        #userId#,
+        #merchKey#,
+        #expDate#,
+        #gateType#,
+        #channelType#,
+        #status#,
+        #ctNumber#,
+        #ctWebUrl#,
+        #interEn#,
+        #createDatetime#,
+        #reserve1#,
+        #reserve2#,
+        #reserve3#,
+        #reserve4#,
+        #updateDatetime#
+    </sql>
+    
+    <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "id" prepend = "AND">
+                id = #id#
+            </isNotEmpty>  
+            <isNotEmpty property = "userId" prepend = "AND">
+                user_id = #userId#
+            </isNotEmpty> 
+            <isNotEmpty property = "merchKey" prepend = "AND">
+                merch_key = #merchKey#
+            </isNotEmpty>   
+            <isNotEmpty property = "expDate" prepend = "AND">
+                exp_date = #expDate#
+            </isNotEmpty>    
+            <isNotEmpty property = "gateType" prepend = "AND">
+                gate_type = #gateType#
+            </isNotEmpty>   
+            <isNotEmpty property = "channelType" prepend = "AND">
+                channel_type = #channelType#
+            </isNotEmpty>    
+            <isNotEmpty property = "status" prepend = "AND">
+                status = #status#
+            </isNotEmpty>  
+            <isNotEmpty property = "ctNumber" prepend = "AND">
+                ct_number = #ctNumber#
+            </isNotEmpty>   
+            <isNotEmpty property = "ctWebUrl" prepend = "AND">
+                ct_web_url = #ctWebUrl#
+            </isNotEmpty>  
+            <isNotEmpty property = "interEn" prepend = "AND">
+                inter_en = #interEn#
+            </isNotEmpty>    
+            <isNotEmpty property = "createDatetime" prepend = "AND">
+                create_datetime = #createDatetime#
+            </isNotEmpty> 
+            <isNotEmpty property = "reserve1" prepend = "AND">
+                reserve1 = #reserve1#
+            </isNotEmpty>    
+            <isNotEmpty property = "reserve2" prepend = "AND">
+                reserve2 = #reserve2#
+            </isNotEmpty>    
+            <isNotEmpty property = "reserve3" prepend = "AND">
+                reserve3 = #reserve3#
+            </isNotEmpty>    
+            <isNotEmpty property = "reserve4" prepend = "AND">
+                reserve4 = #reserve4#
+            </isNotEmpty>    
+            <isNotEmpty property = "updateDatetime" prepend = "AND">
+                update_datetime = #updateDatetime#
+            </isNotEmpty> 
+        </dynamic>
+    </sql>
+    
+    <!-- interface 1 : insert  -->
+    <insert id = "insert" parameterClass = "BusinessInfo">
+        INSERT INTO  
+        <include refid = "tableName"/>  
+        (<include refid = "db_columns"/>) 
+        VALUES (<include refid = "java_fields"/>)
+    </insert>
+    
+    <!-- interface 2 : update  -->
+    <update id = "update" parameterClass = "BusinessInfo">
+        UPDATE 
+            <include refid = "tableName"/>  
+        <dynamic prepend = "SET">
+            <isNotEmpty property = "userId" prepend = ",">
+                user_id = #userId#
+            </isNotEmpty> 
+            <isNotEmpty property = "merchKey" prepend = ",">
+                merch_key = #merchKey#
+            </isNotEmpty>   
+            <isNotEmpty property = "expDate" prepend = ",">
+                exp_date = #expDate#
+            </isNotEmpty>    
+            <isNotEmpty property = "gateType" prepend = ",">
+                gate_type = #gateType#
+            </isNotEmpty>   
+            <isNotEmpty property = "channelType" prepend = ",">
+                channel_type = #channelType#
+            </isNotEmpty>    
+            <isNotEmpty property = "status" prepend = ",">
+                status = #status#
+            </isNotEmpty>  
+            <isNotEmpty property = "ctNumber" prepend = ",">
+                ct_number = #ctNumber#
+            </isNotEmpty>   
+            <isNotEmpty property = "ctWebUrl" prepend = ",">
+                ct_web_url = #ctWebUrl#
+            </isNotEmpty>  
+            <isNotEmpty property = "interEn" prepend = ",">
+                inter_en = #interEn#
+            </isNotEmpty>    
+            <isNotEmpty property = "createDatetime" prepend = ",">
+                create_datetime = #createDatetime#
+            </isNotEmpty> 
+            <isNotEmpty property = "reserve1" prepend = ",">
+                reserve1 = #reserve1#
+            </isNotEmpty>    
+            <isNotEmpty property = "reserve2" prepend = ",">
+                reserve2 = #reserve2#
+            </isNotEmpty>    
+            <isNotEmpty property = "reserve3" prepend = ",">
+                reserve3 = #reserve3#
+            </isNotEmpty>    
+            <isNotEmpty property = "reserve4" prepend = ",">
+                reserve4 = #reserve4#
+            </isNotEmpty>    
+            <isNotEmpty property = "updateDatetime" prepend = ",">
+                update_datetime = #updateDatetime#
+            </isNotEmpty> 
+        </dynamic>
+            WHERE 
+             id = #id#
+    </update>
+    <!--主键是id,暂时按商户里user_id唯一-->
+    
+    <!-- interface 3 : select(select by conditions) -->
+    <select id = "select" parameterClass = "BusinessInfo" resultMap = "BusinessInfoMap">
+        SELECT * FROM <include refid = "tableName"/>   
+        <include refid = "conditions"/>
+    </select>
+    
+    <!-- interface 4 : selectCount -->
+    <select id = "selectCount" parameterClass = "BusinessInfo" resultClass = "int">
+        SELECT COUNT(*) FROM <include refid = "tableName"/>
+        <include refid = "conditions"/>
+    </select>
+    
+    <insert id="delete" parameterClass="BusinessInfo">
+    	delete FROM acm_business_info WHERE id = #id#
+    </insert>
+    
+</sqlMap>

@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.EnterpriseUser">
+    <typeAlias alias="EnterpriseUser" type="com.cssweb.payment.account.pojo.EnterpriseUser"/>
+    <typeAlias alias="EnterpriseUserQuery" type="com.cssweb.payment.account.vo.EnterpriseUserQuery"/>
+    <typeAlias alias="UserInfo" type="com.cssweb.payment.account.vo.UserInfo"/>
+    <resultMap id="EnterpriseUserMap" class="EnterpriseUser">
+        <result property = "userId" column = "user_id"/> 
+        <result property = "businessName" column = "business_name"/>   
+        <result property = "businessLicence" column = "business_licence"/>    
+        <result property = "businessLocation" column = "business_location"/>   
+        <result property = "businessExpdate" column = "business_expdate"/>    
+        <result property = "businessAddress" column = "business_address"/>    
+        <result property = "managerTel" column = "manager_tel"/> 
+        <result property = "businessPic1" column =  "business_pic_1"/>  
+        <result property = "businessPic2" column =  "business_pic_2"/>  
+        <result property = "organizationCode" column = "organization_code"/>   
+        <result property = "businessSphere" column = "business_sphere"/> 
+        <result property = "businessRegamount" column = "business_regamount"/>  
+        <result property = "fax" column =  "fax"/>  
+        <result property = "businessBank" column = "business_bank"/>   
+        <result property = "businessBankcity" column =  "business_bank_city"/>  
+        <result property = "businessBankbranch" column =  "business_bank_branch"/>    
+        <result property = "businessBankno" column =  "business_bank_no"/>    
+        <result property = "legalPersoncity" column =  "legal_person_city"/>   
+        <result property = "legalPersonname" column =  "legal_person_name"/>
+        <result property = "legalPersonphone" column =  "legal_person_phone"/>    
+        <result property = "legalPersonidno" column =  "legal_person_idno"/>  
+        <result property = "idType" column = "id_type"/> 
+        <result property = "idPic1" column =  "id_pic_1"/>    
+        <result property = "idPic2" column =  "id_pic_2"/>    
+        <result property = "managerMobile" column = "manager_mobile"/>  
+        <result property = "email" column =  "email"/>  
+        <result property = "authStep" column = "auth_step"/>   
+        <result property = "authStatus" column = "auth_status"/> 
+        <result property = "dlrName" column = "dlr_name"/>
+        <result property = "dlrSfzhm" column = "dlr_sfzhm"/>
+		<result property = "dlrSfzlx" column = "dlr_sfzlx"/>
+		<result property = "dlrSfzzm" column = "dlr_sfzzm"/>
+		<result property = "dlrSfzfm" column = "dlr_sfzfm"/>
+		<result property = "dlrSjhm" column = "dlr_sjhm"/>
+		<result property = "dlrAuth" column = "dlr_auth"/>
+		<result property = "qywtssmj" column = "qywtssmj"/>
+        <result property = "authType" column = "auth_type"/>   
+        <result property = "authDate" column = "auth_date"/>   
+        <result property = "isMerchant" column = "is_merchant"/> 
+        <result property = "preString" column = "pre_string"/>  
+        <result property = "source" column =  "source"/> 
+        <result property = "authDescribe" column = "auth_describe"/>
+        <result property = "countryCode" column = "country_code"/>    
+        <result property = "address" column = "address"/> 
+        <result property = "zipCode" column = "zip_code"/>    
+        <result property = "business" column = "business"/>    
+        <result property = "ctStatus" column = "ct_status"/>   
+        <result property = "createDatetime" column = "create_datetime"/> 
+        <result property = "reserve1" column =  "reserve1"/>   
+        <result property = "reserve2" column =  "reserve2"/>   
+        <result property = "reserve3" column =  "reserve3"/>   
+        <result property = "reserve4" column =  "reserve4"/>   
+        <result property = "updateDatetime" column = "update_datetime"/> 
+        <result property = "headPic" column = "head_pic"/>
+    </resultMap>
+
+    <sql id = "tableName">
+        acm_business_user_info
+    </sql>
+    
+    <sql id="db_columns">
+        user_id,
+        business_name,
+        business_licence,
+        business_location,
+        business_expdate,
+        business_address,
+        manager_tel,
+        business_pic_1,
+        business_pic_2,
+        organization_code,
+        business_sphere,
+        business_regamount,
+        fax,
+        business_bank,
+        business_bank_city,
+        business_bank_branch,
+        business_bank_no,
+        legal_person_city,
+        legal_person_name,
+        legal_person_phone,
+        legal_person_idno,
+        id_type,
+        id_pic_1,
+        id_pic_2,
+        manager_mobile,
+        email,
+        auth_step,
+        auth_status,
+        dlr_name,
+        dlr_sfzhm,
+        dlr_sfzlx,
+        dlr_sfzzm,
+        dlr_sfzfm,
+        dlr_sjhm,
+        dlr_auth,
+        qywtssmj,
+        auth_type,
+        auth_date,
+        is_merchant,
+        pre_string,
+        source,
+        auth_describe,
+        country_code,
+        address,
+        zip_code,
+        business,
+        ct_status,
+        create_datetime,
+        reserve1,
+        reserve2,
+        reserve3,
+        reserve4,
+        update_datetime,
+        head_pic
+    </sql>
+    
+    <sql id = "java_fields">
+        #userId#,
+        #businessName#,
+        #businessLicence#,
+        #businessLocation#,
+        #businessExpdate#,
+        #businessAddress#,
+        #managerTel#,
+        #businessPic1#,
+        #businessPic2#,
+        #organizationCode#,
+        #businessSphere#,
+        #businessRegamount#,
+        #fax#,
+        #businessBank#,
+        #businessBankcity#,
+        #businessBankbranch#,
+        #businessBankno#,
+        #legalPersoncity#,
+        #legalPersonname#,
+        #legalPersonphone#,
+        #legalPersonidno#,
+        #idType#,
+        #idPic1#,
+        #idPic2#,
+        #managerMobile#,
+        #email#,
+        #authStep#,
+        #authStatus#,
+        #dlrName#,
+        #dlrSfzhm#,
+        #dlrSfzlx#,
+        #dlrSfzzm#,
+        #dlrSfzfm#,
+        #dlrSjhm#,
+        #dlrAuth#,
+        #qywtssmj#,
+        #authType#,
+        #authDate#,
+        #isMerchant#,
+        #preString#,
+        #source#,
+        #authDescribe#,
+        #countryCode#,
+        #address#,
+        #zipCode#,
+        #business#,
+        #ctStatus#,
+        #createDatetime#,
+        #reserve1#,
+        #reserve2#,
+        #reserve3#,
+        #reserve4#,
+        #updateDatetime#,
+        #headPic#
+    </sql>
+    
+    <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "userId" prepend = "AND">
+                user_id = #userId#
+            </isNotEmpty> 
+            <isNotEmpty property = "businessName" prepend = "AND">
+                business_name = #businessName#
+            </isNotEmpty>   
+            <isNotEmpty property = "businessLicence" prepend = "AND">
+                business_licence = #businessLicence#
+            </isNotEmpty>    
+            <isNotEmpty property = "businessLocation" prepend = "AND">
+                business_location = #businessLocation#
+            </isNotEmpty>   
+            <isNotEmpty property = "businessExpdate" prepend = "AND">
+                business_expdate = #businessExpdate#
+            </isNotEmpty>    
+            <isNotEmpty property = "businessAddress" prepend = "AND">
+                business_address = #businessAddress#
+            </isNotEmpty>    
+            <isNotEmpty property = "managerTel" prepend = "AND">
+                manager_tel = #managerTel#
+            </isNotEmpty> 
+            <isNotEmpty property = "businessPic1" prepend = "AND">
+                business_pic_1 = #businessPic1#
+            </isNotEmpty>  
+            <isNotEmpty property = "businessPic2" prepend = "AND">
+                business_pic_2 = #businessPic2#
+            </isNotEmpty>  
+            <isNotEmpty property = "organizationCode" prepend = "AND">
+                organization_code = #organizationCode#
+            </isNotEmpty>   
+            <isNotEmpty property = "businessSphere" prepend = "AND">
+                business_sphere = #businessSphere#
+            </isNotEmpty> 
+            <isNotEmpty property = "businessRegamount" prepend = "AND">
+                business_regamount = #businessRegamount#
+            </isNotEmpty>  
+            <isNotEmpty property = "fax" prepend = "AND">
+                fax = #fax#
+            </isNotEmpty>  
+            <isNotEmpty property = "businessBank" prepend = "AND">
+                business_bank = #businessBank#
+            </isNotEmpty>   
+            <isNotEmpty property = "businessBankcity" prepend = "AND">
+                business_bank_city = #businessBankcity#
+            </isNotEmpty>  
+            <isNotEmpty property = "businessBankbranch" prepend = "AND">
+                business_bank_branch = #businessBankbranch#
+            </isNotEmpty>    
+            <isNotEmpty property = "businessBankno" prepend = "AND">
+                business_bank_no = #businessBankno#
+            </isNotEmpty>    
+            <isNotEmpty property = "legalPersoncity" prepend = "AND">
+                legal_person_city = #legalPersoncity#
+            </isNotEmpty>   
+            <isNotEmpty property = "legalPersonname" prepend = "AND">
+                legal_person_name = #legalPersonname#
+            </isNotEmpty> 
+            <isNotEmpty property = "legalPersonphone" prepend = "AND">
+                legal_person_phone = #legalPersonphone#
+            </isNotEmpty>  
+            <isNotEmpty property = "legalPersonidno" prepend = "AND">
+                legal_person_idno = #legalPersonidno#
+            </isNotEmpty>   
+            <isNotEmpty property = "idType" prepend = "AND">
+                id_type = #idType#
+            </isNotEmpty> 
+            <isNotEmpty property = "idPic1" prepend = "AND">
+                id_pic_1 = #idPic1#
+            </isNotEmpty>    
+            <isNotEmpty property = "idPic2" prepend = "AND">
+                id_pic_2 = #idPic2#
+            </isNotEmpty>    
+            <isNotEmpty property = "managerMobile" prepend = "AND">
+                manager_mobile = #managerMobile#
+            </isNotEmpty>  
+            <isNotEmpty property = "email" prepend = "AND">
+                email = #email#
+            </isNotEmpty>  
+            <isNotEmpty property = "authStep" prepend = "AND">
+                auth_step = #authStep#
+            </isNotEmpty>   
+            <isNotEmpty property = "authStatus" prepend = "AND">
+                auth_status = #authStatus#
+            </isNotEmpty> 
+            <isNotEmpty property = "dlrName" prepend = "AND">
+            	dlr_name = #dlrName#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzhm" prepend = "AND">
+            	dlr_sfzhm = #dlrSfzhm#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzlx" prepend = "AND">
+            	dlr_sfzlx = #dlrSfzlx#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzzm" prepend = "AND">
+            	dlr_sfzzm = #dlrSfzzm#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzfm" prepend = "AND">
+            	dlr_sfzfm = #dlrSfzfm#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSjhm" prepend = "AND">
+            	dlr_sjhm = #dlrSjhm#
+            </isNotEmpty>
+             <isNotEmpty property = "dlrAuth" prepend = "AND">
+            	dlr_auth = #dlrAuth#
+            </isNotEmpty>
+            <isNotEmpty property = "qywtssmj" prepend = "AND">
+            	qywtssmj = #qywtssmj#
+            </isNotEmpty>
+            <isNotEmpty property = "authType" prepend = "AND">
+                auth_type = #authType#
+            </isNotEmpty>   
+            <isNotEmpty property = "authDate" prepend = "AND">
+                auth_date = #authDate#
+            </isNotEmpty>   
+            <isNotEmpty property = "isMerchant" prepend = "AND">
+                is_merchant = #isMerchant#
+            </isNotEmpty> 
+            <isNotEmpty property = "preString" prepend = "AND">
+                pre_string = #preString#
+            </isNotEmpty>  
+            <isNotEmpty property = "source" prepend = "AND">
+                source = #source#
+            </isNotEmpty> 
+            <isNotEmpty property = "authDescribe" prepend = "AND">
+                auth_describe = #authDescribe#
+            </isNotEmpty>   
+            <isNotEmpty property = "countryCode" prepend = "AND">
+                country_code = #countryCode#
+            </isNotEmpty>    
+            <isNotEmpty property = "address" prepend = "AND">
+                address = #address#
+            </isNotEmpty> 
+            <isNotEmpty property = "zipCode" prepend = "AND">
+                zip_code = #zipCode#
+            </isNotEmpty>    
+            <isNotEmpty property = "business" prepend = "AND">
+                business = #business#
+            </isNotEmpty>    
+            <isNotEmpty property = "ctStatus" prepend = "AND">
+                ct_status = #ctStatus#
+            </isNotEmpty>   
+            <isNotEmpty property = "createDatetime" prepend = "AND">
+                create_datetime = #createDatetime#
+            </isNotEmpty> 
+             <isNotEmpty property = "createDatetimeStart" prepend = "AND">
+                create_datetime &gt;= #createDatetimeStart#
+            </isNotEmpty>
+            <isNotEmpty property = "createDatetimeEnd" prepend = "AND">
+                create_datetime &lt;= #createDatetimeEnd#
+            </isNotEmpty>
+            <isNotEmpty property = "reserve1" prepend = "AND">
+                reserve1 = #reserve1#
+            </isNotEmpty>   
+            <isNotEmpty property = "reserve2" prepend = "AND">
+                reserve2 = #reserve2#
+            </isNotEmpty>   
+            <isNotEmpty property = "reserve3" prepend = "AND">
+                reserve3 = #reserve3#
+            </isNotEmpty>   
+            <isNotEmpty property = "reserve4" prepend = "AND">
+                reserve4 = #reserve4#
+            </isNotEmpty>   
+            <isNotEmpty property = "updateDatetime" prepend = "AND">
+                update_datetime = #updateDatetime#
+            </isNotEmpty> 
+            <isNotEmpty property = "headPic" prepend = "AND">
+            	head_pic = #headPic#
+            </isNotEmpty>
+            
+        </dynamic>
+    </sql>
+    
+    <!-- interface 1 : insert  -->
+    <insert id = "insert" parameterClass = "EnterpriseUser">
+        INSERT INTO  
+        <include refid = "tableName"/>  
+        (<include refid = "db_columns"/>) 
+        VALUES (<include refid = "java_fields"/>)
+    </insert>
+    
+    <!-- interface 2 : update  -->
+    <update id = "update" parameterClass = "EnterpriseUser">
+        UPDATE 
+            <include refid = "tableName"/>  
+        <dynamic prepend = "SET">
+            <isNotEmpty property = "businessName" prepend = ",">
+                business_name = #businessName#
+            </isNotEmpty>   
+            <isNotEmpty property = "businessLicence" prepend = ",">
+                business_licence = #businessLicence#
+            </isNotEmpty>    
+            <isNotEmpty property = "businessLocation" prepend = ",">
+                business_location = #businessLocation#
+            </isNotEmpty>   
+            <isNotEmpty property = "businessExpdate" prepend = ",">
+                business_expdate = #businessExpdate#
+            </isNotEmpty>    
+            <isNotEmpty property = "businessAddress" prepend = ",">
+                business_address = #businessAddress#
+            </isNotEmpty>    
+            <isNotEmpty property = "managerTel" prepend = ",">
+                manager_tel = #managerTel#
+            </isNotEmpty> 
+            <isNotEmpty property = "businessPic1" prepend = ",">
+                business_pic_1 = #businessPic1#
+            </isNotEmpty>  
+            <isNotEmpty property = "businessPic2" prepend = ",">
+                business_pic_2 = #businessPic2#
+            </isNotEmpty>  
+            <isNotEmpty property = "organizationCode" prepend = ",">
+                organization_code = #organizationCode#
+            </isNotEmpty>   
+            <isNotEmpty property = "businessSphere" prepend = ",">
+                business_sphere = #businessSphere#
+            </isNotEmpty> 
+            <isNotEmpty property = "businessRegamount" prepend = ",">
+                business_regamount = #businessRegamount#
+            </isNotEmpty>  
+            <isNotEmpty property = "fax" prepend = ",">
+                fax = #fax#
+            </isNotEmpty>  
+            <isNotEmpty property = "businessBank" prepend = ",">
+                business_bank = #businessBank#
+            </isNotEmpty>   
+            <isNotEmpty property = "businessBankcity" prepend = ",">
+                business_bank_city = #businessBankcity#
+            </isNotEmpty>  
+            <isNotEmpty property = "businessBankbranch" prepend = ",">
+                business_bank_branch = #businessBankbranch#
+            </isNotEmpty>    
+            <isNotEmpty property = "businessBankno" prepend = ",">
+                business_bank_no = #businessBankno#
+            </isNotEmpty>    
+            <isNotEmpty property = "legalPersoncity" prepend = ",">
+                legal_person_city = #legalPersoncity#
+            </isNotEmpty>   
+            <isNotEmpty property = "legalPersonname" prepend = ",">
+                legal_person_name = #legalPersonname#
+            </isNotEmpty>
+            <isNotEmpty property = "legalPersonphone" prepend = ",">
+                legal_person_phone = #legalPersonphone#
+            </isNotEmpty>     
+            <isNotEmpty property = "legalPersonidno" prepend = ",">
+                legal_person_idno = #legalPersonidno#
+            </isNotEmpty>   
+            <isNotEmpty property = "idType" prepend = ",">
+                id_type = #idType#
+            </isNotEmpty> 
+            <isNotEmpty property = "idPic1" prepend = ",">
+                id_pic_1 = #idPic1#
+            </isNotEmpty>    
+            <isNotEmpty property = "idPic2" prepend = ",">
+                id_pic_2 = #idPic2#
+            </isNotEmpty>    
+            <isNotEmpty property = "managerMobile" prepend = ",">
+                manager_mobile = #managerMobile#
+            </isNotEmpty>  
+            <isNotEmpty property = "email" prepend = ",">
+                email = #email#
+            </isNotEmpty>  
+            <isNotEmpty property = "authStep" prepend = ",">
+                auth_step = #authStep#
+            </isNotEmpty>   
+            <isNotEmpty property = "authStatus" prepend = ",">
+                auth_status = #authStatus#
+            </isNotEmpty> 
+            <isNotEmpty property = "dlrName" prepend = ",">
+            	dlr_name = #dlrName#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzhm" prepend = ",">
+            	dlr_sfzhm = #dlrSfzhm#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzlx" prepend = ",">
+            	dlr_sfzlx = #dlrSfzlx#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzzm" prepend = ",">
+            	dlr_sfzzm = #dlrSfzzm#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzfm" prepend = ",">
+            	dlr_sfzfm = #dlrSfzfm#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSjhm" prepend = ",">
+            	dlr_sjhm = #dlrSjhm#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrAuth" prepend = ",">
+            	dlr_auth = #dlrAuth#
+            </isNotEmpty>
+            <isNotEmpty property = "qywtssmj" prepend = ",">
+            	qywtssmj = #qywtssmj#
+            </isNotEmpty>
+            <isNotEmpty property = "authType" prepend = ",">
+                auth_type = #authType#
+            </isNotEmpty>   
+            <isNotEmpty property = "authDate" prepend = ",">
+                auth_date = #authDate#
+            </isNotEmpty>   
+            <isNotEmpty property = "isMerchant" prepend = ",">
+                is_merchant = #isMerchant#
+            </isNotEmpty> 
+            <isNotEmpty property = "preString" prepend = ",">
+                pre_string = #preString#
+            </isNotEmpty>  
+            <isNotEmpty property = "source" prepend = ",">
+                source = #source#
+            </isNotEmpty> 
+            <isNotEmpty property = "authDescribe" prepend = ",">
+                auth_describe = #authDescribe#
+            </isNotEmpty>   
+            <isNotEmpty property = "countryCode" prepend = ",">
+                country_code = #countryCode#
+            </isNotEmpty>    
+            <isNotEmpty property = "address" prepend = ",">
+                address = #address#
+            </isNotEmpty> 
+            <isNotEmpty property = "zipCode" prepend = ",">
+                zip_code = #zipCode#
+            </isNotEmpty>    
+            <isNotEmpty property = "business" prepend = ",">
+                business = #business#
+            </isNotEmpty>    
+            <isNotEmpty property = "ctStatus" prepend = ",">
+                ct_status = #ctStatus#
+            </isNotEmpty>   
+            <isNotEmpty property = "createDatetime" prepend = ",">
+                create_datetime = #createDatetime#
+            </isNotEmpty> 
+            <isNotEmpty property = "reserve1" prepend = ",">
+                reserve1 = #reserve1#
+            </isNotEmpty>   
+            <isNotEmpty property = "reserve2" prepend = ",">
+                reserve2 = #reserve2#
+            </isNotEmpty>   
+            <isNotEmpty property = "reserve3" prepend = ",">
+                reserve3 = #reserve3#
+            </isNotEmpty>   
+            <isNotEmpty property = "reserve4" prepend = ",">
+                reserve4 = #reserve4#
+            </isNotEmpty>   
+            <isNotEmpty property = "updateDatetime" prepend = ",">
+                update_datetime = #updateDatetime#
+            </isNotEmpty> 
+            <isNotEmpty property = "headPic" prepend = ",">
+            	head_pic = #headPic#
+            </isNotEmpty>
+        </dynamic>
+            WHERE 
+                user_id = #userId#
+    </update>
+    
+    <!-- interface 3 : select(select by conditions) -->
+    <select id = "select" parameterClass = "EnterpriseUser" resultMap = "EnterpriseUserMap">
+        SELECT * FROM <include refid = "tableName"/>  
+        <include refid = "conditions"/>
+        <dynamic prepend="LIMIT">
+        	<isNotEmpty property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotEmpty>
+        	<isNotEmpty property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotEmpty>
+       </dynamic>
+    </select>
+    
+    <!-- interface 4 : selectCount -->
+    <select id = "selectCount" parameterClass = "EnterpriseUser" resultClass = "int">
+        SELECT COUNT(*) FROM <include refid = "tableName"/>
+        <include refid = "conditions"/>
+    </select>
+
+    <update id="updateUnbindingMobile">
+    	UPDATE
+    		acm_business_user_info
+    	SET
+    		manager_mobile = NULL,
+    		update_datetime = SYSDATE()
+    	WHERE
+    		user_id = #userId#
+    </update>
+    <update id="updateUnbindingEmail">
+    	UPDATE
+    		acm_business_user_info
+    	SET
+    		email = NULL,
+    		update_datetime = SYSDATE()
+    	WHERE
+    		user_id = #userId#
+    </update>
+    
+    <update id="updateAuth">
+    	UPDATE
+    		acm_business_user_info
+    	SET
+    		auth_step = #authStep#,
+    		auth_status = #authStatus#,
+    		update_datetime = #updateDatetime#
+    	WHERE
+    		user_id = #userId#
+    </update>
+    <select id = "selectEnterpriseInfoList" parameterClass = "EnterpriseUserQuery" resultClass="UserInfo">
+        SELECT
+	        u.user_type AS usertype, 
+	        u.user_status AS userStatus,
+	        m.account_id AS accountId,
+	        m.account_status AS status,
+	        b.business_name AS name,
+	        b.manager_tel AS tel,
+	        b.email AS email,
+	        b.manager_mobile AS managerMobile,
+	        b.user_id AS userId
+        FROM
+   			acm_main_account_info m 
+		INNER JOIN 
+			acm_business_user_info b 
+		ON 
+			m.user_id = b.user_id
+		INNER JOIN 
+			acm_user_login_info u 
+		ON 
+			u.user_id = b.user_id
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "managerTel">
+                b.manager_tel = #managerTel#
+            </isNotEmpty>
+            <isNotEmpty property = "email">
+                b.email = #email#
+            </isNotEmpty>
+            and m.account_type = 1 
+        </dynamic>         
+    </select> 
+</sqlMap>

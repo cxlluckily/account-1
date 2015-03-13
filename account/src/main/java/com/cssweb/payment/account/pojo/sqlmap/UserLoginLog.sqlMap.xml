@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.UserLoginLog">
+
+    <typeAlias alias="UserLoginLog" type="com.cssweb.payment.account.pojo.UserLoginLog"/>
+
+	<resultMap id="UserLoginLogResultMap" class="UserLoginLog">
+		<result property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="loginName" column="login_name"/>
+		<result property="mac" column="mac"/>
+		<result property="ip" column="ip"/>
+		<result property="loginTime" column="login_time"/>
+		<result property="source" column="source"/>
+		<result property="createTime" column="create_time"/>
+		<result property="reserve1" column="reserve1"/>
+		<result property="reserve2" column="reserve2"/>
+		<result property="reserve3" column="reserve3"/>
+		<result property="reserve4" column="reserve4"/>
+		<result property="updateTime" column="update_time"/>
+	</resultMap>
+
+	<sql id="columns">
+		id, user_id, login_name, mac, ip, login_time,source,
+		create_time, reserve1, reserve2, reserve3, reserve4, update_time
+	</sql>
+
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="id" prepend="AND">
+	    	 	id = #id#
+	    	</isNotNull>
+	    	<isNotNull property="userId" prepend="AND">
+	    		user_id = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="loginName" prepend="AND">
+	    		login_name = #loginName#
+	    	</isNotNull>
+	    	<isNotNull property="mac" prepend="AND">
+	    		mac = #mac#
+	    	</isNotNull>
+	    	<isNotNull property="ip" prepend="AND">
+	    		ip = #ip#
+	    	</isNotNull>
+	    	<isNotNull property="loginTime" prepend="AND">
+	    		login_time = #loginTime#
+	    	</isNotNull>
+	    	<isNotNull property="source" prepend="AND">
+				source = #source#
+			</isNotNull>
+			<isNotNull property="createTime" prepend="AND">
+				create_time = #createTime#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend="AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend="AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend="AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend="AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="AND">
+				update_time = #updateTime#
+			</isNotNull>    		
+    	</dynamic>		
+	</sql>
+	
+    <insert id="insert" parameterClass="UserLoginlog">
+    	INSERT INTO 
+    		acm_user_login_log
+    	VALUES 
+    		(#id#, #userId#, #loginName#, #mac#, #ip#, #loginTime#, #source#,
+    		 #createTime#, #reserve1#, #reserve2#, #reserve3#, #reserve4#, #updateTime#)
+    </insert>
+    
+    <update id="update">
+    	UPDATE
+    		acm_user_login_log
+    	<dynamic prepend="SET">
+			<isNotNull property="id" prepend=",">
+	    	 	id = #id#
+	    	</isNotNull>
+	    	<isNotNull property="userId" prepend=",">
+	    		user_id = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="loginName" prepend=",">
+	    		login_name = #loginName#
+	    	</isNotNull>
+	    	<isNotNull property="mac" prepend=",">
+	    		mac = #mac#
+	    	</isNotNull>
+	    	<isNotNull property="ip" prepend=",">
+	    		ip = #ip#
+	    	</isNotNull>
+	    	<isNotNull property="loginTime" prepend=",">
+	    		login_time = #loginTime#
+	    	</isNotNull>
+	    	<isNotNull property="source" prepend=",">
+				source = #source#
+			</isNotNull>
+			<isNotNull property="createTime" prepend=",">
+				create_time = #createTime#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend=",">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend=",">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend=",">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend=",">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend=",">
+				update_time = #updateTime#
+			</isNotNull>	
+    	</dynamic>
+    	WHERE
+    		id = #id#
+    </update>
+    
+	<select id="select" parameterClass="UserLoginLog" resultMap="UserLoginLogResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_user_login_log
+		<include refid="conditions"/>
+    </select>
+
+	<select id="selectCount" parameterClass="UserLoginLog" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_user_login_log
+		<include refid="conditions"/>
+    </select>    
+</sqlMap>

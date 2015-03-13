@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.vo.PaymentAccountDetailed">
+	<typeAlias alias="PaymentAccountDetailed" type="com.cssweb.payment.account.vo.PaymentAccountDetailed"/>
+	<typeAlias alias="PaymentAccountDetailedQuery" type="com.cssweb.payment.account.vo.PaymentAccountDetailedQuery"/>
+    
+    <resultMap id="PaymentAccountDetailedMap" class="PaymentAccountDetailed">
+        <result property = "accountNumber" column = "account_number"/>
+        <result property = "paymentId" column = "payment_id"/>  
+        <result property = "cooperationType" column = "cooperation_type"/>
+        <result property = "moneyType" column = "money_type"/>
+        <result property = "accountSn" column = "account_sn"/>
+        <result property = "money" column = "money"/>
+        <result property = "changeMoney" column = "change_money"/>
+        <result property = "inOutMark" column = "in_out_mark"/>
+        <result property = "txnType" column = "txn_type"/>
+        <result property = "changeDate" column = "change_date"/>
+        <result property = "accountChangeReason" column = "account_change_reason"/>
+        <result property = "transactionNumber" column = "transaction_number"/>
+        <result property = "externalSystemNumber" column = "external_system_number"/>
+        <result property = "refundNumber" column = "refund_number"/>
+        <result property = "transactionStatus" column = "transaction_status"/>
+    	
+    	<result property = "chgAccount" column = "chg_account"/>
+    	<result property = "fee" column = "fee"/>
+   
+    </resultMap>
+    
+     <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "accountNumber" prepend = "AND">
+               account.ACCOUNT_ID = #accountNumber#
+            </isNotEmpty>
+            <isNotEmpty property = "cooperationType" prepend = "AND">
+                payment.COOPERATION_TYPE = #cooperationType#
+            </isNotEmpty>
+            <isNotEmpty property = "beginDate" prepend = "AND">
+                chg.CHG_DATETIME &gt;= #beginDate#
+            </isNotEmpty>
+            <isNotEmpty property = "endDate" prepend = "AND">
+                chg.CHG_DATETIME &lt;= #endDate#
+            </isNotEmpty>
+        </dynamic>
+    </sql>
+    
+    <select id = "select" parameterClass = "PaymentAccountDetailedQuery" resultMap = "PaymentAccountDetailedMap">
+		SELECT
+			account.ACCOUNT_ID AS account_number,
+			payment.PAYMENT_ID AS payment_id,
+			payment.COOPERATION_TYPE AS cooperation_type,
+			account.CURRENCY_TYPE AS money_type,
+			chg.CHG_ACCOUNT AS chg_account,
+			chg.ACCOUNT_SN AS account_sn,
+			chg.OLD_BALANCE AS money,
+			chg.BALANCE AS change_money,
+			chg.IO_FLAG AS in_out_mark,
+			chg.TXN_TYPE AS txn_type,
+			chg.CHG_DATETIME AS change_date,
+			oper.FEE AS fee,
+			oper.MEMO AS account_change_reason,
+			oper.TXN_SEQ AS transaction_number,
+			oper.EXTERNAL_ORDER_NO AS external_system_number,
+			oper.REFUND_ORDER_NO AS refund_number,
+			oper.`STATUS` AS transaction_status
+		FROM
+			glb_bank_info AS payment
+		INNER JOIN acm_main_account_info AS account 
+		ON payment.PAYMENT_ID = account.USER_ID
+		INNER JOIN acm_account_money_chg_detail AS chg 
+		ON account.ACCOUNT_ID = chg.ACCOUNT_ID
+		INNER JOIN acm_account_oper_info AS oper 
+		ON chg.ACCOUNT_SN = oper.ACCOUNT_SN
+        <include refid = "conditions"/>
+        <dynamic prepend="LIMIT">
+        	<isNotEmpty property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotEmpty>
+        	<isNotEmpty property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotEmpty>
+       </dynamic>
+    </select>
+    
+    <select id = "selectCount" parameterClass = "PaymentAccountDetailedQuery" resultClass = "int">
+		SELECT COUNT(*)
+		FROM
+			glb_bank_info AS payment
+		INNER JOIN acm_main_account_info AS account 
+		ON payment.PAYMENT_ID = account.USER_ID
+		INNER JOIN acm_account_money_chg_detail AS chg 
+		ON account.ACCOUNT_ID = chg.ACCOUNT_ID
+		INNER JOIN acm_account_oper_info AS oper 
+		ON chg.ACCOUNT_SN = oper.ACCOUNT_SN
+        <include refid = "conditions"/>
+    </select>
+</sqlMap>

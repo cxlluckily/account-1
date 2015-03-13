@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.UserBankAuInfo">
+	
+	<typeAlias alias="UserBankAuInfo" type="com.cssweb.payment.account.pojo.UserBankAuInfo"/>
+	
+	<resultMap id="UserBankAuInfoMap" class="UserBankAuInfo">
+		<result property = "id" column =  "id"/>
+		<result property = "userId" column =  "user_id"/>
+		<result property = "bankName" column =  "bank_name"/>
+		<result property = "bankNo" column =  "bank_no"/>
+		<result property = "bandAmount" column =  "band_amount"/>
+		<result property = "bankRestatus" column =  "bank_restatus"/>
+		<result property = "authNum" column =  "auth_num"/>
+		<result property = "userAuDateTime" column =  "user_au_datetime"/>
+		
+		<result property = "bankProvince" column =  "bank_province"/>
+		<result property = "bankCity" column =  "bank_city"/>
+		<result property = "bankCnaps" column =  "bank_cnaps"/>
+		<result property = "bankInternal" column =  "bank_internal"/>
+		<result property = "branchId" column =  "branch_id"/>
+		<result property = "branchName" column =  "branch_name"/>
+		<result property = "bankId" column =  "bank_id"/>
+		<result property = "note" column =  "note"/>
+		
+		<result property = "bankTime" column =  "bank_time"/>
+		<result property = "reserve1" column =  "reserve1"/>
+		<result property = "reserve2" column =  "reserve2"/>
+		<result property = "reserve3" column =  "reserve3"/>
+		<result property = "reserve4" column =  "reserve4"/>
+		<result property = "updateDatetime" column = "update_datetime"/>
+	</resultMap>
+
+	<sql id = "tableName">
+		acm_user_bank_au_info
+	</sql>
+	
+	<sql id="db_columns">
+		id,
+		user_id,
+		bank_name,
+		bank_no,
+		band_amount,
+		bank_restatus,
+		auth_num,
+		user_au_datetime,
+		bank_time,
+		
+		bank_province,
+		bank_city,
+		bank_cnaps,
+		bank_internal,
+		branch_id,
+		branch_name,
+		bank_id,
+		note,
+		
+		reserve1,
+		reserve2,
+		reserve3,
+		reserve4,
+		update_datetime
+	</sql>
+	
+	<sql id = "java_fields">
+		#id#,
+		#userId#,
+		#bankName#,
+		#bankNo#,
+		#bandAmount#,
+		#bankRestatus#,
+		#authNum#,
+		#userAuDateTime#,
+		#bankTime#,
+		
+		#bankProvince#,
+		#bankCity#,
+		#bankCnaps#,
+		#bankInternal#,
+		#branchId#,
+		#branchName#,
+		#bankId#,
+		#note#,
+		
+		#reserve1#,
+		#reserve2#,
+		#reserve3#,
+		#reserve4#,
+		#updateDatetime#
+	</sql>
+	
+	<sql id = "conditions">
+		<dynamic prepend = "WHERE">
+			<isNotNull property = "userId" prepend="AND">
+				user_id = #userId#
+			</isNotNull>
+			<isNotNull property = "bankName" prepend="AND">
+				bank_name = #bankName#
+			</isNotNull>
+			<isNotNull property = "bankNo" prepend = "AND">
+				bank_no = #bankNo#
+			</isNotNull>
+			<isNotNull property = "bandAmount" prepend = "AND">
+				band_amount = #bandAmount#
+			</isNotNull>
+			<isNotNull property = "bankRestatus" prepend = "AND">
+				bank_restatus = #bankRestatus#
+			</isNotNull>
+			<isNotNull property = "authNum" prepend = "AND">
+				auth_num = #authNum#
+			</isNotNull>
+			<isNotNull property = "userAuDateTime" prepend = "AND">
+				user_au_datetime = #userAuDateTime#
+			</isNotNull>
+			<isNotNull property = "bankTime" prepend = "AND">
+				bank_time = #bankTime#
+			</isNotNull>
+			
+			<isNotNull  property = "bankProvince"  prepend = "AND">
+				  bank_province= #bankProvince#
+			</isNotNull>
+			<isNotNull  property = "bankCity"  prepend = "AND">
+				 bank_city = #bankCity#
+			</isNotNull>
+			<isNotNull  property = "bankCnaps" prepend = "AND">
+				 bank_cnaps = #bankCnaps#
+			</isNotNull>
+			<isNotNull  property = "bankInternal" prepend = "AND">
+				 bank_internal = #bankInternal#
+			</isNotNull>
+			<isNotNull  property = "branchId" prepend = "AND">
+				 branch_id = #branchId#
+			</isNotNull>
+			<isNotNull  property = "branchName" prepend = "AND">
+				 branch_name = #branchName#
+			</isNotNull>
+			<isNotNull  property = "bankId" prepend = "AND">
+				 bank_id = #bankId#
+			</isNotNull>
+			<isNotNull  property = "note" prepend = "AND">
+				 note = #note#
+			</isNotNull>
+			
+			<isNotNull property = "reserve1" prepend = "AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property = "reserve2" prepend = "AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property = "reserve3" prepend = "AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property = "reserve4" prepend = "AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property = "updateDatetime" prepend = "AND">
+				update_datetime = #updateDatetime#
+			</isNotNull>
+		</dynamic>
+	</sql>
+	
+	<!-- interface 1 : insert  -->
+	<insert id = "insert" parameterClass = "UserBankAuInfo">
+		INSERT INTO  
+		<include refid = "tableName"/>  
+		(<include refid = "db_columns"/>) 
+		VALUES (<include refid = "java_fields"/>)
+	</insert>
+	
+	<!-- interface 2 : update  -->
+	<update id = "update" parameterClass = "UserBankAuInfo">
+		UPDATE 
+			<include refid = "tableName"/>  
+		<dynamic prepend = "SET">
+			<isNotNull property = "bankName" prepend = ",">
+				bank_name = #bankName#
+			</isNotNull>
+			<isNotNull property = "bankNo" prepend = ",">
+				bank_no = #bankNo#
+			</isNotNull>
+			<isNotNull property = "bandAmount" prepend = ",">
+				band_amount = #bandAmount#
+			</isNotNull>
+			<isNotNull property = "bankRestatus" prepend = ",">
+				bank_restatus = #bankRestatus#
+			</isNotNull>
+			<isNotNull property = "authNum" prepend = ",">
+				auth_num = #authNum#
+			</isNotNull>
+			<isNotNull property = "userAuDateTime" prepend = ",">
+				user_au_datetime = #userAuDateTime#
+			</isNotNull>
+			<isNotNull property = "bankTime" prepend = ",">
+				bank_time = #bankTime#
+			</isNotNull>
+			
+			<isNotNull  property = "bankProvince"  prepend = ",">
+				  bank_province= #bankProvince#
+			</isNotNull>
+			<isNotNull  property = "bankCity"  prepend = ",">
+				 bank_city = #bankCity#
+			</isNotNull>
+			<isNotNull  property = "bankCnaps" prepend = ",">
+				 bank_cnaps = #bankCnaps#
+			</isNotNull>
+			<isNotNull  property = "bankInternal" prepend = ",">
+				 bank_internal = #bankInternal#
+			</isNotNull>
+			<isNotNull  property = "branchId" prepend = ",">
+				 branch_id = #branchId#
+			</isNotNull>
+			<isNotNull  property = "branchName" prepend = ",">
+				 branch_name = #branchName#
+			</isNotNull>
+			<isNotNull  property = "bankId" prepend = ",">
+				 bank_id = #bankId#
+			</isNotNull>
+			<isNotNull  property = "note" prepend = ",">
+				 note = #note#
+			</isNotNull>
+			
+			<isNotNull property = "reserve1" prepend = ",">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property = "reserve2" prepend = ",">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property = "reserve3" prepend = ",">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property = "reserve4" prepend = ",">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property = "updateDatetime" prepend = ",">
+				update_datetime = #updateDatetime#
+			</isNotNull>
+		</dynamic>
+			WHERE 
+				id = #id#
+	</update>
+	
+	<!-- interface 3 : select(select by conditions) -->
+	<select id = "select" parameterClass = "UserBankAuInfo" resultMap = "UserBankAuInfoMap">
+		SELECT * FROM <include refid = "tableName"/>   
+		<include refid = "conditions"/>
+	</select>
+	
+	<!-- interface 4 : selectCount -->
+	<select id = "selectCount" parameterClass = "UserBankAuInfo" resultClass = "int">
+		SELECT COUNT(*) FROM <include refid = "tableName"/>
+		<include refid = "conditions"/>
+	</select>
+	
+</sqlMap>

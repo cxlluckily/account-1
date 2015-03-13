@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.UserTsmMsgInfo">
+	<typeAlias alias="UserTsmMsgInfo"
+		type="com.cssweb.payment.account.pojo.UserTsmMsgInfo" />
+	<resultMap id="UserTsmMsgInfoMap"
+		class="com.cssweb.payment.account.pojo.UserTsmMsgInfo">
+		<result property="id" column="ID" />
+		<result property="messageId" column="MESSAGE_ID" />
+		<result property="senderId" column="SENDER_ID" />
+		<result property="serviceId" column="SERVICE_ID" />
+		<result property="serviceVersion" column="SERVICE_VERSION" />
+		<result property="iccid" column="ICCID" />
+		<result property="seId" column="SE_ID" />
+		<result property="seType" column="SE_TYPE" />
+		<result property="action" column="ACTION" />
+		<result property="beforeValue" column="BEFORE_VALUE" />
+		<result property="afterValue" column="AFTER_VALUE" />
+		<result property="reMessageId" column="RE_MESSAGE_ID" />
+		<result property="functionExecutionStatus" column="FUNCTION_EXECUTION_STATUS" />
+		<result property="failReason" column="fail_reason"/>
+		<result property="accountSn" column="ACCOUNT_SN" />
+		<result property="createDatetime" column="CREATE_DATETIME" />
+		<result property="reserve1" column="RESERVE1" />
+		<result property="reserve2" column="RESERVE2" />
+		<result property="reserve3" column="RESERVE3" />
+		<result property="reserve4" column="RESERVE4" />
+		<result property="updateDatetime" column="UPDATE_DATETIME" />
+	</resultMap>
+
+	<!-- 表中公用抽取的列 -->
+	<sql id="columns">
+		ID,MESSAGE_ID,SENDER_ID,SERVICE_ID,SERVICE_VERSION,ICCID,SE_ID,SE_TYPE,ACTION,BEFORE_VALUE,AFTER_VALUE,RE_MESSAGE_ID,FUNCTION_EXECUTION_STATUS,FAIL_REASON,ACCOUNT_SN,CREATE_DATETIME,RESERVE1,RESERVE2,RESERVE3,RESERVE4,UPDATE_DATETIME
+	</sql>
+
+	<!-- Ext CRUD模板开始 共四条SQL @author zhaojc@cssweb.com.cn -->
+
+	<!-- 1. 唯一的查询语句 select ,对应getDataList (数据列表) 和 getDataById (修改数据时使用); 无需关心分页，程序会自动生成分页sql（根据com.cssweb.common.dao.dialect.Dialect） -->
+
+	<sql id="conditions">
+		<dynamic prepend="WHERE">
+			<isNotNull property="id" prepend="AND">
+				id = #id#
+			</isNotNull>
+			<isNotNull property="messageId" prepend="AND">
+				MESSAGE_ID = #messageId#
+			</isNotNull>
+			<isNotNull property="senderId" prepend="AND">
+				SENDER_ID = #senderId#
+			</isNotNull>
+			<isNotNull property="serviceId" prepend="AND">
+				SERVICE_ID = #serviceId#
+			</isNotNull>
+			<isNotNull property="serviceVersion" prepend="AND">
+				SERVICE_VERSION = #serviceVersion#
+			</isNotNull>
+			<isNotNull property="iccid" prepend="AND">
+				ICCID = #iccid#
+			</isNotNull>
+			<isNotNull property="seId" prepend="AND">
+				SE_ID = #seId#
+			</isNotNull>
+			<isNotNull property="seType" prepend="AND">
+				SE_TYPE = #seType#
+			</isNotNull>
+			<isNotNull property="action" prepend="AND">
+				ACTION = #action#
+			</isNotNull>
+			<isNotNull property="beforeValue" prepend="AND">
+				BEFORE_VALUE = #beforeValue#
+			</isNotNull>
+			<isNotNull property="afterValue" prepend="AND">
+				AFTER_VALUE = #afterValue#
+			</isNotNull>
+			<isNotNull property="reMessageId" prepend="AND">
+				RE_MESSAGE_ID = #reMessageId#
+			</isNotNull>
+			<isNotNull property="functionExecutionStatus" prepend="AND">
+				FUNCTION_EXECUTION_STATUS = #functionExecutionStatus#
+			</isNotNull>
+			<isNotNull property="failReason" prepend="AND">
+				FAIL_REASON = #failReason#
+			</isNotNull>
+			<isNotNull property="accountSn" prepend="AND">
+				ACCOUNT_SN = #accountSn#
+			</isNotNull>
+			<isNotNull property="createDatetime" prepend="AND">
+				CREATE_DATETIME = #createDatetime#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend="AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend="AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend="AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend="AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend="AND">
+				update_datetime = #updateDatetime#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+
+	<insert id="insert">
+		insert into acm_user_tsm_msg_info
+		(ID,MESSAGE_ID,SENDER_ID,SERVICE_ID,SERVICE_VERSION,ICCID,SE_ID,SE_TYPE,ACTION,BEFORE_VALUE,AFTER_VALUE,RE_MESSAGE_ID,FUNCTION_EXECUTION_STATUS,FAIL_REASON,ACCOUNT_SN,CREATE_DATETIME,RESERVE1,RESERVE2,RESERVE3,RESERVE4,UPDATE_DATETIME
+		) values
+		(#id#,#messageId#,#senderId#,#serviceId#,#serviceVersion#,#iccid#,#seId#,#seType#,#action#,#beforeValue#,#afterValue#,#reMessageId#,#functionExecutionStatus#,#failReason#,#accountSn#,#createDatetime#,#reserve1#,#reserve2#,#reserve3#,#reserve4#,#updateDatetime#);
+	</insert>
+
+	<update id="update">
+		UPDATE
+		acm_user_tsm_msg_info
+		<dynamic prepend="SET">
+			<isNotNull property="messageId" prepend=",">
+				MESSAGE_ID = #messageId#
+			</isNotNull>
+			<isNotNull property="senderId" prepend=",">
+				SENDER_ID = #senderId#
+			</isNotNull>
+			<isNotNull property="serviceId" prepend=",">
+				SERVICE_ID = #serviceId#
+			</isNotNull>
+			<isNotNull property="serviceVersion" prepend=",">
+				SERVICE_VERSION = #serviceVersion#
+			</isNotNull>
+			<isNotNull property="iccid" prepend=",">
+				ICCID = #iccid#
+			</isNotNull>
+			<isNotNull property="seId" prepend=",">
+				SE_ID = #seId#
+			</isNotNull>
+			<isNotNull property="seType" prepend=",">
+				SE_TYPE = #seType#
+			</isNotNull>
+			<isNotNull property="action" prepend=",">
+				ACTION = #action#
+			</isNotNull>
+			<isNotNull property="beforeValue" prepend=",">
+				BEFORE_VALUE = #beforeValue#
+			</isNotNull>
+			<isNotNull property="afterValue" prepend=",">
+				AFTER_VALUE = #afterValue#
+			</isNotNull>
+			<isNotNull property="reMessageId" prepend=",">
+				RE_MESSAGE_ID = #reMessageId#
+			</isNotNull>
+			<isNotNull property="functionExecutionStatus" prepend=",">
+				FUNCTION_EXECUTION_STATUS = #functionExecutionStatus#
+			</isNotNull>
+			<isNotNull property="failReason" prepend=",">
+				FAIL_REASON = #failReason#
+			</isNotNull>
+			<isNotNull property="accountSn" prepend=",">
+				ACCOUNT_SN = #accountSn#
+			</isNotNull>
+			<isNotNull property="createDatetime" prepend=",">
+				CREATE_DATETIME = #createDatetime#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend=",">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend=",">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend=",">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend=",">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend=",">
+				update_datetime = #updateDatetime#
+			</isNotNull>
+		</dynamic>
+		WHERE
+		MESSAGE_ID = #messageId#
+	</update>
+
+	<select id="select" parameterClass="UserTsmMsgInfo" resultMap="UserTsmMsgInfoMap">
+		SELECT
+		*
+		FROM
+		acm_user_tsm_msg_info
+		<include refid="conditions" />
+	</select>
+
+	<select id="selectCount" parameterClass="UserTsmMsgInfo"
+		resultClass="int">
+		SELECT
+		COUNT(*)
+		FROM
+		acm_user_tsm_msg_info
+		<include refid="conditions" />
+	</select>
+
+
+
+
+
+</sqlMap>

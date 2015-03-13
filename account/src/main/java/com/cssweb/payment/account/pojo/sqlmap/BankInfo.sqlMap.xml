@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.BankInfo">
+	<typeAlias alias="BankInfo" type="com.cssweb.payment.account.pojo.BankInfo"/>
+	<resultMap id="BankInfoMap" class="com.cssweb.payment.account.pojo.BankInfo">
+		<result property = "id" column = "ID"/>
+		<result property = "paymentId" column = "PAYMENT_ID"/>
+		<result property = "bankId" column = "BANK_ID"/>
+		<result property = "bankAccount" column = "BANK_ACCOUNT"/>
+		<result property = "bankName" column = "BANK_NAME"/>
+		<result property = "cooperationType" column = "COOPERATION_TYPE"/>
+		<result property = "branchBankName" column = "BRANCH_BANK_NAME"/>
+		<result property = "branchBankLevel" column = "BRANCH_BANK_LEVEL"/>
+		<result property = "contactName" column = "CONTACT_NAME"/>
+		<result property = "contactTel" column = "CONTACT_TEL"/>
+		<result property = "bankAddress" column = "BANK_ADDRESS"/>
+		<result property = "bankTel" column = "BANK_TEL"/>
+		<result property = "merchantNo" column = "MERCHANT_NO"/>
+		<result property = "merchantKey" column = "MERCHANT_KEY"/>
+		<result property = "bankUrl" column = "BANK_URL"/>
+		<result property = "postalCode" column = "POSTAL_CODE"/>
+		<result property = "fax" column = "FAX"/>
+		<result property = "reserve1" column = "RESERVE1"/>
+		<result property = "reserve2" column = "RESERVE2"/>
+		<result property = "reserve3" column = "RESERVE3"/>
+		<result property = "reserve4" column = "RESERVE4"/>
+		<result property = "updateDatetime" column = "UPDATE_DATETIME"/>
+	</resultMap>
+	
+	<sql id = "conditions">
+		<dynamic prepend = "WHERE">
+			<isNotEmpty property="paymentId" prepend="AND">
+		    		PAYMENT_ID = #paymentId#
+		    	</isNotEmpty>
+				<isNotEmpty property="bankId" prepend="AND">
+					BANK_ID = #bankId#
+				</isNotEmpty>
+				<isNotEmpty property="bankAccount" prepend="AND">
+					BANK_ACCOUNT = #bankAccount#
+				</isNotEmpty>
+				<isNotEmpty property="bankName" prepend="AND">
+					BANK_NAME = #bankName#
+				</isNotEmpty>
+				<isNotEmpty property="cooperationType" prepend="AND">
+					COOPERATION_TYPE = #cooperationType#
+				</isNotEmpty>
+				<isNotEmpty property="branchBankName" prepend="AND">
+					BRANCH_BANK_NAME = #branchBankName#
+				</isNotEmpty>
+				<isNotEmpty property="branchBankLevel" prepend="AND">
+					BRANCH_BANK_LEVEL = #branchBankLevel#
+				</isNotEmpty>
+				<isNotEmpty property="contactName" prepend="AND">
+					CONTACT_NAME = #contactName#
+				</isNotEmpty>
+				<isNotEmpty property="contactTel" prepend="AND">
+					CONTACT_TEL = #contactTel#
+				</isNotEmpty>
+				<isNotEmpty property="bankAddress" prepend="AND">
+					BANK_ADDRESS = #bankAddress#
+				</isNotEmpty>
+				<isNotEmpty property="bankTel" prepend="AND">
+					BANK_TEL = #bankTel#
+				</isNotEmpty>
+				<isNotEmpty property="merchantNo" prepend="AND">
+					MERCHANT_NO = #merchantNo#
+				</isNotEmpty>
+				<isNotEmpty property="merchantKey" prepend="AND">
+					MERCHANT_KEY = #merchantKey#
+				</isNotEmpty>
+				<isNotEmpty property="bankUrl" prepend="AND">
+					BANK_URL = #bankUrl#
+				</isNotEmpty>
+				<isNotEmpty property="postalCode" prepend="AND">
+					POSTAL_CODE = #postalCode#
+				</isNotEmpty>
+				<isNotEmpty property="fax" prepend="AND">
+					FAX = #fax#
+				</isNotEmpty>
+				<isNotEmpty property="reserve1"  prepend="AND">
+					reserve1 = #reserve1#
+				</isNotEmpty>
+				<isNotEmpty property="reserve2" prepend="AND">
+					reserve2 = #reserve2#
+				</isNotEmpty>
+				<isNotEmpty property="reserve3"  prepend="AND">
+					reserve3 = #reserve3#
+				</isNotEmpty>
+				<isNotEmpty property="reserve4" prepend="AND">
+					reserve4 = #reserve4#
+				</isNotEmpty>
+				<isNotEmpty property="updateDatetime"  prepend="AND">
+					update_datetime = #updateDatetime#
+				</isNotEmpty>
+		</dynamic>
+	</sql>
+	
+	<sql id = "tableName">glb_bank_info</sql>
+	<!-- 表中公用抽取的列 -->
+	<sql id="columns">
+		ID,PAYMENT_ID,BANK_ID,BANK_ACCOUNT,BANK_NAME,COOPERATION_TYPE,BRANCH_BANK_NAME,BRANCH_BANK_LEVEL,CONTACT_NAME,CONTACT_TEL,BANK_ADDRESS,BANK_TEL,MERCHANT_NO,MERCHANT_KEY,BANK_URL,POSTAL_CODE,FAX,RESERVE1,RESERVE2,RESERVE3,RESERVE4,UPDATE_DATETIME
+	</sql>
+	
+	<!-- interface 1 : selectCount -->
+	 <insert id="insert">
+     insert into glb_bank_info (ID,PAYMENT_ID,BANK_ID,BANK_ACCOUNT,BANK_NAME,COOPERATION_TYPE,BRANCH_BANK_NAME,BRANCH_BANK_LEVEL,CONTACT_NAME,CONTACT_TEL,BANK_ADDRESS,BANK_TEL,MERCHANT_NO,MERCHANT_KEY,BANK_URL,POSTAL_CODE,FAX,RESERVE1,RESERVE2,RESERVE3,RESERVE4,UPDATE_DATETIME
+     ) values (#id#,#paymentId#,#bankId#,#bankAccount#,#bankName#,#cooperationType#,#branchBankName#,#branchBankLevel#,#contactName#,#contactTel#,#bankAddress#,#bankTel#,#merchantNo#,#merchantKey#,#bankUrl#,#postalCode#,#fax#,#reserve1#,#reserve2#,#reserve3#,#reserve4#,#updateDatetime#)
+    </insert>
+	
+	<!-- interface 2 : selectCount -->
+	<update id="update">
+    	UPDATE
+    		glb_bank_info
+    	<dynamic prepend="SET">
+				<isNotEmpty property="paymentId" prepend=",">
+		    		PAYMENT_ID = #paymentId#
+		    	</isNotEmpty>
+				<isNotEmpty property="bankId" prepend=",">
+					BANK_ID = #bankId#
+				</isNotEmpty>
+				<isNotEmpty property="bankAccount" prepend=",">
+					BANK_ACCOUNT = #bankAccount#
+				</isNotEmpty>
+				<isNotEmpty property="bankName" prepend=",">
+					BANK_NAME = #bankName#
+				</isNotEmpty>
+				<isNotEmpty property="cooperationType" prepend=",">
+					COOPERATION_TYPE = #cooperationType#
+				</isNotEmpty>
+				<isNotEmpty property="branchBankName" prepend=",">
+					BRANCH_BANK_NAME = #branchBankName#
+				</isNotEmpty>
+				<isNotEmpty property="branchBankLevel" prepend=",">
+					BRANCH_BANK_LEVEL = #branchBankLevel#
+				</isNotEmpty>
+				<isNotEmpty property="contactName" prepend=",">
+					CONTACT_NAME = #contactName#
+				</isNotEmpty>
+				<isNotEmpty property="contactTel" prepend=",">
+					CONTACT_TEL = #contactTel#
+				</isNotEmpty>
+				<isNotEmpty property="bankAddress" prepend=",">
+					BANK_ADDRESS = #bankAddress#
+				</isNotEmpty>
+				<isNotEmpty property="bankTel" prepend=",">
+					BANK_TEL = #bankTel#
+				</isNotEmpty>
+				<isNotEmpty property="merchantNo" prepend=",">
+					MERCHANT_NO = #merchantNo#
+				</isNotEmpty>
+				<isNotEmpty property="merchantKey" prepend=",">
+					MERCHANT_KEY = #merchantKey#
+				</isNotEmpty>
+				<isNotEmpty property="bankUrl" prepend=",">
+					BANK_URL = #bankUrl#
+				</isNotEmpty>
+				<isNotEmpty property="postalCode" prepend=",">
+					POSTAL_CODE = #postalCode#
+				</isNotEmpty>
+				<isNotEmpty property="fax" prepend=",">
+					FAX = #fax#
+				</isNotEmpty>
+				<isNotEmpty property="reserve1"  prepend=",">
+					reserve1 = #reserve1#
+				</isNotEmpty>
+				<isNotEmpty property="reserve2" prepend=",">
+					reserve2 = #reserve2#
+				</isNotEmpty>
+				<isNotEmpty property="reserve3"  prepend=",">
+					reserve3 = #reserve3#
+				</isNotEmpty>
+				<isNotEmpty property="reserve4" prepend=",">
+					reserve4 = #reserve4#
+				</isNotEmpty>
+				<isNotEmpty property="updateDatetime"  prepend=",">
+					update_datetime = #updateDatetime#
+				</isNotEmpty>				    	
+    	</dynamic>
+    	WHERE
+    		ID = #id#
+    </update>
+	
+	<!-- interface 3 : selectCount -->
+	<select id="select" parameterClass="BankInfo" resultMap="BankInfoMap">
+    	SELECT 
+    		*
+    	FROM
+    		glb_bank_info
+		<include refid="conditions"/>
+    </select>
+    
+    <!-- interface 4 : selectCount -->
+	<select id="selectCount" parameterClass="BankInfo" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		glb_bank_info
+		<include refid="conditions"/>
+    </select> 
+    
+    <!-- interface 5 : selectByPaymentIdList -->
+    <select id="selectByPaymentIdList"  parameterClass = "list" resultMap="BankInfoMap">
+    	SELECT 
+    		*
+    	FROM
+    		glb_bank_info
+    	WHERE 
+    		payment_id 
+    	IN 
+    	<iterate open="(" close=")" conjunction=",">
+			#[]#
+		</iterate>
+    </select>
+    
+    <!-- 只匹配第一条 zxw201408121133 -->
+    	<select id="selectLimitOne" parameterClass="BankInfo" resultMap="BankInfoMap">
+    	SELECT 
+    		*
+    	FROM
+    		glb_bank_info
+		<include refid="conditions"/>
+		ORDER BY update_datetime desc LIMIT 0,1;
+    </select>
+    
+	
+</sqlMap>

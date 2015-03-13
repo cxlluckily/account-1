@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.AccountOperDetail">
+
+	<typeAlias alias="AccountOperDetail" type="com.cssweb.payment.account.pojo.AccountOperDetail"/>
+
+	<resultMap id="AccountOperDetailResultMap" class="AccountOperDetail">
+		<result property="id" column="id"/>
+		<result property="accountSn" column="account_sn"/>
+		<result property="ioFlag" column="io_flag"/>
+		<result property="accountId" column="account_id"/>
+		<result property="accountPosition" column="account_position"/>
+		<result property="amount" column="amount"/>
+		<result property="status" column="status"/>
+		<result property="reserve1" column="reserve1"/>
+		<result property="reserve2" column="reserve2"/>
+		<result property="reserve3" column="reserve3"/>
+		<result property="reserve4" column="reserve4"/>
+		<result property="updateDatetime" column="update_datetime"/>
+	</resultMap>
+
+	<sql id="columns">
+			id,account_sn,io_flag,account_id,account_position,amount,status,reserve1,reserve2,reserve3,reserve4,update_datetime
+	</sql>
+	
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="id" prepend="AND">
+	    	 	id = #id#
+	    	</isNotNull>
+	    	<isNotNull property="accountSn" prepend="AND">
+	    		account_sn = #accountSn#
+	    	</isNotNull>
+	    	<isNotNull property="ioFlag" prepend="AND">
+	    		io_flag = #ioFlag#
+	    	</isNotNull>
+	    	<isNotNull property="accountId" prepend="AND">
+	    		account_id = #accountId#
+	    	</isNotNull>
+	    	<isNotNull property="accountPosition" prepend="AND">
+	    		account_position = #accountPosition#
+	    	</isNotNull>
+	    	<isNotNull property="amount" prepend="AND">
+	    		amount = #amount#
+	    	</isNotNull>
+	    	<isNotNull property="status" prepend="AND">
+	    		status = #status#
+	    	</isNotNull>
+			<isNotNull property="reserve1" prepend="AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend="AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend="AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend="AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend="AND">
+				update_datetime = #updateDatetime#
+			</isNotNull> 				
+    	</dynamic>		
+	</sql>
+	
+	
+    <insert id="insert" parameterClass="AccountOperDetail">
+    	INSERT INTO 
+    		acm_account_oper_detail
+    	VALUES 
+				(
+			#id#,
+			#accountSn#,
+			#ioFlag#,
+			#accountId#,
+			#accountPosition#,
+			#amount#,
+			#status#,
+			#reserve1#,
+			#reserve2#,
+			#reserve3#,
+			#reserve4#,
+			#updateDatetime#
+	)
+    </insert>
+    
+    <update id="update">
+    	UPDATE
+    		acm_account_oper_detail
+    	<dynamic prepend="SET">
+	    	<isNotNull property="accountSn" prepend=",">
+	    		account_sn = #accountSn#
+	    	</isNotNull>
+	    	<isNotNull property="ioFlag" prepend=",">
+	    		io_flag = #ioFlag#
+	    	</isNotNull>
+	    	<isNotNull property="accountId" prepend=",">
+	    		account_id = #accountId#
+	    	</isNotNull>
+	    	<isNotNull property="accountPosition" prepend=",">
+	    		account_position = #accountPosition#
+	    	</isNotNull>
+	    	<isNotNull property="amount" prepend=",">
+	    		amount = #amount#
+	    	</isNotNull>
+	    	<isNotNull property="status" prepend=",">
+	    		status = #status#
+	    	</isNotNull>
+			<isNotNull property="reserve1" prepend=",">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend=",">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend=",">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend=",">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend=",">
+				update_datetime = #updateDatetime#
+			</isNotNull>
+    	</dynamic>
+    	WHERE
+    		id = #id#
+    </update>
+    
+	<select id="select" parameterClass="AccountOperDetail" resultMap="AccountOperDetailResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_account_oper_detail
+		<include refid="conditions"/>
+    </select>
+
+	<select id="selectCount" parameterClass="AccountOperDetail" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_account_oper_detail
+		<include refid="conditions"/>
+    </select>
+    
+</sqlMap>

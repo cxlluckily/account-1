@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.PersonData">
+    <typeAlias alias="PersonData" type="com.cssweb.payment.account.pojo.PersonData"/>
+    
+    <resultMap id="PersonDataMap" class="PersonData">
+        <result property = "tag" column = "tag"/>     
+        <result property = "length" column = "length"/>      
+        <result property = "value" column = "value"/>       
+        <result property = "dataFormat" column = "data_format"/>     
+        <result property = "sourceId" column = "source_id"/>       
+        <result property = "groupId" column = "group_id"/>        
+        <result property = "defaultValue" column = "default_value"/>      
+        <result property = "flag" column = "flag"/>        
+        <result property = "reserve1" column = "reserve1"/>        
+        <result property = "reserve2" column = "reserve2"/>        
+        <result property = "reserve3" column = "reserve3"/>        
+        <result property = "reserve4" column = "reserve4"/>        
+        <result property = "updateDatetime" column = "update_datetime"/>  
+    </resultMap>
+    
+    <sql id = "tableName">
+        acm_person_data_info
+    </sql>
+    
+    <sql id="db_columns">
+        tag,
+        length,
+        value,
+        data_format,
+        source_id,
+        group_id,
+        default_value,
+        flag,
+        reserve1,
+        reserve2,
+        reserve3,
+        reserve4,
+        update_datetime
+    </sql>
+    
+    <sql id = "java_fields">
+        #tag#,
+        #length#,
+        #value#,
+        #dataFormat#,
+        #sourceId#,
+        #groupId#,
+        #defaultValue#,
+        #flag#,
+        #reserve1#,
+        #reserve2#,
+        #reserve3#,
+        #reserve4#,
+        #updateDatetime#
+    </sql>
+    
+    <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotNull property = "tag" prepend = "AND">
+                tag = #tag#
+            </isNotNull>
+            <isNotNull property = "length" prepend = "AND">
+                length = #length#
+            </isNotNull>
+            <isNotNull property = "value" prepend = "AND">
+                value = #value#
+            </isNotNull>
+            <isNotNull property = "dataFormat" prepend = "AND">
+                data_format = #dataFormat#
+            </isNotNull>
+            <isNotNull property = "sourceId" prepend = "AND">
+                source_id = #sourceId#
+            </isNotNull>
+            <isNotNull property = "groupId" prepend = "AND">
+                group_id = #groupId#
+            </isNotNull>
+            <isNotNull property = "defaultValue" prepend = "AND">
+                default_value = #defaultValue#
+            </isNotNull>
+            <isNotNull property = "flag" prepend = "AND">
+                flag = #flag#
+            </isNotNull>
+            <isNotNull property = "reserve1" prepend = "AND">
+                reserve1 = #reserve1#
+            </isNotNull>
+            <isNotNull property = "reserve2" prepend = "AND">
+                reserve2 = #reserve2#
+            </isNotNull>
+            <isNotNull property = "reserve3" prepend = "AND">
+                reserve3 = #reserve3#
+            </isNotNull>
+            <isNotNull property = "reserve4" prepend = "AND">
+                reserve4 = #reserve4#
+            </isNotNull>
+            <isNotNull property = "updateDatetime" prepend = "AND">
+                update_datetime = #updateDatetime#
+            </isNotNull>
+        </dynamic>
+    </sql>
+    
+    
+    <!-- interface 1 : insert  -->
+    <insert id = "insert" parameterClass = "PersonData">
+        INSERT INTO  
+        <include refid = "tableName"/>  
+        (<include refid = "db_columns"/>) 
+        VALUES (<include refid = "java_fields"/>)
+    </insert>
+    
+    <!-- interface 2 : update  -->
+    <update id = "update" parameterClass = "PersonData">
+        UPDATE 
+            <include refid = "tableName"/>  
+        <dynamic prepend = "SET">
+            <isNotNull property = "length" prepend = ",">
+                length = #length#
+            </isNotNull>
+            <isNotNull property = "value" prepend = ",">
+                value = #value#
+            </isNotNull>
+            <isNotNull property = "dataFormat" prepend = ",">
+                data_format = #dataFormat#
+            </isNotNull>
+            <isNotNull property = "sourceId" prepend = ",">
+                source_id = #sourceId#
+            </isNotNull>
+            <isNotNull property = "groupId" prepend = ",">
+                group_id = #groupId#
+            </isNotNull>
+            <isNotNull property = "defaultValue" prepend = ",">
+                default_value = #defaultValue#
+            </isNotNull>
+            <isNotNull property = "flag" prepend = ",">
+                flag = #flag#
+            </isNotNull>
+            <isNotNull property = "reserve1" prepend = ",">
+                reserve1 = #reserve1#
+            </isNotNull>
+            <isNotNull property = "reserve2" prepend = ",">
+                reserve2 = #reserve2#
+            </isNotNull>
+            <isNotNull property = "reserve3" prepend = ",">
+                reserve3 = #reserve3#
+            </isNotNull>
+            <isNotNull property = "reserve4" prepend = ",">
+                reserve4 = #reserve4#
+            </isNotNull>
+            <isNotNull property = "updateDatetime" prepend = ",">
+                update_datetime = #updateDatetime#
+            </isNotNull>   
+        </dynamic>
+            WHERE 
+                tag = #tag#
+    </update>
+    
+    <!-- interface 3 : select(select by conditions) -->
+    <select id = "select" parameterClass = "PersonData" resultMap = "PersonDataMap">
+        SELECT * FROM <include refid = "tableName"/>   
+        <include refid = "conditions"/>
+    </select>
+    
+    <!-- interface 4 : selectCount -->
+    <select id = "selectCount" parameterClass = "PersonData" resultClass = "int">
+        SELECT COUNT(*) FROM <include refid = "tableName"/>
+        <include refid = "conditions"/>
+    </select>
+    
+           
+</sqlMap>

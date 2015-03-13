@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.AccountMoneyChgDetail">
+
+	<typeAlias alias="AccountMoneyChgDetail" type="com.cssweb.payment.account.pojo.AccountMoneyChgDetail"/>
+	<typeAlias alias="AccountMoneyChgDetailQuery" type="com.cssweb.payment.account.vo.AccountMoneyChgDetailQuery"/>
+
+	<resultMap id="AccountMoneyChgDetailResultMap" class="AccountMoneyChgDetail">
+			<result property="id" column="id"/>
+			<result property="accountSn" column="account_sn"/>
+			<result property="userId" column="user_id"/>
+			<result property="accountId" column="account_id"/>
+			<result property="accountType" column="account_type"/>
+			<result property="chgAccount" column="chg_account"/>
+			<result property="oldBalance" column="old_balance"/>
+			<result property="balance" column="balance"/>
+			<result property="ioFlag" column="io_flag"/>
+			<result property="accountFee" column="account_fee"/>
+			<result property="changeDateTime" column="chg_datetime"/>
+			<result property="status" column="status"/>
+			<result property="txnType" column="txn_type"/>
+			<result property="reserve1" column="reserve1"/>
+			<result property="reserve2" column="reserve2"/>
+			<result property="reserve3" column="reserve3"/>
+			<result property="reserve4" column="reserve4"/>
+			<result property="updateDateTime" column="update_datetime"/>
+	</resultMap>
+
+	<sql id="columns">
+			id,account_sn,user_id,account_id,account_type,chg_account,old_balance,balance,io_flag,account_fee,chg_datetime,
+			status,txn_type,reserve1,reserve2,reserve3,reserve4,update_datetime
+	</sql>
+	
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="id" prepend="AND">
+	    	 	id = #id#
+	    	</isNotNull>
+	    	<isNotNull property="accountSn" prepend="AND">
+	    		account_sn = #accountSn#
+	    	</isNotNull>
+	    	<isNotNull property="userId" prepend="AND">
+	    		user_id = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="accountId" prepend="AND">
+	    		account_id = #accountId#
+	    	</isNotNull>
+	    	<isNotNull property="accountType" prepend="AND">
+	    		account_type = #accountType#
+	    	</isNotNull>
+	    	<isNotNull property="chgAccount" prepend="AND">
+	    		chg_account = #chgAccount#
+	    	</isNotNull>
+	    	<isNotNull property="oldBalance" prepend="AND">
+	    		old_balance = #oldBalance#
+	    	</isNotNull>
+	    	<isNotNull property="balance" prepend="AND">
+				balance = #balance#
+			</isNotNull>
+			<isNotNull property="ioFlag" prepend="AND">
+				io_flag = #ioFlag#
+			</isNotNull>
+			<isNotNull property="accountFee" prepend="AND">
+				account_fee = #accountFee#
+			</isNotNull>
+			<isNotNull property="changeDateTime" prepend="AND">
+				chg_datetime = #changeDateTime#
+			</isNotNull>		
+			<isNotNull property="status" prepend="AND">
+				status = #status#
+			</isNotNull>
+			<isNotNull property="txnType" prepend="AND">
+				txn_type = #txnType#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend="AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend="AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend="AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend="AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDateTime" prepend="AND">
+				update_datetime = #updateDateTime#
+			</isNotNull> 				
+			<isNotNull property="beginDate" prepend="AND">
+				chg_datetime &gt;= #beginDate# 
+			</isNotNull> 				
+			<isNotNull property="endDate" prepend="AND">
+				chg_datetime &lt; #endDate#
+			</isNotNull> 				
+    	</dynamic>		
+	</sql>
+	
+	
+    <insert id="insert" parameterClass="AccountMoneyChgDetail">
+    	INSERT INTO 
+    		acm_account_money_chg_detail
+    	VALUES 
+				(
+				#id#,
+				#accountSn#,
+				#userId#,
+				#accountId#,  
+				#accountType#, 
+				#chgAccount#, 
+				#oldBalance#, 
+				#balance#, 
+				#ioFlag#, 
+				#accountFee#,
+				#changeDateTime#, 
+				#status#,
+				#txnType#,
+				#reserve1#,
+				#reserve2#,
+				#reserve3#,
+				#reserve4#,
+				#updateDateTime# 
+	)
+    </insert>
+    
+    <update id="update">
+    	UPDATE
+    		acm_account_money_chg_detail
+    	<dynamic prepend="SET">
+			<isNotNull property="accountSn" prepend=",">
+		    		account_sn = #accountSn#
+		    </isNotNull>
+	    	<isNotNull property="userId"  prepend=",">
+	    		user_id = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="accountId"  prepend=",">
+	    		account_id = #accountId#
+	    	</isNotNull>
+	    	<isNotNull property="accountType"  prepend=",">
+	    		account_type = #accountType#
+	    	</isNotNull>
+	    	<isNotNull property="chgAccount"  prepend=",">
+	    		chg_account = #chgAccount#
+	    	</isNotNull>
+	    	<isNotNull property="oldBalance"   prepend=",">
+	    		old_balance = #oldBalance#
+	    	</isNotNull>
+	    	<isNotNull property="balance"   prepend=",">
+				balance = #balance#
+			</isNotNull>
+			<isNotNull property="ioFlag"   prepend=",">
+				io_flag = #ioFlag#
+			</isNotNull>
+			<isNotNull property="accountFee"   prepend=",">
+				account_fee = #accountFee#
+			</isNotNull>
+			<isNotNull property="changeDateTime"   prepend=",">
+				chg_datetime = #changeDateTime#
+			</isNotNull>		
+			<isNotNull property="status"   prepend=",">
+				status = #status#
+			</isNotNull>
+			<isNotNull property="txnType"   prepend=",">
+				txn_type = #txnType#
+			</isNotNull>
+			<isNotNull property="reserve1"   prepend=",">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2"   prepend=",">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3"   prepend=",">
+				reserve3 = #reserve3#
+			</isNotNull> 
+			<isNotNull property="reserve4"   prepend=",">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDateTime"   prepend=",">
+				update_datetime = #updateDateTime#
+			</isNotNull> 	
+    	</dynamic>
+    	WHERE
+    		id = #id#
+    </update>
+    
+	<select id="select" parameterClass="AccountMoneyChgDetailQuery" resultMap="AccountMoneyChgDetailResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_account_money_chg_detail
+		<include refid="conditions"/>
+       <dynamic prepend="LIMIT">
+        	<isNotNull property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotNull>
+        	<isNotNull property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotNull>
+       </dynamic>
+    </select>
+
+	<select id="selectCount" parameterClass="AccountMoneyChgDetailQuery" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_account_money_chg_detail
+		<include refid="conditions"/>
+    </select>
+    
+    <select id="selectTradeAmount" parameterClass="AccountMoneyChgDetailQuery" resultClass="decimal">
+    	SELECT 
+    		SUM(chg_account)
+    	FROM
+    		acm_account_money_chg_detail
+    	<include refid="conditions"/>
+    </select>
+     
+</sqlMap>

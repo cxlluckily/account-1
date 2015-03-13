@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.vo.CommercialTenantAccountDetailed">
+	<typeAlias alias="CommercialTenantAccountDetailed" type="com.cssweb.payment.account.vo.CommercialTenantAccountDetailed"/>
+	<typeAlias alias="CommercialTenantAccountDetailedQuery" type="com.cssweb.payment.account.vo.CommercialTenantAccountDetailedQuery"/>
+    
+    <resultMap id="CommercialTenantAccountDetailedMap" class="CommercialTenantAccountDetailed">
+        <result property = "accountNumber" column = "account_number"/>
+        <result property = "userId" column = "user_id"/>  
+        <result property = "companyName" column = "company_name"/>
+        <result property = "moneyType" column = "money_type"/>
+        <result property = "money" column = "money"/>
+        <result property = "changeMoney" column = "change_money"/>
+        <result property = "inOutMark" column = "in_out_mark"/>
+        <result property = "changeDate" column = "change_date"/>
+        <result property = "accountChangeReason" column = "account_change_reason"/>
+        <result property = "transactionNumber" column = "transaction_number"/>
+        <result property = "externalSystemNumber" column = "external_system_number"/>
+        <result property = "refundNumber" column = "refund_number"/>
+        <result property = "transactionStatus" column = "transaction_status"/>
+        
+        <result property = "txnType" column = "txn_type"/>
+        <result property = "accountSn" column = "account_sn"/>
+        <result property = "accountType" column = "account_type"/>
+        <result property = "chgAccount" column = "chg_account"/>
+        <result property = "fee" column = "fee"/>
+        <result property = "memo" column = "memo"/>
+    </resultMap>
+    
+     <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "companyName" prepend = "AND">
+                user.BUSINESS_NAME = #companyName#
+            </isNotEmpty>
+            <isNotEmpty property = "accountNumber" prepend = "AND">
+               account.ACCOUNT_ID = #accountNumber#
+            </isNotEmpty>
+            <isNotEmpty property = "txnType" prepend = "AND">
+                oper.TXN_TYPE = #txnType#
+            </isNotEmpty>
+            <isNotEmpty property = "beginDate" prepend = "AND">
+                chg.CHG_DATETIME &gt;= #beginDate#
+            </isNotEmpty>
+            <isNotEmpty property = "endDate" prepend = "AND">
+                chg.CHG_DATETIME &lt;= #endDate#
+            </isNotEmpty>
+        </dynamic>
+    </sql>
+    
+    <select id = "select" parameterClass = "CommercialTenantAccountDetailedQuery" resultMap = "CommercialTenantAccountDetailedMap">
+		SELECT
+			account.ACCOUNT_ID AS account_number,
+			user.USER_ID AS user_id,
+			user.BUSINESS_NAME AS company_name,
+			account.CURRENCY_TYPE AS money_type,
+			
+			chg.OLD_BALANCE AS money,
+			chg.BALANCE AS change_money,
+			chg.IO_FLAG AS in_out_mark,
+			oper.FEE AS fee,
+			oper.MEMO AS memo,
+			chg.TXN_TYPE AS txn_type,
+			chg.CHG_DATETIME AS change_date,
+			
+			chg.ACCOUNT_SN  AS account_sn,
+			chg.ACCOUNT_TYPE AS account_type,
+			chg.CHG_ACCOUNT AS chg_account,
+			oper.MEMO AS account_change_reason,
+			oper.TXN_SEQ AS transaction_number,
+			oper.EXTERNAL_ORDER_NO AS external_system_number,
+			oper.REFUND_ORDER_NO AS refund_number,
+			oper.STATUS AS transaction_status
+		FROM
+			acm_business_user_info AS user
+		INNER JOIN 
+			acm_main_account_info AS account 
+		ON 
+			user.USER_ID = account.USER_ID
+		INNER JOIN 
+			acm_account_money_chg_detail AS chg 
+		ON 
+			chg.ACCOUNT_ID = account.ACCOUNT_ID
+		INNER JOIN 
+			acm_account_oper_info AS oper 
+		ON 
+			chg.ACCOUNT_SN = oper.ACCOUNT_SN
+        <include refid = "conditions"/>
+        order by chg.CHG_DATETIME desc
+        <dynamic prepend="LIMIT">
+        	<isNotEmpty property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotEmpty>
+        	<isNotEmpty property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotEmpty>
+       </dynamic>
+    </select>
+    
+    <select id = "selectCount" parameterClass = "CommercialTenantAccountDetailedQuery" resultClass = "int">
+		SELECT COUNT(*)
+		FROM
+			acm_business_user_info AS user
+		INNER JOIN 
+			acm_main_account_info AS account 
+		ON 
+			user.USER_ID = account.USER_ID
+		INNER JOIN 
+			acm_account_money_chg_detail AS chg 
+		ON 
+			chg.ACCOUNT_ID = account.ACCOUNT_ID
+		INNER JOIN 
+			acm_account_oper_info AS oper 
+		ON 
+			chg.ACCOUNT_SN = oper.ACCOUNT_SN
+        <include refid = "conditions"/>
+    </select>
+    
+</sqlMap>

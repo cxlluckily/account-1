@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.AccountInfo">
+    <typeAlias alias="AccountInfo" type="com.cssweb.payment.account.pojo.AccountInfo"/>
+    <typeAlias alias="AccountInfoQuery" type="com.cssweb.payment.account.vo.AccountInfoQuery"/>
+    
+    <resultMap id="AccountInfoMap" class="AccountInfo">
+        <result property = "userId" column = "user_id"/>
+        <result property = "accountId" column = "account_id"/>
+        <result property = "userType" column = "user_type"/>
+        <result property = "accountType" column = "account_type"/>
+        <result property = "accountStatus" column = "account_status"/>
+        <result property = "currencyType" column = "currency_type"/>
+        <result property = "availableBalance" column = "available_balance"/>
+        <result property = "frozenAmount" column = "frozen_amount"/>
+        <result property = "nomentionAmount" column = "nomention_amount"/>
+        <result property = "createDatetime" column = "create_datetime"/>
+        <result property = "mac" column = "mac"/>
+        <result property = "reserve1" column = "reserve1"/>
+        <result property = "reserve2" column = "reserve2"/>
+        <result property = "reserve3" column = "reserve3"/>
+        <result property = "reserve4" column = "reserve4"/>
+        <result property = "updateDatetime" column = "update_datetime"/>
+    </resultMap>
+	
+	
+    <sql id = "tableName">
+        acm_main_account_info
+    </sql>
+    
+    <sql id="db_columns">
+        user_id,
+        account_id,
+        user_type,
+        account_type,
+        account_status,
+        currency_type,
+        available_balance,
+        frozen_amount,
+        nomention_amount,
+        create_datetime,
+        mac,
+        reserve1,
+        reserve2,
+        reserve3,
+        reserve4,
+        update_datetime
+    </sql>
+    
+    <sql id = "java_fields">
+        #userId#,
+        #accountId#,
+        #userType#,
+        #accountType#,
+        #accountStatus#,
+        #currencyType#,
+        #availableBalance#,
+        #frozenAmount#,
+        #nomentionAmount#,
+        #createDatetime#,
+        #mac#,
+        #reserve1#,
+        #reserve2#,
+        #reserve3#,
+        #reserve4#,
+        #updateDatetime#
+    </sql>
+    
+    <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotNull property = "userId" prepend = "AND"> 
+                user_id = #userId#
+            </isNotNull>
+            <isNotNull property = "accountId" prepend = "AND"> 
+                account_id = #accountId#
+            </isNotNull>
+            <isNotNull property = "userType" prepend = "AND"> 
+                user_type = #userType#
+            </isNotNull>
+            <isNotNull property = "accountType" prepend = "AND"> 
+                account_type = #accountType#
+            </isNotNull>
+            <isNotNull property = "accountStatus" prepend = "AND"> 
+                account_status = #accountStatus#
+            </isNotNull>
+            <isNotNull property = "currencyType" prepend = "AND"> 
+                currency_type = #currencyType#
+            </isNotNull>
+            <isNotNull property = "availableBalance" prepend = "AND"> 
+                available_balance = #availableBalance#
+            </isNotNull>
+            <isNotNull property = "frozenAmount" prepend = "AND"> 
+                frozen_amount = #frozenAmount#
+            </isNotNull>
+            <isNotNull property = "nomentionAmount" prepend = "AND"> 
+                nomention_amount = #nomentionAmount#
+            </isNotNull>
+            <isNotNull property = "createDatetime" prepend = "AND"> 
+                create_datetime = #createDatetime#
+            </isNotNull>
+            <isNotNull property = "mac" prepend = "AND"> 
+                mac = #mac#
+            </isNotNull>
+            <isNotNull property = "reserve1" prepend = "AND"> 
+                reserve1 = #reserve1#
+            </isNotNull>
+            <isNotNull property = "reserve2" prepend = "AND"> 
+                reserve2 = #reserve2#
+            </isNotNull>
+            <isNotNull property = "reserve3" prepend = "AND"> 
+                reserve3 = #reserve3#
+            </isNotNull>
+            <isNotNull property = "reserve4" prepend = "AND"> 
+                reserve4 = #reserve4#
+            </isNotNull>
+            <isNotNull property = "updateDatetime" prepend = "AND"> 
+                update_datetime = #updateDatetime#
+            </isNotNull>
+			<isNotNull property="beginDate" prepend="AND">
+				create_datetime &gt;= #beginDate# 
+			</isNotNull> 				
+			<isNotNull property="endDate" prepend="AND">
+				create_datetime&lt;= #endDate#
+			</isNotNull> 	
+        </dynamic>
+    </sql>
+    
+    <!-- interface 1 : insert  -->
+    <insert id = "insert" parameterClass = "AccountInfo">
+        INSERT INTO  
+        <include refid = "tableName"/>  
+        (<include refid = "db_columns"/>) 
+        VALUES (<include refid = "java_fields"/>)
+    </insert>
+    
+    <!-- interface 2 : update  -->
+    <update id = "update" parameterClass = "AccountInfo">
+        UPDATE 
+            <include refid = "tableName"/>  
+        <dynamic prepend = "SET">
+            <isNotNull property = "userType" prepend = ","> 
+                user_type = #userType#
+            </isNotNull>
+            <isNotNull property = "accountType" prepend = ","> 
+                account_type = #accountType#
+            </isNotNull>
+            <isNotNull property = "accountStatus" prepend = ","> 
+                account_status = #accountStatus#
+            </isNotNull>
+            <isNotNull property = "currencyType" prepend = ","> 
+                currency_type = #currencyType#
+            </isNotNull>
+            <isNotNull property = "availableBalance" prepend = ","> 
+                available_balance = #availableBalance#
+            </isNotNull>
+            <isNotNull property = "frozenAmount" prepend = ","> 
+                frozen_amount = #frozenAmount#
+            </isNotNull>
+            <isNotNull property = "nomentionAmount" prepend = ","> 
+                nomention_amount = #nomentionAmount#
+            </isNotNull>
+            <isNotNull property = "createDatetime" prepend = ","> 
+                create_datetime = #createDatetime#
+            </isNotNull>
+            <isNotNull property = "mac" prepend = ","> 
+                mac = #mac#
+            </isNotNull>
+            <isNotNull property = "reserve1" prepend = ","> 
+                reserve1 = #reserve1#
+            </isNotNull>
+            <isNotNull property = "reserve2" prepend = ","> 
+                reserve2 = #reserve2#
+            </isNotNull>
+            <isNotNull property = "reserve3" prepend = ","> 
+                reserve3 = #reserve3#
+            </isNotNull>
+            <isNotNull property = "reserve4" prepend = ","> 
+                reserve4 = #reserve4#
+            </isNotNull>
+            <isNotNull property = "updateDatetime" prepend = ","> 
+                update_datetime = #updateDatetime#
+            </isNotNull>
+        </dynamic>
+            WHERE 
+                account_id = #accountId#
+    </update>
+    
+    <!-- interface 3 : select(select by conditions) -->
+    <select id = "select" parameterClass = "AccountInfoQuery" resultMap = "AccountInfoMap">
+        SELECT * FROM <include refid = "tableName"/>   
+        <include refid = "conditions"/>
+    </select>
+    
+    <!-- interface : select(select for update) -->
+    <select id = "selectForUpdate" parameterClass = "AccountInfoQuery" resultMap = "AccountInfoMap">
+        SELECT * FROM <include refid = "tableName"/>   
+        <include refid = "conditions"/> for update
+    </select>
+    
+    <!-- interface 4 : selectCount -->
+    <select id = "selectCount" parameterClass = "AccountInfoQuery" resultClass = "int">
+        SELECT COUNT(*) FROM <include refid = "tableName"/>
+        <include refid = "conditions"/>
+    </select>
+    
+	<!-- interface 5 : selectByIndex -->
+    <select id = "selectByIndex" parameterClass = "AccountInfoQuery" resultMap = "AccountInfoMap">
+        SELECT * FROM <include refid = "tableName"/>   
+        <include refid = "conditions"/>
+	LIMIT #startIndex#,#total#
+	ORDER BY user_id ASC        
+    </select>
+    
+	<select id="selectBetweenDate" parameterClass="AccountInfoQuery" resultMap="AccountInfoMap">
+    	SELECT 
+    		*
+    	FROM
+    		<include refid = "tableName"/>   
+		    <include refid="conditions"/>
+		AND user_id 
+		IN (
+			SELECT user_id 
+			FROM 
+				acm_personal_user_info
+        <dynamic prepend = "WHERE">
+            <isNotNull property = "userName" prepend = "AND"> 
+                user_name = #userName#
+            </isNotNull>
+            <isNotNull property = "mobile" prepend = "AND"> 
+                phone_number = #mobile#
+            </isNotNull>
+            <isNotNull property = "email" prepend = "AND"> 
+                email_address = #email#
+            </isNotNull>
+        </dynamic>
+		)
+       <dynamic prepend="LIMIT">
+        	<isNotNull property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotNull>
+        	<isNotNull property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotNull>
+       </dynamic>
+    </select>
+    
+    	<!-- 用于APP充值 ,此处accountId特殊处理-->
+    <select id = "selectCashAccByPreAcc" parameterClass = "AccountInfoQuery" resultMap = "AccountInfoMap">
+        SELECT * FROM <include refid = "tableName"/>   
+        WHERE
+        SUBSTR(ACCOUNT_ID,11,8) = #accountId#  
+        AND
+        account_type = #accountType#
+    </select>
+    
+    <update id="cleanErrorLoginTime"  parameterClass = "AccountInfo">
+    	update acm_user_login_info a 
+    	set a.ERROR_LOGIN_TIMES = '0',
+			a.ERROR_PAY_TIMES = '0' 
+	    where 
+	    	a.ERROR_PAY_TIMES !='0'
+	    or 
+	    	a.ERROR_LOGIN_TIMES !='0'
+    </update>
+    
+</sqlMap>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.SecurityClassInfo">
+
+    <typeAlias alias="SecurityClassInfo" type="com.cssweb.payment.account.pojo.SecurityClassInfo"/>
+    
+    <resultMap id="SecurityClassInfoResultMap" class="SecurityClassInfo">
+		<result property="userId" column="user_id"/>
+		<result property="authSet" column="auth_set"/>
+		<result property="balancepaySet" column="balancepay_set"/>
+		<result property="verifySet" column="verify_set"/>
+		<result property="reservationSet" column="reservation_set"/>
+		<result property="questionSet" column="question_set"/>
+		<result property="phoneSet" column="phone_set"/>
+		<result property="certSet" column="cert_set"/>
+		<result property="reserve1" column="reserve1"/>
+		<result property="reserve2" column="reserve2"/>
+		<result property="reserve3" column="reserve3"/>
+		<result property="reserve4" column="reserve4"/>
+		<result property="updateDatetime" column="update_datetime"/>
+	</resultMap>
+	
+	<sql id="columns">
+		userid,auth_set,balancepay_set,verify_set,reservation_set,question_set,phone_set,cert_set,
+		reserve1,reserve2,reserve3,reserve4,update_datetime	
+	</sql>
+	
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="userId" prepend="AND">
+	    	 	user_id = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="authSet" prepend="AND">
+	    		auth_set = #authSet#
+	    	</isNotNull>
+	    	<isNotNull property="balancepaySet" prepend="AND">
+				balancepay_set = #balancepaySet#	    	
+	    	</isNotNull>
+	    	<isNotNull property="verifySet" prepend="AND">
+	    		verify_set = #verifySet#
+	    	</isNotNull>
+	    	<isNotNull property="reservationSet" prepend="AND">
+	    		reservation_set = #reservationSet#
+	    	</isNotNull>
+	    	<isNotNull property="questionSet" prepend="AND">
+	    	 	question_set = #questionSet#
+	    	</isNotNull>
+	    	<isNotNull property="phoneSet" prepend="AND">
+	    		phone_set = #phoneSet#
+	    	</isNotNull>
+	    	<isNotNull property="certSet" prepend="AND">
+	    		cert_set = #certSet#
+	    	</isNotNull>
+	    	<isNotNull property="reserve1" prepend="AND">
+	    		reserve1 = #reserve1#
+	    	</isNotNull>
+	    	<isNotNull property="reserve2" prepend="AND">
+	    		reserve2 = #reserve2#
+	    	</isNotNull>
+	    	<isNotNull property="reserve3" prepend="AND">
+	    		reserve3 = #reserve3#
+	    	</isNotNull>
+	    	<isNotNull property="reserve4" prepend="AND">
+	    		reserve4 = #reserve4#
+	    	</isNotNull>
+	    	<isNotNull property="updateDatetime" prepend="AND">
+	    		update_datetime = #updateDatetime#
+	    	</isNotNull>	  		
+    	</dynamic>		
+	</sql>
+	
+	<insert id="insert" parameterClass="SecurityClassInfo">
+    	INSERT INTO 
+    		acm_security_class_info
+    	VALUES 
+    		(#userId#,#authSet#,#balancepaySet#,#verifySet#,#reservationSet#,
+    		#questionSet#,#phoneSet#,#certSet#,#reserve1#,#reserve2#,#reserve3#,#reserve4#,#updateDatetime#)
+    </insert>
+    
+    <update id="update">
+    	UPDATE
+    		acm_security_class_info
+    	<dynamic prepend="SET">
+	    	<isNotNull property="userId" prepend=",">
+	    	 	user_id = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="authSet" prepend=",">
+	    		auth_set = #authSet#
+	    	</isNotNull>
+	    	<isNotNull property="balancepaySet" prepend=",">
+				balancepay_set = #balancepaySet#	    	
+	    	</isNotNull>
+	    	<isNotNull property="verifySet" prepend=",">
+	    		verify_set = #verifySet#
+	    	</isNotNull>
+	    	<isNotNull property="reservationSet" prepend=",">
+	    		reservation_set = #reservationSet#
+	    	</isNotNull>
+	    	<isNotNull property="questionSet" prepend=",">
+	    	 	question_set = #questionSet#
+	    	</isNotNull>
+	    	<isNotNull property="phoneSet" prepend=",">
+	    		phone_set = #phoneSet#
+	    	</isNotNull>
+	    	<isNotNull property="certSet" prepend=",">
+	    		cert_set = #certSet#
+	    	</isNotNull>
+	    	<isNotNull property="reserve1" prepend=",">
+	    		reserve1 = #reserve1#
+	    	</isNotNull>
+	    	<isNotNull property="reserve2" prepend=",">
+	    		reserve2 = #reserve2#
+	    	</isNotNull>
+	    	<isNotNull property="reserve3" prepend=",">
+	    		reserve3 = #reserve3#
+	    	</isNotNull>
+	    	<isNotNull property="reserve4" prepend=",">
+	    		reserve4 = #reserve4#
+	    	</isNotNull>
+	    	<isNotNull property="updateDatetime" prepend=",">
+	    		update_datetime = #updateDatetime#
+	    	</isNotNull>	  		
+    	</dynamic>
+    	WHERE
+    		user_id = #userId#
+    </update>
+	
+	<select id="select" parameterClass="SecurityClassInfo" resultMap="SecurityClassInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_security_class_info
+		<include refid="conditions"/>
+    </select>
+    
+    <select id="selectList" parameterClass="SecurityClassInfo" resultMap="SecurityClassInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_security_class_info
+    	
+		<include refid="conditions"/>
+    </select>
+
+	<select id="selectCount" parameterClass="SecurityClassInfo" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_security_class_info
+		<include refid="conditions"/>
+    </select>    
+	
+	
+</sqlMap>

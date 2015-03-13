@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.vo.PaymentAccount">
+	<typeAlias alias="PaymentAccount" type="com.cssweb.payment.account.vo.PaymentAccount"/>
+	<typeAlias alias="PaymentAccountQuery" type="com.cssweb.payment.account.vo.PaymentAccountQuery"/>
+    
+    <resultMap id="PaymentAccountMap" class="PaymentAccount">
+        <result property = "accountNumber" column = "account_number"/>
+        <result property = "paymentId" column = "payment_id"/>  
+        <result property = "accountType" column = "account_type"/>
+        <result property = "userType" column = "user_type"/>
+        <result property = "accountStatus" column = "account_status"/>
+        <result property = "moneyType" column = "money_type"/>
+        <result property = "availableMoney" column = "available_money"/>
+        <result property = "frozenMoney" column = "frozen_money"/>
+        <result property = "nomentionMoney" column = "nomention_money"/>
+        <result property = "createDate" column = "create_date"/>
+        <result property = "modifyDate" column = "modify_date"/>  
+        <result property = "cooperationType" column = "cooperation_type"/>  
+    </resultMap>
+    
+     <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "cooperationType" prepend = "AND">
+               bank.COOPERATION_TYPE = #cooperationType#
+            </isNotEmpty>
+        </dynamic>
+    </sql>
+    
+    <select id = "select" parameterClass = "PaymentAccountQuery" resultMap = "PaymentAccountMap">
+		SELECT
+			account.ACCOUNT_ID AS account_number,
+			bank.PAYMENT_ID AS payment_id,
+			bank.COOPERATION_TYPE AS cooperation_type,
+			account.ACCOUNT_TYPE AS account_type,
+			account.user_type AS user_type,
+			account.ACCOUNT_STATUS AS account_status,
+			account.CURRENCY_TYPE AS money_type,
+			account.AVAILABLE_BALANCE AS available_money,
+			account.FROZEN_AMOUNT AS frozen_money,
+			account.NOMENTION_AMOUNT AS nomention_money,
+			account.CREATE_DATETIME AS create_date,
+			account.UPDATE_DATETIME AS modify_date
+		FROM
+			acm_main_account_info AS account
+		INNER JOIN 
+			glb_bank_info AS bank 
+		ON 
+			account.USER_ID = bank.PAYMENT_ID
+
+        <include refid = "conditions"/>
+        <dynamic prepend="LIMIT">
+        	<isNotEmpty property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotEmpty>
+        	<isNotEmpty property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotEmpty>
+       </dynamic>
+    </select>
+    
+    <select id = "selectCount" parameterClass = "PaymentAccountQuery" resultClass = "int">
+		SELECT COUNT(*)
+		FROM
+			acm_main_account_info AS account
+		INNER JOIN 
+			glb_bank_info AS bank 
+		ON 
+			account.USER_ID = bank.PAYMENT_ID
+        <include refid = "conditions"/>
+    </select>
+</sqlMap>

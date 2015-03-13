@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.UserBandBankInfo">
+
+    <typeAlias alias="UserBandBankInfo" type="com.cssweb.payment.account.pojo.UserBandBankInfo"/>
+    <typeAlias alias="AppGetUserBindingBankListPara" type="com.cssweb.payment.account.vo.AppGetUserBindingBankListPara"/>
+
+	<resultMap id="UserBandBankInfoResultMap" class="UserBandBankInfo">
+		<result property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="bankAccountNo" column="bank_account_no"/>
+		<result property="bankId" column="bank_id"/>
+		<result property="bankCardType" column="bank_card_type"/>
+		<result property="bandStatus" column="band_status"/>
+		<result property="expirDate" column="expir_date"/>
+		<result property="cvcCode" column="cvc_code"/>
+		<result property="holderName" column="holder_name"/>
+		<result property="usetypeWithdraw" column="usetype_withdraw"/>
+		<result property="usetypeShortcut" column="usetype_shortcut"/>
+		<result property="branchName" column="branch_name"/>
+		<result property="bandPhoneNo" column="band_phone_no"/>
+		<result property="bandCertType" column="band_cert_type"/>
+		<result property="authCertId" column="auth_cert_id"/>
+		<result property="bankProvince" column="bank_province"/>
+		<result property="bankCity" column="bank_city"/>
+		<result property="createDatetime" column="create_datetime"/>
+		<result property="reserve1" column="reserve1"/>
+		<result property="reserve2" column="reserve2"/>
+		<result property="reserve3" column="reserve3"/>
+		<result property="reserve4" column="reserve4"/>
+		<result property="updateDatetime" column="update_datetime"/>
+	</resultMap>
+
+	<resultMap id="UserBandBankInfoFullResultMap" class="AppGetUserBindingBankListPara">
+		<result property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="bankAccountNo" column="bank_account_no"/>
+		<result property="bankId" column="bank_id"/>
+		<result property="bankCardType" column="bank_card_type"/>
+		<result property="bandStatus" column="band_status"/>
+		<result property="expirDate" column="expir_date"/>
+		<result property="cvcCode" column="cvc_code"/>
+		<result property="holderName" column="holder_name"/>
+		<result property="usetypeWithdraw" column="usetype_withdraw"/>
+		<result property="usetypeShortcut" column="usetype_shortcut"/>
+		<result property="branchName" column="branch_name"/>
+		<result property="bandPhoneNo" column="band_phone_no"/>
+		<result property="bandCertType" column="band_cert_type"/>
+		<result property="authCertId" column="auth_cert_id"/>
+		<result property="bankProvince" column="bank_province"/>
+		<result property="bankCity" column="bank_city"/>
+		<result property="createDatetime" column="create_datetime"/>
+		<result property="reserve1" column="reserve1"/>
+		<result property="reserve2" column="reserve2"/>
+		<result property="reserve3" column="reserve3"/>
+		<result property="reserve4" column="reserve4"/>
+		<result property="updateDatetime" column="update_datetime"/>
+		<result property="bankName" column="bank_name"/>
+	</resultMap>
+
+	<sql id="columns">
+		id,user_id,bank_account_no,bank_id,bank_card_type,band_status,expir_date,cvc_code,
+    holder_name,usetype_withdraw,usetype_shortcut,branch_name,band_phone_no,band_cert_type,auth_cert_id,bank_province,bank_city,
+    create_datetime,reserve1,reserve2,reserve3,reserve4,update_datetime
+	</sql>
+
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="id" prepend="AND">
+	    	 	id = #id#
+	    	</isNotNull>
+	    	<isNotNull property="userId" prepend="AND">
+	    		user_id = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="bankAccountNo" prepend="AND">
+	    		bank_account_no = #bankAccountNo#
+	    	</isNotNull>
+	    	<isNotNull property="bankId" prepend="AND">
+	    		bank_id = #bankId#
+	    	</isNotNull>
+	    	<isNotNull property="bankCardType" prepend="AND">
+	    		bank_card_type = #bankCardType#
+	    	</isNotNull>
+	    	<isNotNull property="bandStatus" prepend="AND">
+	    		band_status = #bandStatus#
+	    	</isNotNull>
+	    	<isNotNull property="expirDate" prepend="AND">
+	    		expir_date = #expirDate#
+	    	</isNotNull>
+	    	<isNotNull property="cvcCode" prepend="AND">
+	    		cvc_code = #cvcCode#
+	    	</isNotNull>
+	    	<isNotNull property="holderName" prepend="AND">
+	    		holder_name = #holderName#
+	    	</isNotNull>
+	    	<isNotNull property="usetypeWithdraw" prepend="AND">
+	    		usetype_withdraw = #usetypeWithdraw#
+	    	</isNotNull>
+	    	<isNotNull property="usetypeShortcut" prepend="AND">
+	    		usetype_shortcut = #usetypeShortcut#
+	    	</isNotNull>
+	    	<isNotNull property="branchName" prepend="AND">
+	    		branch_name = #branchName#
+	    	</isNotNull>
+	    	<isNotNull property="bandPhoneNo" prepend="AND">
+	    		band_phone_no = #bandPhoneNo#
+	    	</isNotNull>
+	    	<isNotNull property="bandCertType" prepend="AND">
+	    		band_cert_type = #bandCertType#
+	    	</isNotNull>
+	    	<isNotNull property="authCertId" prepend="AND">
+	    		auth_cert_id = #authCertId#
+	    	</isNotNull>
+	    	<isNotNull property="bankProvince" prepend="AND">
+	    		bank_province = #bankProvince#
+	    	</isNotNull>
+	    	<isNotNull property="bankCity" prepend="AND">
+	    		bank_city = #bankCity#
+	    	</isNotNull>
+			<isNotNull property="createDatetime" prepend="AND">
+				create_datetime = #createDatetime#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend="AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend="AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend="AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend="AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend="AND">
+				update_datetime = #updateDatetime#
+			</isNotNull>    		
+    	</dynamic>		
+	</sql>
+	
+	<!--更新绑定状态，根据userid bankAccountNo作条件-->
+	<sql id="updateStatusConditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="userId" prepend="AND">
+	    		user_id = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="bankAccountNo" prepend="AND">
+	    		bank_account_no = #bankAccountNo#
+	    	</isNotNull>
+    	</dynamic>		
+	</sql>
+	
+    <insert id="insert" parameterClass="UserBandBankInfo">
+    	INSERT INTO 
+    		acm_user_band_bank_info
+    	VALUES 
+    		(#id#,#userId#,#bankAccountNo#,#bankId#,#bankCardType#,#bandStatus#,#expirDate#,#cvcCode#,
+    #holderName#,#usetypeWithdraw#,#usetypeShortcut#,#branchName#,#bandPhoneNo#,#bandCertType#,#authCertId#,#bankProvince#,#bankCity#,
+    #createDatetime#,#reserve1#,#reserve2#,#reserve3#,#reserve4#,#updateDatetime#)
+    </insert>
+    
+    <update id="update">
+    	UPDATE
+    		acm_user_band_bank_info
+    	<dynamic prepend="SET">
+		    	<isNotNull property="userId" prepend=",">
+		    		user_id = #userId#
+		    	</isNotNull>
+		    	<isNotNull property="bankAccountNo" prepend=",">
+		    		bank_account_no = #bankAccountNo#
+		    	</isNotNull>
+		    	<isNotNull property="bankId" prepend=",">
+		    		bank_id = #bankId#
+		    	</isNotNull>
+		    	<isNotNull property="bankCardType" prepend=",">
+		    		bank_card_type = #bankCardType#
+		    	</isNotNull>
+		    	<isNotNull property="bandStatus" prepend=",">
+		    		band_status = #bandStatus#
+		    	</isNotNull>
+		    	<isNotNull property="expirDate" prepend=",">
+		    		expir_date = #expirDate#
+		    	</isNotNull>
+		    	<isNotNull property="cvcCode" prepend=",">
+		    		cvc_code = #cvcCode#
+		    	</isNotNull>
+		    	<isNotNull property="holderName" prepend=",">
+		    		holder_name = #holderName#
+		    	</isNotNull>
+		    	<isNotNull property="usetypeWithdraw" prepend=",">
+		    		usetype_withdraw = #usetypeWithdraw#
+		    	</isNotNull>
+		    	<isNotNull property="usetypeShortcut" prepend=",">
+		    		usetype_shortcut = #usetypeShortcut#
+		    	</isNotNull>
+		    	<isNotNull property="branchName" prepend=",">
+		    		branch_name = #branchName#
+		    	</isNotNull>
+		    	<isNotNull property="bandPhoneNo" prepend=",">
+		    		band_phone_no = #bandPhoneNo#
+		    	</isNotNull>
+		    	<isNotNull property="bandCertType" prepend=",">
+		    		band_cert_type = #bandCertType#
+		    	</isNotNull>
+		    	<isNotNull property="authCertId" prepend=",">
+		    		auth_cert_id = #authCertId#
+		    	</isNotNull>
+		    	<isNotNull property="bankProvince" prepend=",">
+		    		bank_province = #bankProvince#
+		    	</isNotNull>
+		    	<isNotNull property="bankCity" prepend=",">
+		    		bank_city = #bankCity#
+		    	</isNotNull>
+				<isNotNull property="createDatetime" prepend=",">
+					create_datetime = #createDatetime#
+				</isNotNull>
+				<isNotNull property="reserve1" prepend=",">
+					reserve1 = #reserve1#
+				</isNotNull>
+				<isNotNull property="reserve2" prepend=",">
+					reserve2 = #reserve2#
+				</isNotNull>
+				<isNotNull property="reserve3" prepend=",">
+					reserve3 = #reserve3#
+				</isNotNull>
+				<isNotNull property="reserve4" prepend=",">
+					reserve4 = #reserve4#
+				</isNotNull>
+				<isNotNull property="updateDatetime" prepend=",">
+					update_datetime = #updateDatetime#
+				</isNotNull>			    	
+    	</dynamic>
+    	WHERE 
+    		id = #id#
+	</update>
+
+<!--根据userid accountid更新-->
+   <update id="updateStatusByUseridAccno">
+    	UPDATE
+    		acm_user_band_bank_info
+    	<dynamic prepend="SET">
+		    	<isNotNull property="bankId" prepend=",">
+		    		bank_id = #bankId#
+		    	</isNotNull>
+		    	<isNotNull property="bankCardType" prepend=",">
+		    		bank_card_type = #bankCardType#
+		    	</isNotNull>
+		    	<isNotNull property="bandStatus" prepend=",">
+		    		band_status = #bandStatus#
+		    	</isNotNull>
+		    	<isNotNull property="expirDate" prepend=",">
+		    		expir_date = #expirDate#
+		    	</isNotNull>
+		    	<isNotNull property="cvcCode" prepend=",">
+		    		cvc_code = #cvcCode#
+		    	</isNotNull>
+		    	<isNotNull property="holderName" prepend=",">
+		    		holder_name = #holderName#
+		    	</isNotNull>
+		    	<isNotNull property="usetypeWithdraw" prepend=",">
+	    			usetype_withdraw = #usetypeWithdraw#
+		    	</isNotNull>
+		    	<isNotNull property="usetypeShortcut" prepend=",">
+		    		usetype_shortcut = #usetypeShortcut#
+		    	</isNotNull>
+		    	<isNotNull property="branchName" prepend=",">
+		    		branch_name = #branchName#
+		    	</isNotNull>
+		    	<isNotNull property="bandPhoneNo" prepend=",">
+		    		band_phone_no = #bandPhoneNo#
+		    	</isNotNull>
+		    	<isNotNull property="bandCertType" prepend=",">
+		    		band_cert_type = #bandCertType#
+		    	</isNotNull>
+		    	<isNotNull property="authCertId" prepend=",">
+		    		auth_cert_id = #authCertId#
+		    	</isNotNull>
+		    	<isNotNull property="bankProvince" prepend="AND">
+	    			bank_province = #bankProvince#
+		    	</isNotNull>
+		    	<isNotNull property="bankCity" prepend="AND">
+		    		bank_city = #bankCity#
+		    	</isNotNull>
+				<isNotNull property="createDatetime" prepend=",">
+					create_datetime = #createDatetime#
+				</isNotNull>
+				<isNotNull property="reserve1" prepend=",">
+					reserve1 = #reserve1#
+				</isNotNull>
+				<isNotNull property="reserve2" prepend=",">
+					reserve2 = #reserve2#
+				</isNotNull>
+				<isNotNull property="reserve3" prepend=",">
+					reserve3 = #reserve3#
+				</isNotNull>
+				<isNotNull property="reserve4" prepend=",">
+					reserve4 = #reserve4#
+				</isNotNull>
+				<isNotNull property="updateDatetime" prepend=",">
+					update_datetime = #updateDatetime#
+				</isNotNull>			    	
+    	</dynamic>
+    	<include refid="updateStatusConditions"/>
+	</update>
+	
+	<select id="select" parameterClass="UserBandBankInfo" resultMap="UserBandBankInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_user_band_bank_info
+		<include refid="conditions"/>
+    </select>
+    
+    <select id="selectList" parameterClass="UserBandBankInfo" resultMap="UserBandBankInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_user_band_bank_info
+		<include refid="conditions"/>
+    </select>
+    
+    <!--  新增联表查询 zxw20140730 -->
+    <select id="selectFullInfo" parameterClass="UserBandBankInfo" resultMap="UserBandBankInfoFullResultMap">
+		SELECT DISTINCT t.*  ,t2.bank_name 
+		FROM  acm_user_band_bank_info t ,glb_bank_info t2
+		WHERE t.user_id =#userId# AND t.BAND_STATUS = '1'
+		AND  t.BANK_ID = t2.BANK_ID;
+    </select>
+
+	<select id="selectCount" parameterClass="UserBandBankInfo" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_user_band_bank_info
+		<include refid="conditions"/>
+    </select>  
+    
+    <delete id="delete" parameterClass="UserBandBankInfo">
+    	DELETE
+    	FROM
+    		acm_user_band_bank_info
+    	WHERE 
+    		id = #id#
+    </delete>  
+</sqlMap>

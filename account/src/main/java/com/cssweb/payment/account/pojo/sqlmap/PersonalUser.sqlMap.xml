@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.PersonalUser">
+    <typeAlias alias="PersonalUser" type="com.cssweb.payment.account.pojo.PersonalUser"/>
+    <typeAlias alias="PersonalUserQuery" type="com.cssweb.payment.account.vo.PersonalUserQuery"/>
+    <typeAlias alias="UserInfo" type="com.cssweb.payment.account.vo.UserInfo"/>
+    <resultMap id="PersonalUserMap" class="PersonalUser">
+        <result property = "userId" column = "user_id"/>
+        <result property = "userName" column = "user_name"/>
+        <result property = "certExpireDate" column = "cert_expire_date"/>
+        <result property = "headPic" column = "head_pic"/>
+        <result property = "regType" column = "reg_type"/>
+        <result property = "source" column = "source"/>
+        <result property = "phoneNumber" column = "phone_number"/>
+        <result property = "emailAddress" column = "email_address"/>
+        <result property = "qqNo" column = "qq_no"/>
+        <result property = "wiChatNo" column = "wi_chat_no"/>
+        <result property = "personalAddress" column = "personal_address"/>
+        <result property = "countryCode" column = "country_code"/>
+        <result property = "cityCode" column = "city_code"/>
+        <result property = "secondPhoneNumber" column = "second_phone_number"/>
+        <result property = "authStep" column = "auth_step"/>
+        <result property = "authStatus" column = "auth_status"/>
+        <result property = "authType" column = "auth_type"/>
+        <result property = "authDate" column = "auth_date"/>
+        <result property = "authCertType" column = "auth_cert_type"/>
+        <result property = "authCertId" column = "auth_cert_id"/>
+        <result property = "authCertExpirDate" column = "auth_cert_expir_date"/>
+        <result property = "pictureFront" column = "picture_front"/>
+        <result property = "pictureBack" column = "picture_back"/>
+        <result property = "authDescribe" column = "auth_describe"/>
+        <result property = "preString" column = "pre_string"/>
+        <result property = "createDatetime" column = "create_datetime"/>
+        <result property = "reserve1" column = "reserve1"/>
+        <result property = "reserve2" column = "reserve2"/>
+        <result property = "reserve3" column = "reserve3"/>
+        <result property = "reserve4" column = "reserve4"/>
+        <result property = "updateDatetime" column = "update_datetime"/>
+    </resultMap>
+    
+    <sql id = "tableName">
+        acm_personal_user_info
+    </sql>
+    
+    <sql id="db_columns">
+        user_id,
+        user_name,
+        cert_expire_date,
+        head_pic,
+        reg_type,
+        source,
+        phone_number,
+        email_address,
+        qq_no,
+        wi_chat_no,
+        personal_address,
+        country_code,
+        city_code,
+        second_phone_number,
+        auth_step,
+        auth_status,
+        auth_type,
+        auth_date,
+        auth_cert_type,
+        auth_cert_id,
+        auth_cert_expir_date,
+        picture_front,
+        picture_back,
+        auth_describe,
+        pre_string,
+        create_datetime,
+        reserve1,
+        reserve2,
+        reserve3,
+        reserve4,
+        update_datetime
+    </sql>
+    
+    <sql id = "java_fields">
+        #userId#,
+        #userName#,
+        #certExpireDate#,
+        #headPic#,
+        #regType#,
+        #source#,
+        #phoneNumber#,
+        #emailAddress#,
+        #qqNo#,
+        #wiChatNo#,
+        #personalAddress#,
+        #countryCode#,
+        #cityCode#,
+        #secondPhoneNumber#,
+        #authStep#,
+        #authStatus#,
+        #authType#,
+        #authDate#,
+        #authCertType#,
+        #authCertId#,
+        #authCertExpirDate#,
+        #pictureFront#,
+        #pictureBack#,
+        #authDescribe#,
+        #preString#,
+        #createDatetime#,
+        #reserve1#,
+        #reserve2#,
+        #reserve3#,
+        #reserve4#,
+        #updateDatetime#
+    </sql>
+    
+    <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotNull property = "userId" prepend = "AND">
+                user_id = #userId#
+            </isNotNull>
+            <isNotNull property = "userName" prepend = "AND">
+                user_name = #userName#
+            </isNotNull>
+            <isNotNull property = "certExpireDate" prepend = "AND">
+                cert_expire_date = #certExpireDate#
+            </isNotNull>
+            <isNotNull property = "headPic" prepend = "AND">
+                head_pic = #headPic#
+            </isNotNull>
+            <isNotNull property = "regType" prepend = "AND">
+                reg_type = #regType#
+            </isNotNull>
+            <isNotNull property = "source" prepend = "AND">
+                source = #source#
+            </isNotNull>
+            <isNotNull property = "phoneNumber" prepend = "AND">
+                phone_number = #phoneNumber#
+            </isNotNull>
+            <isNotNull property = "emailAddress" prepend = "AND">
+                email_address = #emailAddress#
+            </isNotNull>
+            <isNotNull property = "qqNo" prepend = "AND">
+                qq_no = #qqNo#
+            </isNotNull>
+            <isNotNull property = "wiChatNo" prepend = "AND">
+                wi_chat_no = #wiChatNo#
+            </isNotNull>
+            <isNotNull property = "personalAddress" prepend = "AND">
+                personal_address = #personalAddress#
+            </isNotNull>
+            <isNotNull property = "countryCode" prepend = "AND">
+                country_code = #countryCode#
+            </isNotNull>
+            <isNotNull property = "cityCode" prepend = "AND">
+                city_code = #cityCode#
+            </isNotNull>
+            <isNotNull property = "secondPhoneNumber" prepend = "AND">
+                second_phone_number = #secondPhoneNumber#
+            </isNotNull>
+            <isNotNull property = "authStep" prepend = "AND">
+                auth_step = #authStep#
+            </isNotNull>
+            <isNotNull property = "authStatus" prepend = "AND">
+                auth_status = #authStatus#
+            </isNotNull>
+            <isNotNull property = "authType" prepend = "AND">
+                auth_type = #authType#
+            </isNotNull>
+            <isNotNull property = "authDate" prepend = "AND">
+                auth_date = #authDate#
+            </isNotNull>
+            <isNotNull property = "authCertType" prepend = "AND">
+                auth_cert_type = #authCertType#
+            </isNotNull>
+            <isNotNull property = "authCertId" prepend = "AND">
+                auth_cert_id = #authCertId#
+            </isNotNull>
+            <isNotNull property = "authCertExpirDate" prepend = "AND">
+                auth_cert_expir_date = #authCertExpirDate#
+            </isNotNull>
+            <isNotNull property = "pictureFront" prepend = "AND">
+                picture_front = #pictureFront#
+            </isNotNull>
+            <isNotNull property = "pictureBack" prepend = "AND">
+                picture_back = #pictureBack#
+            </isNotNull>
+            <isNotNull property = "authDescribe" prepend = "AND">
+                auth_describe = #authDescribe#
+            </isNotNull>
+            <isNotNull property = "preString" prepend = "AND">
+                pre_string = #preString#
+            </isNotNull>
+            <isNotNull property = "createDatetime" prepend = "AND">
+                create_datetime = #createDatetime#
+            </isNotNull>
+            <isNotNull property = "createDatetimeStart" prepend = "AND">
+                create_datetime &gt;= #createDatetimeStart#
+            </isNotNull>
+            <isNotNull property = "createDatetimeEnd" prepend = "AND">
+                create_datetime &lt;= #createDatetimeEnd#
+            </isNotNull>
+            <isNotNull property = "reserve1" prepend = "AND">
+                reserve1 = #reserve1#
+            </isNotNull>
+            <isNotNull property = "reserve2" prepend = "AND">
+                reserve2 = #reserve2#
+            </isNotNull>
+            <isNotNull property = "reserve3" prepend = "AND">
+                reserve3 = #reserve3#
+            </isNotNull>
+            <isNotNull property = "reserve4" prepend = "AND">
+                reserve4 = #reserve4#
+            </isNotNull>
+            <isNotNull property = "updateDatetime" prepend = "AND">
+                update_datetime = #updateDatetime#
+            </isNotNull>
+        </dynamic>
+    </sql>
+    
+    <sql id = "checkEmailPhoneConditions">
+            WHERE 
+                phone_number = #phoneNumber# 
+			OR
+                email_address = #emailAddress#
+    </sql>
+    
+    <!-- interface 1 : insert  -->
+    <insert id = "insert" parameterClass = "PersonalUser">
+        INSERT INTO  
+        <include refid = "tableName"/>  
+        (<include refid = "db_columns"/>) 
+        VALUES (<include refid = "java_fields"/>)
+    </insert>
+    
+    <!-- interface 2 : update  -->
+    <update id = "update" parameterClass = "PersonalUser">
+        UPDATE 
+            <include refid = "tableName"/>  
+        <dynamic prepend = "SET">
+            <isNotNull property = "userName" prepend = ",">
+                user_name = #userName#
+            </isNotNull>
+            <isNotNull property = "certExpireDate" prepend = ",">
+                cert_expire_date = #certExpireDate#
+            </isNotNull>
+            <isNotNull property = "headPic" prepend = ",">
+                head_pic = #headPic#
+            </isNotNull>
+            <isNotNull property = "regType" prepend = ",">
+                reg_type = #regType#
+            </isNotNull>
+            <isNotNull property = "source" prepend = ",">
+                source = #source#
+            </isNotNull>
+            <isNotNull property = "phoneNumber" prepend = ",">
+                phone_number = #phoneNumber#
+            </isNotNull>
+            <isNotNull property = "emailAddress" prepend = ",">
+                email_address = #emailAddress#
+            </isNotNull>
+            <isNotNull property = "qqNo" prepend = ",">
+                qq_no = #qqNo#
+            </isNotNull>
+            <isNotNull property = "wiChatNo" prepend = ",">
+                wi_chat_no = #wiChatNo#
+            </isNotNull>
+            <isNotNull property = "personalAddress" prepend = ",">
+                personal_address = #personalAddress#
+            </isNotNull>
+            <isNotNull property = "countryCode" prepend = ",">
+                country_code = #countryCode#
+            </isNotNull>
+            <isNotNull property = "cityCode" prepend = ",">
+                city_code = #cityCode#
+            </isNotNull>
+            <isNotNull property = "secondPhoneNumber" prepend = ",">
+                second_phone_number = #secondPhoneNumber#
+            </isNotNull>
+            <isNotNull property = "authStep" prepend = ",">
+                auth_step = #authStep#
+            </isNotNull>
+            <isNotNull property = "authStatus" prepend = ",">
+                auth_status = #authStatus#
+            </isNotNull>
+            <isNotNull property = "authType" prepend = ",">
+                auth_type = #authType#
+            </isNotNull>
+            <isNotNull property = "authDate" prepend = ",">
+                auth_date = #authDate#
+            </isNotNull>
+            <isNotNull property = "authCertType" prepend = ",">
+                auth_cert_type = #authCertType#
+            </isNotNull>
+            <isNotNull property = "authCertId" prepend = ",">
+                auth_cert_id = #authCertId#
+            </isNotNull>
+            <isNotNull property = "authCertExpirDate" prepend = ",">
+                auth_cert_expir_date = #authCertExpirDate#
+            </isNotNull>
+            <isNotNull property = "pictureFront" prepend = ",">
+                picture_front = #pictureFront#
+            </isNotNull>
+            <isNotNull property = "pictureBack" prepend = ",">
+                picture_back = #pictureBack#
+            </isNotNull>
+            <isNotNull property = "authDescribe" prepend = ",">
+                auth_describe = #authDescribe#
+            </isNotNull>
+            <isNotNull property = "preString" prepend = ",">
+                pre_string = #preString#
+            </isNotNull>
+            <isNotNull property = "createDatetime" prepend = ",">
+                create_datetime = #createDatetime#
+            </isNotNull>
+            <isNotNull property = "reserve1" prepend = ",">
+                reserve1 = #reserve1#
+            </isNotNull>
+            <isNotNull property = "reserve2" prepend = ",">
+                reserve2 = #reserve2#
+            </isNotNull>
+            <isNotNull property = "reserve3" prepend = ",">
+                reserve3 = #reserve3#
+            </isNotNull>
+            <isNotNull property = "reserve4" prepend = ",">
+                reserve4 = #reserve4#
+            </isNotNull>
+            <isNotNull property = "updateDatetime" prepend = ",">
+                update_datetime = #updateDatetime#
+            </isNotNull>        
+        </dynamic>
+            WHERE 
+                user_id = #userId#
+    </update>
+    
+    <!-- interface 3 : select(select by conditions) -->
+    <select id = "select" parameterClass = "PersonalUserQuery" resultMap = "PersonalUserMap">
+        SELECT * FROM <include refid = "tableName"/>   
+        <include refid = "conditions"/>
+       <dynamic prepend="LIMIT">
+        	<isNotNull property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotNull>
+        	<isNotNull property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotNull>
+       </dynamic>
+    </select>
+    
+    <!-- interface 4 : selectCount -->
+    <select id = "selectCount" parameterClass = "PersonalUserQuery" resultClass = "int">
+        SELECT COUNT(*) FROM <include refid = "tableName"/>
+        <include refid = "conditions"/>
+    </select>
+
+    <!-- interface 3 : select(select by conditions) -->
+    <select id = "selectByEmailPhone" parameterClass = "PersonalUser" resultMap = "PersonalUserMap">
+        SELECT * FROM <include refid = "tableName"/>   
+        <include refid = "checkEmailPhoneConditions"/>
+    </select> 
+    
+    <update id="updateUnbindingMobile">
+    	UPDATE
+    		acm_personal_user_info
+    	SET
+    		phone_number = NULL,
+    		update_datetime = SYSDATE()
+    	WHERE
+    		user_id = #userId#
+    </update>
+    <update id="updateUnbindingEmail">
+    	UPDATE
+    		acm_personal_user_info
+    	SET
+    		email_address = NULL,
+    		update_datetime = SYSDATE()
+    	WHERE
+    		user_id = #userId#
+    </update>
+    
+    <update id="updateAuth">
+    	UPDATE
+    		acm_personal_user_info
+    	SET
+    		auth_date = #authDate#,
+    		auth_step = #authStep#,
+    		auth_status = #authStatus#,
+    		update_datetime = #updateDatetime#
+    	WHERE
+    		user_id = #userId#
+    </update>
+    
+     <update id="updateAuthDate">
+    	UPDATE
+    		acm_personal_user_info
+    	SET
+    		auth_date = #authDate#,
+    		update_datetime = #updateDatetime#
+    	WHERE
+    		user_id = #userId#
+    </update>
+     
+     <select id = "selectPersonalInfoList" parameterClass = "PersonalUserQuery" resultClass="UserInfo">
+        SELECT
+	        u.user_type AS usertype, 
+	        u.user_status AS userStatus,
+	        m.account_id AS accountId,
+	        p.user_name AS name,
+	        p.phone_number AS managerMobile,
+	        p.email_address AS email,
+	        p.user_id AS userId
+        FROM
+   			acm_main_account_info m 
+		INNER JOIN 
+			acm_personal_user_info p 
+		ON 
+			m.user_id = p.user_id
+		INNER JOIN 
+			acm_user_login_info u 
+		ON 
+			u.user_id = p.user_id
+        <dynamic prepend = "WHERE">
+        	m.account_type = 1 and
+            <isNotEmpty property = "phoneNumber">
+                p.phone_number = #phoneNumber#
+            </isNotEmpty>
+            <isNotEmpty property = "emailAddress">
+                p.email_address = #emailAddress#
+            </isNotEmpty>
+        </dynamic>         
+    </select>
+</sqlMap>

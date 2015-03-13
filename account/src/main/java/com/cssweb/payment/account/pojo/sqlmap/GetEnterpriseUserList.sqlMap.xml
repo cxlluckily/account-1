@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.vo.GetEnterpriseUserList">
+    <typeAlias alias="EnterpriseUserQuery" type="com.cssweb.payment.account.vo.EnterpriseUserQuery"/>
+    <typeAlias alias="GetEnterpriseUserListResponse" type="com.cssweb.payment.account.vo.GetEnterpriseUserListResponse"/>
+
+    <select id = "select" parameterClass = "EnterpriseUserQuery" resultClass="GetEnterpriseUserListResponse">
+        SELECT
+        	m.account_id AS accountId,
+	        m.user_id AS userId, 
+	        m.user_type AS userType,
+	        b.business_name AS businessName,
+	        b.business_licence AS businessLicence,
+	        b.business_location AS businessLocation,
+	        b.business_expdate AS businessExpdate,
+	        b.business_address AS businessAddress,
+	        b.manager_tel AS managerTel,
+	        b.business_pic_1 AS businessPic1,
+	        b.organization_code AS organizationCode,
+	        b.business_sphere AS businessSphere,
+	        b.fax AS fax,
+	        b.business_regamount AS businessRegamount,
+	        b.business_bank  AS businessBank,
+	        b.business_bank_no AS businessBankNo,
+	        b.legal_person_city AS legalPersonCity,
+	        b.legal_person_name AS legalPersonname,
+	        b.id_type AS idType,
+	        b.legal_person_idno AS legalPersonIdno,
+	        b.id_pic_1 AS idPic1,
+	        b.id_pic_2 AS idPic2,
+	        b.manager_mobile AS managerMobile,
+	        b.dlr_name AS dlrName,
+	        b.dlr_sfzlx AS dlrSfzlx,
+	        b.dlr_sfzhm AS dlrSfzhm,
+	        b.dlr_sfzzm AS dlrSfzzm,
+	        b.dlr_sfzfm AS dlrSfzfm,
+	        b.auth_status AS authStatus,
+	        b.auth_describe AS authDescribe,
+	        b.auth_date AS authDate,
+	        b.qywtssmj AS qywtssmj,
+	        b.source AS source,
+	        b.email AS email,
+	        b.is_merchant AS isMerchant,
+	        b.business_pic_2 AS businessPic2,
+	        b.auth_step AS authStep,
+	        b.dlr_sjhm AS dlrSjhm,
+	        b.auth_type AS authType,
+	        b.is_merchant AS isMerchant,
+	        b.pre_string AS preString,
+	        b.source AS source,
+	        b.auth_describe AS authDescribe,
+	        b.country_code AS countryCode,
+	        b.address AS address,
+	        b.zip_code AS zipCode,
+	        b.business AS business,
+	        b.ct_status AS ctStatus,
+	        b.create_datetime AS createDatetime,
+	        b.head_pic AS headPic,
+	        u.user_status AS userStatus,
+	       	u.last_loginin_time AS lastLoginTime,
+	       	u.reserve1 as freezeReason
+        FROM  
+        acm_user_login_info u
+         INNER JOIN
+         	acm_business_user_info b
+         ON
+         	u.user_id = b.user_id	
+         INNER JOIN
+         	acm_main_account_info m
+         ON
+         	m.user_id = b.user_id
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "userId" prepend = "AND">
+                b.user_id = #userId#
+            </isNotEmpty>
+            <isNotEmpty property = "businessName" prepend = "AND">
+                b.business_name = #businessName#
+            </isNotEmpty>
+            <isNotEmpty property = "legalPersonname" prepend = "AND">
+                b.legal_person_name = #legalPersonname#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrName" prepend = "AND">
+                b.dlr_name = #dlrName#
+            </isNotEmpty>
+            <isNotEmpty property = "idType" prepend = "AND">
+                b.id_type = #idType#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzlx" prepend = "AND">
+                b.dlr_sfzlx = #dlrSfzlx#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzhm" prepend = "AND">
+                b.dlr_sfzhm = #dlrSfzhm#
+            </isNotEmpty>
+            
+            <isNotEmpty property = "createDatetimeStart" prepend = "AND">
+            <![CDATA[ 
+                b.create_datetime >= #createDatetimeStart#
+             ]]> 
+            </isNotEmpty>
+            <isNotEmpty property = "createDatetimeEnd" prepend = "AND">
+            <![CDATA[ 
+                b.create_datetime < #createDatetimeEnd#
+               ]]> 
+            </isNotEmpty>
+            
+            <isNotEmpty property = "authStatus" prepend = "AND">
+                b.auth_status = #authStatus#
+            </isNotEmpty>
+            <isNotEmpty property = "managerMobile" prepend = "AND">
+                b.manager_mobile = #managerMobile#
+            </isNotEmpty>
+            <isNotEmpty property = "email" prepend = "AND">
+                b.email = #email#
+            </isNotEmpty>
+            <isNotEmpty property = "isMerchant" prepend = "AND">
+                b.is_merchant = #isMerchant#
+            </isNotEmpty>
+            <isNotEmpty property = "userStatus" prepend = "AND">
+                u.user_status = #userStatus#
+            </isNotEmpty>
+            <isNotEmpty property = "businessLicence" prepend = "AND">
+                b.business_licence = #businessLicence#
+            </isNotEmpty>
+            <isNotEmpty property = "managerTel" prepend = "AND">
+                b.manager_tel = #managerTel#
+            </isNotEmpty>
+        </dynamic>         
+       <dynamic prepend="LIMIT">
+        	<isNotEmpty property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotEmpty>
+        	<isNotEmpty property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotEmpty>
+       </dynamic>
+    </select>
+    
+    <select id = "selectCount" parameterClass = "EnterpriseUserQuery" resultClass = "integer">
+        SELECT 
+        	COUNT(*) 
+          FROM  
+        acm_user_login_info u
+         INNER JOIN
+         	acm_business_user_info b
+         ON
+         	u.user_id = b.user_id	
+         INNER JOIN
+         	acm_main_account_info m
+         ON
+         	m.user_id = b.user_id
+         <dynamic prepend = "WHERE">
+            <isNotEmpty property = "userId" prepend = "AND">
+                b.user_id = #userId#
+            </isNotEmpty>         
+            <isNotEmpty property = "businessName" prepend = "AND">
+                b.business_name = #businessName#
+            </isNotEmpty>
+            <isNotEmpty property = "legalPersonname" prepend = "AND">
+                b.legal_person_name = #legalPersonname#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrName" prepend = "AND">
+                b.dlr_name = #dlrName#
+            </isNotEmpty>
+            <isNotEmpty property = "idType" prepend = "AND">
+                b.id_type = #idType#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzlx" prepend = "AND">
+                b.dlr_sfzlx = #dlrSfzlx#
+            </isNotEmpty>
+            <isNotEmpty property = "dlrSfzhm" prepend = "AND">
+                b.dlr_sfzhm = #dlrSfzhm#
+            </isNotEmpty>
+             <isNotEmpty property = "createDatetimeStart" prepend = "AND">
+            <![CDATA[ 
+                b.create_datetime >= #createDatetimeStart#
+             ]]> 
+            </isNotEmpty>
+            <isNotEmpty property = "createDatetimeEnd" prepend = "AND">
+            <![CDATA[ 
+                b.create_datetime < #createDatetimeEnd#
+               ]]> 
+            </isNotEmpty>
+            <isNotEmpty property = "authStatus" prepend = "AND">
+                b.auth_status = #authStatus#
+            </isNotEmpty>
+            <isNotEmpty property = "managerMobile" prepend = "AND">
+                b.manager_mobile = #managerMobile#
+            </isNotEmpty>
+            <isNotEmpty property = "email" prepend = "AND">
+                b.email = #email#
+            </isNotEmpty>
+            <isNotEmpty property = "isMerchant" prepend = "AND">
+                b.is_merchant = #isMerchant#
+            </isNotEmpty>            
+            <isNotEmpty property = "userStatus" prepend = "AND">
+                u.user_status = #userStatus#
+            </isNotEmpty>
+            <isNotEmpty property = "businessLicence" prepend = "AND">
+                b.business_licence = #businessLicence#
+            </isNotEmpty>
+            <isNotEmpty property = "managerTel" prepend = "AND">
+                b.manager_tel = #managerTel#
+            </isNotEmpty>
+        </dynamic>
+    </select>
+
+</sqlMap>

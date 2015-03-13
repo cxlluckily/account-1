@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.UserRelAuInfo">
+	
+	<typeAlias alias="UserRelAuInfo" type="com.cssweb.payment.account.pojo.UserRelAuInfo"/>
+	<typeAlias alias="GetUserRelAuInfoResponse" type="com.cssweb.payment.account.vo.GetUserRelAuInfoResponse"/>
+	<typeAlias alias="EnterpriseUserQuery" type="com.cssweb.payment.account.vo.EnterpriseUserQuery"/>
+	<typeAlias alias="PersonalUserQuery" type="com.cssweb.payment.account.vo.PersonalUserQuery"/>
+	
+	<resultMap id="UserRelAuInfoMap" class="UserRelAuInfo">
+		<result property = "id" column =  "id"/>
+		<result property = "mainUserId" column =  "main_user_id"/>
+		<result property = "relationUserId" column =  "relation_user_id"/>
+		
+		<result property = "reserve1" column =  "reserve1"/>
+		<result property = "reserve2" column =  "reserve2"/>
+		<result property = "reserve3" column =  "reserve3"/>
+		<result property = "reserve4" column =  "reserve4"/>
+		<result property = "createDateTime" column =  "create_date_time"/>
+		<result property = "updateDateTime" column = "update_date_time"/>
+	</resultMap>
+
+	<sql id = "tableName">
+		acm_user_rel_au_info
+	</sql>
+	
+	<sql id="db_columns">
+		id,
+		main_user_id,
+		relation_user_id,
+		
+		reserve1,
+		reserve2,
+		reserve3,
+		reserve4,
+		create_date_time,
+		update_date_time
+	</sql>
+	
+	<sql id = "java_fields">
+		#id#,
+		#mainUserId#,
+		#relationUserId#,
+		
+		#reserve1#,
+		#reserve2#,
+		#reserve3#,
+		#reserve4#,
+		#createDateTime#,
+		#updateDateTime#
+	</sql>
+	
+	<sql id = "conditions">
+		<dynamic prepend = "WHERE">
+			<isNotNull property = "mainUserId" prepend="OR">
+				main_user_id = #mainUserId#
+			</isNotNull>
+			<isNotNull property = "relationUserId" prepend="OR">
+				relation_user_id = #relationUserId#
+			</isNotNull>
+			<isNotNull property = "createDateTime" prepend = "AND">
+				create_date_time = #createDateTime#
+			</isNotNull>
+			
+			<isNotNull property = "reserve1" prepend = "AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property = "reserve2" prepend = "AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property = "reserve3" prepend = "AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property = "reserve4" prepend = "AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property = "updateDateTime" prepend = "AND">
+				update_date_time = #updateDateTime#
+			</isNotNull>
+		</dynamic>
+	</sql>
+	
+	<!-- interface 1 : insert  -->
+	<insert id = "insert" parameterClass = "UserRelAuInfo">
+		INSERT INTO  
+		<include refid = "tableName"/>  
+		(<include refid = "db_columns"/>) 
+		VALUES (<include refid = "java_fields"/>)
+	</insert>
+	
+	<!-- interface 2 : update  -->
+	<update id = "update" parameterClass = "UserRelAuInfo">
+		UPDATE 
+			<include refid = "tableName"/>  
+		<dynamic prepend = "SET">
+			<isNotNull property = "mainUserId" prepend=",">
+				main_user_id = #mainUserId#
+			</isNotNull>
+			<isNotNull property = "relationUserId" prepend=",">
+				relation_user_id = #relationUserId#
+			</isNotNull>
+			<isNotNull property = "createDateTime" prepend = ",">
+				create_date_time = #createDateTime#
+			</isNotNull>
+			
+			<isNotNull property = "reserve1" prepend = ",">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property = "reserve2" prepend = ",">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property = "reserve3" prepend = ",">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property = "reserve4" prepend = ",">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property = "updateDateTime" prepend = ",">
+				update_date_time = #updateDateTime#
+			</isNotNull>
+		</dynamic>
+			WHERE 
+				id = #id#
+	</update>
+	
+	<!-- interface 3 : select(select by conditions) -->
+	<select id = "select" parameterClass = "UserRelAuInfo" resultMap = "UserRelAuInfoMap">
+		SELECT * FROM <include refid = "tableName"/>   
+		<include refid = "conditions"/>
+	</select>
+	
+	<!-- interface 4 : selectCount -->
+	<select id = "selectCount" parameterClass = "UserRelAuInfo" resultClass = "int">
+		SELECT COUNT(*) FROM <include refid = "tableName"/>
+		<include refid = "conditions"/>
+	</select>
+	
+	<select id = "selectPersonalRelAu" parameterClass = "PersonalUserQuery" resultClass="java.util.HashMap">
+        SELECT
+	        u.user_email AS userEmail, 
+	        u.user_mobile AS userMobile,
+	        p.head_pic AS headPic,
+	        r.main_user_id AS mainUserId,
+	        r.relation_user_id AS relationUserId,
+	        r.id AS id,
+	        r.create_date_time AS createDateTime,
+	        r.update_date_time AS updateDateTime
+        FROM
+   			acm_user_rel_au_info r 
+		INNER JOIN 
+			acm_personal_user_info p 
+		ON 
+			r.relation_user_id = p.user_id
+		INNER JOIN 
+			acm_user_login_info u 
+		ON 
+			u.user_id = p.user_id
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "userId">
+                r.main_user_id = #userId#
+            </isNotEmpty>
+        </dynamic>         
+    </select>
+    <select id = "selectEnterpriseuserRelAu" parameterClass = "EnterpriseUserQuery" resultClass="java.util.HashMap">
+        SELECT
+	        u.user_email AS userEmail, 
+	        u.user_mobile AS userMobile,
+	        b.head_pic AS headPic,
+	        r.main_user_id AS mainUserId,
+	        r.relation_user_id AS relationUserId,
+	        r.id AS id,
+	        r.create_date_time AS createDateTime,
+	        r.update_date_time AS updateDateTime
+         FROM  
+         	acm_user_login_info u
+         INNER JOIN
+         	acm_business_user_info b
+         ON
+         	u.user_id = b.user_id
+         INNER JOIN
+         	acm_user_rel_au_info r
+         ON
+         	r.relation_user_id = b.user_id
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "userId">
+                r.main_user_id = #userId#
+            </isNotEmpty>
+        </dynamic>         
+    </select>
+</sqlMap>

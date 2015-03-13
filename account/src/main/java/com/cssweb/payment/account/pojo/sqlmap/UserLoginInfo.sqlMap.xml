@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.UserLoginInfo">
+
+    <typeAlias alias="UserLoginInfo" type="com.cssweb.payment.account.pojo.UserLoginInfo"/>
+
+	<resultMap id="UserLoginInfoResultMap" class="UserLoginInfo">
+		<result property="userId" column="user_id"/>
+		<result property="userType" column="user_type"/>
+		<result property="loginPasswd" column="login_passwd"/>
+		<result property="payPasswd" column="pay_passwd"/>
+		<result property="lastLogininTime" column="last_loginin_time"/>
+		<result property="lastLoginoutTime" column="last_loginout_time"/>
+		<result property="lastLoginIp" column="last_login_ip"/>
+		<result property="errorLoginTimes" column="error_login_times"/>
+		<result property="errorPayTimes" column="error_pay_times"/>
+		<result property="userMobile" column="user_mobile"/>
+		<result property="userEmail" column="user_email"/>
+		<result property="userStatus" column="user_status"/>
+		<result property="createDatetime" column="create_datetime"/>
+		<result property="reserve1" column="reserve1"/>
+		<result property="reserve2" column="reserve2"/>
+		<result property="reserve3" column="reserve3"/>
+		<result property="reserve4" column="reserve4"/>
+		<result property="updateDatetime" column="update_datetime"/>
+	</resultMap>
+
+	<sql id="columns">
+		user_id, user_type, login_passwd, pay_passwd, last_loginin_time, last_loginout_time,
+		last_login_ip, error_login_times, error_pay_times, user_mobile, user_email, user_status,
+		create_datetime, reserve1, reserve2, reserve3, reserve4, update_datetime
+	</sql>
+
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="userId" prepend="AND">
+	    	 	user_id = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="userType" prepend="AND">
+	    		user_type = #userType#
+	    	</isNotNull>
+	    	<isNotNull property="loginPasswd" prepend="AND">
+	    		login_passwd = #loginPasswd#
+	    	</isNotNull>
+	    	<isNotNull property="payPasswd" prepend="AND">
+	    		pay_passwd = #payPasswd#
+	    	</isNotNull>
+	    	<isNotNull property="lastLogininTime" prepend="AND">
+	    		last_loginin_time = #lastLogininTime#
+	    	</isNotNull>
+	    	<isNotNull property="lastLoginoutTime" prepend="AND">
+	    		last_loginout_time = #lastLoginoutTime#
+	    	</isNotNull>
+	    	<isNotNull property="lastLoginIp" prepend="AND">
+				last_login_ip = #lastLoginIp#
+			</isNotNull>
+			<isNotNull property="errorLoginTimes" prepend="AND">
+				error_login_times = #errorLoginTimes#
+			</isNotNull>
+			<isNotNull property="errorPayTimes" prepend="AND">
+				error_pay_times = #errorPayTimes#
+			</isNotNull>
+			<isNotNull property="userMobile" prepend="AND">
+				user_mobile = #userMobile#
+			</isNotNull>
+			<isNotNull property="userEmail" prepend="AND">
+				user_email = #userEmail#
+			</isNotNull>
+			<isNotNull property="userStatus" prepend="AND">
+				user_status = #userStatus#
+			</isNotNull>
+			<isNotNull property="createDatetime" prepend="AND">
+				create_datetime = #createDatetime#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend="AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend="AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend="AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend="AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend="AND">
+				update_datetime = #updateDatetime#
+			</isNotNull>    		
+    	</dynamic>		
+	</sql>
+	
+    <insert id="insert" parameterClass="UserLoginInfo">
+    	INSERT INTO 
+    		acm_user_login_info
+    	VALUES 
+    		(#userId#, #userType#, #loginPasswd#, #payPasswd#, #lastLogininTime#, #lastLoginoutTime#,
+    		 #lastLoginIp#, #errorLoginTimes#, #errorPayTimes#, #userMobile#, #userEmail#, #userStatus#,
+    		 #createDatetime#, #reserve1#, #reserve2#, #reserve3#, #reserve4#, #updateDatetime#)
+    </insert>
+    
+    <update id="update">
+    	UPDATE
+    		acm_user_login_info
+    	<dynamic prepend="SET">
+			<isNotNull property="userType" prepend=",">
+	    		user_type = #userType#
+	    	</isNotNull>
+	    	<isNotNull property="loginPasswd" prepend=",">
+	    		login_passwd = #loginPasswd#
+	    	</isNotNull>
+	    	<isNotNull property="payPasswd" prepend=",">
+	    		pay_passwd = #payPasswd#
+	    	</isNotNull>
+	    	<isNotNull property="lastLogininTime" prepend=",">
+	    		last_loginin_time = #lastLogininTime#
+	    	</isNotNull>
+	    	<isNotNull property="lastLoginoutTime" prepend=",">
+	    		last_loginout_time = #lastLoginoutTime#
+	    	</isNotNull>
+	    	<isNotNull property="lastLoginIp" prepend=",">
+				last_login_ip = #lastLoginIp#
+			</isNotNull>
+			<isNotNull property="errorLoginTimes" prepend=",">
+				error_login_times = #errorLoginTimes#
+			</isNotNull>
+			<isNotNull property="errorPayTimes" prepend=",">
+				error_pay_times = #errorPayTimes#
+			</isNotNull>
+			<isNotNull property="userMobile" prepend=",">
+				user_mobile = #userMobile#
+			</isNotNull>
+			<isNotNull property="userEmail" prepend=",">
+				user_email = #userEmail#
+			</isNotNull>
+			<isNotNull property="userStatus" prepend=",">
+				user_status = #userStatus#
+			</isNotNull>
+			<isNotNull property="createDatetime" prepend=",">
+				create_datetime = #createDatetime#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend=",">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend=",">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend=",">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend=",">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend=",">
+				update_datetime = #updateDatetime#
+			</isNotNull>
+    	</dynamic>
+    	WHERE
+    		user_id = #userId#
+    </update>
+    <update id="updateUnbindingMobile">
+    	UPDATE
+    		acm_user_login_info
+    	SET
+    		user_mobile = NULL,
+    		update_datetime = SYSDATE()
+    	WHERE
+    		user_id = #userId#
+    </update>
+    <update id="updateUnbindingEmail">
+    	UPDATE
+    		acm_user_login_info
+    	SET
+    		user_email = NULL,
+    		update_datetime = SYSDATE()
+    	WHERE
+    		user_id = #userId#
+    </update>
+    
+	<select id="select" parameterClass="UserLoginInfo" resultMap="UserLoginInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_user_login_info
+		<include refid="conditions"/>
+    </select>
+
+	<select id="selectCount" parameterClass="UserLoginInfo" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_user_login_info
+		<include refid="conditions"/>
+    </select>    
+</sqlMap>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="
+	   	   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   	   http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+		<dubbo:application name="payment-account" />
+
+		<dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" />
+	
+		<dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />
+
+    <dubbo:service interface="com.cssweb.payment.account.sei.IAccountService" ref="accountServiceImpl" />
+    <dubbo:service interface="com.cssweb.payment.account.sei.IManageService" ref="manageServiceImpl" />  
+    <dubbo:service interface="com.cssweb.payment.account.sei.IPortalService" ref="portalServiceImpl" />
+    <dubbo:service interface="com.cssweb.payment.account.sei.IRiskService" ref="riskServiceImpl" /> 	
+    <dubbo:service interface="com.cssweb.payment.account.sei.ITradeService" ref="tradeServiceImpl" />  
+    <dubbo:service interface="com.cssweb.payment.account.sei.IMobileService" ref="mobileServiceImpl" />  
+		
+		<dubbo:reference id="idGeneratorService" interface="com.cssweb.payment.common.provider.sei.IIdGeneratorService" />
+		<dubbo:reference id="dictionaryService" interface="com.cssweb.payment.omp.sei.IDictionaryService" />
+		<dubbo:reference id="symService" interface="com.cssweb.payment.kms.sei.ISymService" />
+	
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   					   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	   					   http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<context:component-scan base-package="com.cssweb.payment.common.spring,com.cssweb.payment.account.util"/>
+	   					   
+	<dubbo:application name="payment-account-test" />
+
+	 <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" id="local"/>
+	 <dubbo:registry protocol="zookeeper" address="zookeeper.cecepay.com:2181" id="remote"/>
+	<!--<dubbo:registry protocol="zookeeper" address="172.16.2.141:2181" id="remote"/>  -->
+	<dubbo:reference id="accountService" interface="com.cssweb.payment.account.sei.IAccountService" registry="local"/>
+	<dubbo:reference id="manageService" interface="com.cssweb.payment.account.sei.IManageService" registry="local"/>
+	<dubbo:reference id="portalService" interface="com.cssweb.payment.account.sei.IPortalService" registry="local"/>
+	<dubbo:reference id="riskService" interface="com.cssweb.payment.account.sei.IRiskService" registry="local"/>
+	<dubbo:reference id="tradeService" interface="com.cssweb.payment.account.sei.ITradeService" registry="local"/>
+	<dubbo:reference id="mobileService" interface="com.cssweb.payment.account.sei.IMobileService" registry="local"/>
+	
+	<dubbo:reference id="idGeneratorService" interface="com.cssweb.payment.common.provider.sei.IIdGeneratorService" registry="remote"/>
+	<dubbo:reference id="dictionaryService" interface="com.cssweb.payment.omp.sei.IDictionaryService" registry="remote"/>
+	<dubbo:reference id="symService" interface="com.cssweb.payment.kms.sei.ISymService" registry="remote"/>
+
+</beans>

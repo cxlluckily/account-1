@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.vo.GetPersonalUserList">
+    <typeAlias alias="PersonalUserQuery" type="com.cssweb.payment.account.vo.PersonalUserQuery"/>
+    <typeAlias alias="GetPersonalUserListResponse" type="com.cssweb.payment.account.vo.GetPersonalUserListResponse"/>
+
+    <select id = "select" parameterClass = "PersonalUserQuery" resultClass="GetPersonalUserListResponse">
+        SELECT
+	        u.user_id AS userId, 
+	        u.user_type AS userType,
+	        u.user_status AS userStatus,
+	        u.last_loginin_time AS lastLoginTime,
+	        p.user_name AS userName,
+	        p.source AS source,
+	        p.phone_number AS phoneNumber,
+	        p.email_address AS emailAddress,
+	        p.personal_address AS personalAddress,
+	        p.auth_status AS authStatus,
+	        p.auth_cert_type AS authCertType,
+	        p.auth_cert_id AS authCertId,
+	        p.auth_cert_expir_date AS authCertExpirDate,
+	        p.auth_date AS authDate,
+	        p.picture_front AS pictureFront,
+	        p.picture_back AS pictureBack,
+	        p.create_datetime AS registerDate,
+	        p.auth_describe AS authDescribe,
+	        m.account_id AS accountId
+         FROM  
+         	acm_user_login_info u
+         INNER JOIN
+         	acm_personal_user_info p
+         ON
+         	u.user_id = p.user_id
+         INNER JOIN
+         	acm_main_account_info m
+         ON
+         	m.user_id = p.user_id
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "userId" prepend = "AND">
+                p.user_id = #userId#
+            </isNotEmpty>
+            <isNotEmpty property = "userName" prepend = "AND">
+                p.user_name = #userName#
+            </isNotEmpty>
+            <isNotEmpty property = "certExpireDate" prepend = "AND">
+                p.cert_expire_date = #certExpireDate#
+            </isNotEmpty>
+            <isNotEmpty property = "headPic" prepend = "AND">
+                p.head_pic = #headPic#
+            </isNotEmpty>
+            <isNotEmpty property = "regType" prepend = "AND">
+                p.reg_type = #regType#
+            </isNotEmpty>
+            <isNotEmpty property = "source" prepend = "AND">
+                p.source = #source#
+            </isNotEmpty>
+            <isNotEmpty property = "phoneNumber" prepend = "AND">
+                p.phone_number = #phoneNumber#
+            </isNotEmpty>
+            <isNotEmpty property = "emailAddress" prepend = "AND">
+                p.email_address = #emailAddress#
+            </isNotEmpty>
+            <isNotEmpty property = "qqNo" prepend = "AND">
+                p.qq_no = #qqNo#
+            </isNotEmpty>
+            <isNotEmpty property = "wiChatNo" prepend = "AND">
+                p.wi_chat_no = #wiChatNo#
+            </isNotEmpty>
+            <isNotEmpty property = "personalAddress" prepend = "AND">
+                p.personal_address = #personalAddress#
+            </isNotEmpty>
+            <isNotEmpty property = "countryCode" prepend = "AND">
+                p.country_code = #countryCode#
+            </isNotEmpty>
+            <isNotEmpty property = "cityCode" prepend = "AND">
+                p.city_code = #cityCode#
+            </isNotEmpty>
+            <isNotEmpty property = "secondPhoneNumber" prepend = "AND">
+                p.second_phone_number = #secondPhoneNumber#
+            </isNotEmpty>
+            <isNotEmpty property = "authStep" prepend = "AND">
+                p.auth_step = #authStep#
+            </isNotEmpty>
+            <isNotEmpty property = "authStatus" prepend = "AND">
+                p.auth_status = #authStatus#
+            </isNotEmpty>
+            <isNotEmpty property = "authType" prepend = "AND">
+                p.auth_type = #authType#
+            </isNotEmpty>
+            <isNotEmpty property = "authDate" prepend = "AND">
+                p.auth_date = #authDate#
+            </isNotEmpty>
+            <isNotEmpty property = "authCertType" prepend = "AND">
+                p.auth_cert_type = #authCertType#
+            </isNotEmpty>
+            <isNotEmpty property = "authCertId" prepend = "AND">
+                p.auth_cert_id = #authCertId#
+            </isNotEmpty>
+            <isNotEmpty property = "authCertExpirDate" prepend = "AND">
+                p.auth_cert_expir_date = #authCertExpirDate#
+            </isNotEmpty>
+            <isNotEmpty property = "pictureFront" prepend = "AND">
+                p.picture_front = #pictureFront#
+            </isNotEmpty>
+            <isNotEmpty property = "pictureBack" prepend = "AND">
+                p.picture_back = #pictureBack#
+            </isNotEmpty>
+            <isNotEmpty property = "authDescribe" prepend = "AND">
+                p.auth_describe = #authDescribe#
+            </isNotEmpty>
+            <isNotEmpty property = "preString" prepend = "AND">
+                p.pre_string = #preString#
+            </isNotEmpty>
+            <isNotEmpty property = "createDatetime" prepend = "AND">
+                p.create_datetime = #createDatetime#
+            </isNotEmpty>
+            <isNotEmpty property = "createDatetimeStart" prepend = "AND">
+                p.create_datetime &gt;= #createDatetimeStart#
+            </isNotEmpty>
+            <isNotEmpty property = "createDatetimeEnd" prepend = "AND">
+                p.create_datetime &lt; #createDatetimeEnd#
+            </isNotEmpty>
+            <isNotEmpty property = "reserve1" prepend = "AND">
+                p.reserve1 = #reserve1#
+            </isNotEmpty>
+            <isNotEmpty property = "reserve2" prepend = "AND">
+                p.reserve2 = #reserve2#
+            </isNotEmpty>
+            <isNotEmpty property = "reserve3" prepend = "AND">
+                p.reserve3 = #reserve3#
+            </isNotEmpty>
+            <isNotEmpty property = "reserve4" prepend = "AND">
+                p.reserve4 = #reserve4#
+            </isNotEmpty>
+            <isNotEmpty property = "updateDatetime" prepend = "AND">
+                p.update_datetime = #updateDatetime#
+            </isNotEmpty>
+			<isNotEmpty property = "userStatus" prepend = "AND">
+                u.user_status = #userStatus#
+       		</isNotEmpty>            
+			<isNotEmpty property = "accountType" prepend = "AND">
+                m.account_type = #accountType#
+       		</isNotEmpty>            
+        </dynamic>         
+       <dynamic prepend="LIMIT">
+        	<isNotEmpty property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotEmpty>
+        	<isNotEmpty property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotEmpty>
+       </dynamic>
+    </select>
+    
+    <select id = "selectCount" parameterClass = "PersonalUserQuery" resultClass = "integer">
+        SELECT 
+        	COUNT(*) 
+         FROM  
+         	acm_user_login_info u
+         INNER JOIN
+         	acm_personal_user_info p
+         ON
+         	u.user_id = p.user_id
+         INNER JOIN
+         	acm_main_account_info m
+         ON
+         	m.user_id = p.user_id
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "userId" prepend = "AND">
+                p.user_id = #userId#
+            </isNotEmpty>
+            <isNotEmpty property = "userName" prepend = "AND">
+                p.user_name = #userName#
+            </isNotEmpty>
+            <isNotEmpty property = "certExpireDate" prepend = "AND">
+                p.cert_expire_date = #certExpireDate#
+            </isNotEmpty>
+            <isNotEmpty property = "headPic" prepend = "AND">
+                p.head_pic = #headPic#
+            </isNotEmpty>
+            <isNotEmpty property = "regType" prepend = "AND">
+                p.reg_type = #regType#
+            </isNotEmpty>
+            <isNotEmpty property = "source" prepend = "AND">
+                p.source = #source#
+            </isNotEmpty>
+            <isNotEmpty property = "phoneNumber" prepend = "AND">
+                p.phone_number = #phoneNumber#
+            </isNotEmpty>
+            <isNotEmpty property = "emailAddress" prepend = "AND">
+                p.email_address = #emailAddress#
+            </isNotEmpty>
+            <isNotEmpty property = "qqNo" prepend = "AND">
+                p.qq_no = #qqNo#
+            </isNotEmpty>
+            <isNotEmpty property = "wiChatNo" prepend = "AND">
+                p.wi_chat_no = #wiChatNo#
+            </isNotEmpty>
+            <isNotEmpty property = "personalAddress" prepend = "AND">
+                p.personal_address = #personalAddress#
+            </isNotEmpty>
+            <isNotEmpty property = "countryCode" prepend = "AND">
+                p.country_code = #countryCode#
+            </isNotEmpty>
+            <isNotEmpty property = "cityCode" prepend = "AND">
+                p.city_code = #cityCode#
+            </isNotEmpty>
+            <isNotEmpty property = "secondPhoneNumber" prepend = "AND">
+                p.second_phone_number = #secondPhoneNumber#
+            </isNotEmpty>
+            <isNotEmpty property = "authStep" prepend = "AND">
+                p.auth_step = #authStep#
+            </isNotEmpty>
+            <isNotEmpty property = "authStatus" prepend = "AND">
+                p.auth_status = #authStatus#
+            </isNotEmpty>
+            <isNotEmpty property = "authType" prepend = "AND">
+                p.auth_type = #authType#
+            </isNotEmpty>
+            <isNotEmpty property = "authDate" prepend = "AND">
+                p.auth_date = #authDate#
+            </isNotEmpty>
+            <isNotEmpty property = "authCertType" prepend = "AND">
+                p.auth_cert_type = #authCertType#
+            </isNotEmpty>
+            <isNotEmpty property = "authCertId" prepend = "AND">
+                p.auth_cert_id = #authCertId#
+            </isNotEmpty>
+            <isNotEmpty property = "authCertExpirDate" prepend = "AND">
+                p.auth_cert_expir_date = #authCertExpirDate#
+            </isNotEmpty>
+            <isNotEmpty property = "pictureFront" prepend = "AND">
+                p.picture_front = #pictureFront#
+            </isNotEmpty>
+            <isNotEmpty property = "pictureBack" prepend = "AND">
+                p.picture_back = #pictureBack#
+            </isNotEmpty>
+            <isNotEmpty property = "authDescribe" prepend = "AND">
+                p.auth_describe = #authDescribe#
+            </isNotEmpty>
+            <isNotEmpty property = "preString" prepend = "AND">
+                p.pre_string = #preString#
+            </isNotEmpty>
+            <isNotEmpty property = "createDatetime" prepend = "AND">
+                p.create_datetime = #createDatetime#
+            </isNotEmpty>
+            <isNotEmpty property = "createDatetimeStart" prepend = "AND">
+                p.create_datetime &gt;= #createDatetimeStart#
+            </isNotEmpty>
+            <isNotEmpty property = "createDatetimeEnd" prepend = "AND">
+                p.create_datetime &lt; #createDatetimeEnd#
+            </isNotEmpty>
+            <isNotEmpty property = "reserve1" prepend = "AND">
+                p.reserve1 = #reserve1#
+            </isNotEmpty>
+            <isNotEmpty property = "reserve2" prepend = "AND">
+                p.reserve2 = #reserve2#
+            </isNotEmpty>
+            <isNotEmpty property = "reserve3" prepend = "AND">
+                p.reserve3 = #reserve3#
+            </isNotEmpty>
+            <isNotEmpty property = "reserve4" prepend = "AND">
+                p.reserve4 = #reserve4#
+            </isNotEmpty>
+            <isNotEmpty property = "updateDatetime" prepend = "AND">
+                p.update_datetime = #updateDatetime#
+            </isNotEmpty>
+			<isNotEmpty property = "userStatus" prepend = "AND">
+                u.user_status = #userStatus#
+       		</isNotEmpty>            
+			<isNotEmpty property = "accountType" prepend = "AND">
+                m.account_type = #accountType#
+       		</isNotEmpty>            
+        </dynamic>
+    </select>
+
+</sqlMap>

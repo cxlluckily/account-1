@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.vo.CommercialTenantAccount">
+	<typeAlias alias="CommercialTenantAccount" type="com.cssweb.payment.account.vo.CommercialTenantAccount"/>
+	<typeAlias alias="CommercialTenantAccountQuery" type="com.cssweb.payment.account.vo.CommercialTenantAccountQuery"/>
+    
+    
+    <resultMap id="CommercialTenantAccountMap" class="CommercialTenantAccount">
+        <result property = "accountNumber" column = "account_number"/>
+        <result property = "cTType" column = "ct_type"/>
+        <result property = "companyName" column = "company_name"/>
+        <result property = "managerTel" column = "manager_tel"/>
+        <result property = "legalPersonName" column = "legal_person_name"/>
+        <result property = "legalPersonMail" column = "legal_person_mail"/>
+        <result property = "legalPersonMobile" column = "legal_person_mobile"/>
+        <result property = "accountStatus" column = "account_status"/>
+        <result property = "moneyType" column = "money_type"/>
+        <result property = "availableBalance" column = "available_balance"/>
+        <result property = "frozenAmount" column = "frozen_amount"/>
+        <result property = "nomentionAmount" column = "nomention_amount"/>
+        <result property = "createDate" column = "create_date"/>
+        <result property = "modifyDate" column = "modify_date"/>
+        <result property = "accountType" column = "account_type"/>
+        <result property = "userType" column = "user_type"/>
+        <result property = "userId" column = "user_id"/>
+    </resultMap>
+    
+     <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+        	<isNotEmpty property = "managerTel" prepend = "AND">
+                user.MANAGER_TEL = #managerTel#
+            </isNotEmpty>
+            <isNotEmpty property = "legalPersonName" prepend = "AND">
+                user.LEGAL_PERSON_NAME = #legalPersonName#
+            </isNotEmpty>
+            <isNotEmpty property = "legalPersonMail" prepend = "AND">
+                user.EMAIL = #legalPersonMail#
+            </isNotEmpty>
+            <isNotEmpty property = "legalPersonMobile" prepend = "AND">
+                user.MANAGER_MOBILE = #legalPersonMobile#
+            </isNotEmpty>
+            <isNotEmpty property = "cTType" prepend = "AND">
+                user.CT_STATUS = #cTType#
+            </isNotEmpty>
+            <isNotEmpty property = "accountStatus" prepend = "AND">
+                account.ACCOUNT_STATUS = #accountStatus#
+            </isNotEmpty>
+            <isNotEmpty property = "beginDate" prepend = "AND">
+                account.CREATE_DATETIME &gt;= #beginDate#
+            </isNotEmpty>
+            <isNotEmpty property = "endDate" prepend = "AND">
+                account.CREATE_DATETIME &lt;= #endDate#
+            </isNotEmpty>
+        </dynamic>
+    </sql>
+    
+    <select id = "select" parameterClass = "CommercialTenantAccountQuery" resultMap = "CommercialTenantAccountMap">
+		SELECT
+			account.ACCOUNT_ID AS account_number,
+			account.user_id AS user_id,
+			user.CT_STATUS AS ct_type,
+			user.BUSINESS_NAME AS company_name,
+			user.LEGAL_PERSON_NAME AS legal_person_name,
+			user.MANAGER_TEL AS manager_tel,
+			user.EMAIL AS legal_person_mail,
+			user.MANAGER_MOBILE AS legal_person_mobile,
+			account.ACCOUNT_STATUS AS account_status,
+			account.CURRENCY_TYPE AS money_type,
+			account.ACCOUNT_TYPE AS account_type,
+			account.user_type AS user_type,			
+			account.available_balance,
+			account.nomention_amount,
+			account.frozen_amount,
+			account.CREATE_DATETIME AS create_date,
+			account.UPDATE_DATETIME AS modify_date
+		FROM
+			acm_business_user_info AS user
+		INNER JOIN 
+			acm_main_account_info AS account 
+		ON 
+			account.USER_ID = user.USER_ID
+        <include refid = "conditions"/>
+        <dynamic prepend="LIMIT">
+        	<isNotEmpty property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotEmpty>
+        	<isNotEmpty property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotEmpty>
+       </dynamic>
+    </select>
+    
+    <select id = "selectCount" parameterClass = "CommercialTenantAccountQuery" resultClass = "int">
+        SELECT COUNT(*)
+        FROM
+			acm_business_user_info AS user
+		INNER JOIN 
+			acm_main_account_info AS account 
+		ON 
+			account.USER_ID = user.USER_ID
+        <include refid = "conditions"/>
+    </select>
+</sqlMap>

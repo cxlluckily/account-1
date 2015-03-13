@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.FinancialSummaryDay">
+	<typeAlias alias="FinancialSummaryDay" type="com.cssweb.payment.account.pojo.FinancialSummaryDay"/>
+    <typeAlias alias="FinancialSummaryDayQuery" type="com.cssweb.payment.account.vo.FinancialSummaryDayQuery"/>
+    <resultMap id="FinancialSummaryDayMap" class="FinancialSummaryDay">
+        <result property = "id" column = "id"/>
+        <result property = "day" column = "day"/>  
+        <result property = "income" column = "income"/>  
+        <result property = "incomeTotal" column = "income_total"/>
+        <result property = "sellMoneyIncome" column = "sell_money_income"/>
+        <result property = "sellNumIncome" column = "sell_num_income"/>
+        <result property = "otherMoneyIncome" column = "other_money_income"/>
+        <result property = "otherNumIncome" column = "other_num_income"/>
+        <result property = "spending" column = "spending"/>
+        <result property = "spendingTotal" column = "spending_total"/>
+        <result property = "withdrawalSpending" column = "withdrawal_spending"/>
+        <result property = "withdrawalNumSpending" column = "withdrawal_num_spending"/>
+        <result property = "refundSpending" column = "refund_spending"/>
+        <result property = "refundNumSpending" column = "refund_num_spending"/>
+        <result property = "beginBalance" column = "begin_balance"/>
+        <result property = "endBalance" column = "end_balance"/>
+        <result property = "enterId" column = "enter_id"/>
+        <result property = "ext1" column = "ext1"/>
+        <result property = "ext2" column = "ext2"/>
+        <result property = "ext3" column = "ext2"/>
+        <result property = "ext4" column = "ext2"/>
+    </resultMap>
+    
+
+   <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "enterId" prepend = "AND">
+                enter_id = #enterId#
+            </isNotEmpty> 
+            
+             <isNotEmpty property = "beginDate" prepend = "AND">
+                day &gt;= #beginDate#
+            </isNotEmpty> 
+            
+             <isNotEmpty property = "endDate" prepend = "AND">
+                day &lt;= #endDate#
+            </isNotEmpty> 
+        </dynamic>
+    </sql>
+    
+    <select id = "select" parameterClass = "FinancialSummaryDayQuery" resultMap = "FinancialSummaryDayMap">
+      select * from financial_summary_day 
+        <include refid = "conditions"/>
+        <dynamic prepend="LIMIT">
+        	<isNotEmpty property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotEmpty>
+        	<isNotEmpty property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotEmpty>
+       </dynamic>   
+    </select>
+    
+    <select id = "selectCount" parameterClass = "FinancialSummaryDayQuery" resultClass = "int">
+		SELECT COUNT(*) FROM financial_summary_day
+		 <include refid = "conditions"/>
+    </select>
+    
+</sqlMap>

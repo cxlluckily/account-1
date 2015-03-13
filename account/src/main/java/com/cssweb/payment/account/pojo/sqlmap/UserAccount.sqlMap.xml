@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.vo.UserAccount">
+	<typeAlias alias="UserAccount" type="com.cssweb.payment.account.vo.UserAccount"/>
+	<typeAlias alias="UserAccountQuery" type="com.cssweb.payment.account.vo.UserAccountQuery"/>
+    
+    <resultMap id="UserAccountMap" class="UserAccount">
+        <result property = "accountNumber" column = "account_number"/>
+        <result property = "accountType" column = "account_type"/>
+        <result property = "userType" column = "user_type"/>
+        <result property = "userId" column = "user_id"/>
+        <result property = "userName" column = "user_name"/>
+        <result property = "userEmail" column = "user_email"/>
+        <result property = "mobileNo" column = "mobile_no"/>
+        <result property = "accountStatus" column = "account_status"/>
+        <result property = "moneyType" column = "money_type"/>
+        <result property = "availableMoney" column = "available_money"/>
+        <result property = "frozenMoney" column = "frozen_money"/>
+        <result property = "nomentionMoney" column = "nomention_money"/>
+        <result property = "modifyDate" column = "modify_date"/>  
+        <result property = "createDate" column = "create_date"/>
+    </resultMap>
+    
+     <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+            <isNotEmpty property = "userName" prepend = "AND">
+               `user`.USER_NAME = #userName#
+            </isNotEmpty>
+            <isNotEmpty property = "mobileNo" prepend = "AND">
+               `user`.PHONE_NUMBER = #mobileNo#
+            </isNotEmpty>
+            <isNotEmpty property = "userEmail" prepend = "AND">
+               `user`.EMAIL_ADDRESS = #userEmail#
+            </isNotEmpty>
+            <isNotEmpty property = "beginDate" prepend = "AND">
+                account.CREATE_DATETIME &gt;= #beginDate#
+            </isNotEmpty>
+            <isNotEmpty property = "endDate" prepend = "AND">
+               account.CREATE_DATETIME &lt;= #endDate#
+            </isNotEmpty>
+            <isNotEmpty property = "accountType" prepend = "AND">
+               account.ACCOUNT_TYPE = #accountType#
+            </isNotEmpty>
+            <isNotEmpty property = "accountStatus" prepend = "AND">
+               account.ACCOUNT_STATUS = #accountStatus#
+            </isNotEmpty>
+        </dynamic>
+    </sql>
+    
+    <select id = "select" parameterClass = "UserAccountQuery" resultMap = "UserAccountMap">
+		SELECT
+			account.ACCOUNT_ID AS account_number,
+			account.ACCOUNT_TYPE AS account_type,
+			account.user_type AS user_type,
+			`user`.USER_ID AS user_id,
+			`user`.USER_NAME AS user_name,
+			`user`.EMAIL_ADDRESS AS user_email,
+			`user`.PHONE_NUMBER AS mobile_no,
+			account.ACCOUNT_STATUS AS account_status,
+			account.CURRENCY_TYPE AS money_type,
+			account.AVAILABLE_BALANCE AS available_money,
+			account.FROZEN_AMOUNT AS frozen_money,
+			account.NOMENTION_AMOUNT AS nomention_money,
+			account.CREATE_DATETIME AS create_date,
+			account.UPDATE_DATETIME AS modify_date
+		FROM
+			acm_personal_user_info AS `user`
+		INNER JOIN 
+			acm_main_account_info AS account 
+		ON 
+			`user`.USER_ID = account.USER_ID
+        <include refid = "conditions"/>
+        <dynamic prepend="LIMIT">
+        	<isNotEmpty property="firstResult"  prepend=",">
+        			#firstResult#
+        	</isNotEmpty>
+        	<isNotEmpty property="pageSize"  prepend=",">
+        			#pageSize#
+        	</isNotEmpty>
+       </dynamic>
+    </select>
+    
+    <select id = "selectCount" parameterClass = "UserAccountQuery" resultClass = "int">
+		SELECT COUNT(*)
+		FROM
+			acm_personal_user_info AS `user`
+		INNER JOIN 
+			acm_main_account_info AS account 
+		ON 
+			`user`.USER_ID = account.USER_ID
+        <include refid = "conditions"/>
+    </select>
+</sqlMap>

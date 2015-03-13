@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.PersonDataInfo">
+	<typeAlias alias="PersonDataInfo" type="com.cssweb.payment.account.pojo.PersonDataInfo"/>
+
+	<resultMap id="PersonDataInfoResultMap" class="PersonDataInfo">
+		<result property="tag" column="tag"/>
+		<result property="length" column="length"/>
+		<result property="value" column="value"/>
+		<result property="sourceId" column="source_id"/>
+		<result property="groupId" column="group_id"/>
+		<result property="defaultValue" column="default_value"/>
+		<result property="reserve1" column="reserve1"/>
+		<result property="reserve2" column="reserve2"/>
+		<result property="reserve3" column="reserve3"/>
+		<result property="reserve4" column="reserve4"/>
+		<result property="updateDatetime" column="update_datetime"/>
+	</resultMap>
+
+	<sql id="columns">
+		tag,length,value,source_id,group_id,default_value,
+		reserve1, reserve2, reserve3, reserve4, update_datetime
+	</sql>
+
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="tag" prepend="AND">
+	    		tag = #tag#
+	    	</isNotNull>
+	    	<isNotNull property="length" prepend="AND">
+	    		length = #length#
+	    	</isNotNull>
+	    	<isNotNull property="value" prepend="AND">
+	    		value = #value#
+	    	</isNotNull>
+	    	<isNotNull property="sourceId" prepend="AND">
+	    		source_id = #sourceId#
+	    	</isNotNull>
+	    	<isNotNull property="groupId" prepend="AND">
+	    		group_id = #groupId#
+	    	</isNotNull>
+	    	<isNotNull property="defaultValue" prepend="AND">
+	    		default_value = #defaultValue#
+	    	</isNotNull>
+			<isNotNull property="reserve1" prepend="AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend="AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend="AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend="AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend="AND">
+				update_datetime = #updateDatetime#
+			</isNotNull>    		
+    	</dynamic>		
+	</sql>
+	
+    <insert id="insert" parameterClass="PersonDataInfo">
+    	INSERT INTO 
+    		acm_person_data_info
+    	VALUES 
+    		(#tag#,#length#,#value#,#sourceId#,#groupId#,#defaultValue#,
+    		 #reserve1#, #reserve2#, #reserve3#, #reserve4#, #updateDatetime#)
+    </insert>
+    
+    <update id="update">
+    	UPDATE
+    		acm_person_data_info
+    	<dynamic prepend="SET">
+			<isNotNull property="tag" prepend=",">
+	    		tag = #tag#
+	    	</isNotNull>
+	    	<isNotNull property="length" prepend=",">
+	    		length = #length#
+	    	</isNotNull>
+	    	<isNotNull property="value" prepend=",">
+	    		value = #value#
+	    	</isNotNull>
+	    	<isNotNull property="sourceId" prepend=",">
+	    		source_id = #sourceId#
+	    	</isNotNull>
+	    	<isNotNull property="groupId" prepend=",">
+	    		group_id = #groupId#
+	    	</isNotNull>
+	    	<isNotNull property="defaultValue" prepend=",">
+	    		default_value = #defaultValue#
+	    	</isNotNull>
+			<isNotNull property="reserve1"  prepend=",">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend=",">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3"  prepend=",">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend=",">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime"  prepend=",">
+				update_datetime = #updateDatetime#
+			</isNotNull>				    	
+    	</dynamic>
+    	<include refid="conditions"/>
+    </update>
+    
+	<select id="select" parameterClass="PersonDataInfo" resultMap="PersonDataInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_person_data_info
+		<include refid="conditions"/>
+    </select>
+    
+    <select id="selectList" parameterClass="PersonDataInfo" resultMap="PersonDataInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_person_data_info
+		<include refid="conditions"/>
+    </select>
+
+	<select id="selectCount" parameterClass="PersonDataInfo" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_person_data_info
+		<include refid="conditions"/>
+    </select>
+
+</sqlMap>

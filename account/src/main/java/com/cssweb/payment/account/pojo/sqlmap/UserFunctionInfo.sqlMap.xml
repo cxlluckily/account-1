@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.UserFunctionInfo">
+    <typeAlias alias="UserFunctionInfo" type="com.cssweb.payment.account.pojo.UserFunctionInfo"/>
+    
+    <resultMap id="UserFunctionInfoMap" class="UserFunctionInfo">
+        <result property = "id" column = "id"/>
+        <result property = "userId" column = "user_id"/>
+        <result property = "functionId" column = "function_id"/>
+        <result property = "openStatus" column = "open_status"/>
+        <result property = "createDatetime" column = "create_datetime"/>
+        <result property = "reserve1" column = "reserve1"/>
+        <result property = "reserve2" column = "reserve2"/>
+        <result property = "reserve3" column = "reserve3"/>
+        <result property = "reserve4" column = "reserve4"/>
+        <result property = "updateDatetime" column ="update_datetime"/>
+    </resultMap>
+
+    <sql id = "tableName">
+        acm_user_function_info
+    </sql>
+    
+    <sql id="db_columns">
+        id,
+        user_id,
+        function_id,
+        open_status,
+        create_datetime,
+        reserve1,
+        reserve2,
+        reserve3,
+        reserve4,
+        update_datetime
+    </sql>
+    
+    <sql id = "java_fields">
+        #id#,
+        #userId#,
+        #functionId#,
+        #openStatus#,
+        #createDatetime#,
+        #reserve1#,
+        #reserve2#,
+        #reserve3#,
+        #reserve4#,
+        #updateDatetime#
+    </sql>
+    
+    <sql id = "conditions">
+        <dynamic prepend = "WHERE">
+             <isNotNull property = "userId" prepend = "AND">
+                user_id = #userId#
+            </isNotNull>
+            <isNotNull property = "functionId" prepend = "AND">
+                function_id = #functionId#
+            </isNotNull>
+            <isNotNull property = "openStatus" prepend = "AND">
+                open_status = #openStatus#
+            </isNotNull>
+            <isNotNull property = "createDatetime" prepend = "AND">
+                create_datetime = #createDatetime#
+            </isNotNull>
+            <isNotNull property = "reserve1" prepend = "AND">
+                reserve1 = #reserve1#
+            </isNotNull>
+            <isNotNull property = "reserve2" prepend = "AND">
+                reserve2 = #reserve2#
+            </isNotNull>
+            <isNotNull property = "reserve3" prepend = "AND">
+                reserve3 = #reserve3#
+            </isNotNull>
+            <isNotNull property = "reserve4" prepend = "AND">
+                reserve4 = #reserve4#
+            </isNotNull>
+            <isNotNull property = "updateDatetime" prepend = "AND">
+                update_datetime = #updateDatetime#
+            </isNotNull>       
+        </dynamic>
+    </sql>
+    
+    <!-- interface 1 : insert  -->
+    <insert id = "insert" parameterClass = "UserFunctionInfo">
+        INSERT INTO  
+        <include refid = "tableName"/>  
+        (<include refid = "db_columns"/>) 
+        VALUES (<include refid = "java_fields"/>)
+    </insert>
+    
+    <!-- interface 2 : update  -->
+    <update id = "update" parameterClass = "UserFunctionInfo">
+        UPDATE 
+            <include refid = "tableName"/>  
+        <dynamic prepend = "SET">
+            <isNotNull property = "functionId" prepend = ",">
+                function_id = #functionId#
+            </isNotNull>
+            <isNotNull property = "openStatus" prepend = ",">
+                open_status = #openStatus#
+            </isNotNull>
+            <isNotNull property = "createDatetime" prepend = ",">
+                create_datetime = #createDatetime#
+            </isNotNull>
+            <isNotNull property = "reserve1" prepend = ",">
+                reserve1 = #reserve1#
+            </isNotNull>
+            <isNotNull property = "reserve2" prepend = ",">
+                reserve2 = #reserve2#
+            </isNotNull>
+            <isNotNull property = "reserve3" prepend = ",">
+                reserve3 = #reserve3#
+            </isNotNull>
+            <isNotNull property = "reserve4" prepend = ",">
+                reserve4 = #reserve4#
+            </isNotNull>
+            <isNotNull property = "updateDatetime" prepend = ",">
+                update_datetime = #updateDatetime#
+            </isNotNull> 
+        </dynamic>
+            WHERE 
+                user_id = #userId#
+            AND
+            	function_id = #functionId#
+    </update>
+    
+    <!-- interface 3 : select(select by conditions) -->
+    <select id = "select" parameterClass = "UserFunctionInfo" resultMap = "UserFunctionInfoMap">
+        SELECT * FROM <include refid = "tableName"/>   
+        <include refid = "conditions"/>
+    </select>
+    
+    <!-- interface 4 : selectCount -->
+    <select id = "selectCount" parameterClass = "UserFunctionInfo" resultClass = "int">
+        SELECT COUNT(*) FROM <include refid = "tableName"/>
+        <include refid = "conditions"/>
+    </select>
+    
+    
+	
+</sqlMap>

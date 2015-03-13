@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.AccountOperInfo">
+
+	<typeAlias alias="AccountOperInfo" type="com.cssweb.payment.account.pojo.AccountOperInfo"/>
+	<typeAlias alias="AccountOperInfoQuery" type="com.cssweb.payment.account.vo.AccountOperInfoQuery"/>
+
+	<resultMap id="AccountOperInfoResultMap" class="AccountOperInfo">
+		<result property="accountSn" column="account_sn" />
+		<result property="interfaceName" column="interface_name"/>
+		<result property="source" column="source"/>
+		<result property="fromAccountId" column="from_account_id"/>
+		<result property="toAccountId" column="to_account_id"/>
+		<result property="amount" column="amount"/>
+		<result property="fee" column="fee"/>
+		<result property="memo" column="memo"/>
+		<result property="txnSeq" column="txn_seq"/>
+		<result property="hostNo" column="host_no"/>
+		<result property="operId" column="oper_id"/>
+		<result property="txnType" column="txn_type"/>
+		<result property="merchantId" column="merchant_id"/>
+		<result property="bankId" column="bank_id"/>
+		<result property="bankAccount" column="bank_account"/>
+		<result property="externalOrderNo" column="external_order_no"/>
+		<result property="refundOrderNo" column="refund_order_no"/>
+		<result property="status" column="status"/>
+		<result property="reverseFlag" column="reverse_flag"/>
+		<result property="reserver1" column="reserve1"/>
+		<result property="reserver2" column="reserve2"/>
+		<result property="reserver3" column="reserve3"/>
+		<result property="reserver4" column="reserve4"/>
+		<result property="updateDateTime" column="update_datetime"/>
+	</resultMap>
+
+	<sql id="columns">
+		account_sn,interface_name,source,from_account_id,to_account_id,
+		amount,fee,memo,txn_seq,host_no,oper_id,txn_type,merchant_id,bank_id,bank_account,external_order_no,refund_order_no,
+		status,reverse_flag,reserve1,reserve2,reserve3,reserve4,update_datetime
+	</sql>
+
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="accountSn" prepend="AND">
+	    	 	account_sn = #accountSn#
+	    	</isNotNull>
+	    	<isNotNull property="interfaceName" prepend="AND">
+	    		interface_name = #interfaceName#
+	    	</isNotNull>
+	    	<isNotNull property="source" prepend="AND">
+	    		source = #source#
+	    	</isNotNull>
+	    	<isNotNull property="fromAccountId" prepend="AND">
+	    		from_account_id = #fromAccountId#
+	    	</isNotNull>
+	    	<isNotNull property="toAccountId" prepend="AND">
+	    		to_account_id = #toAccountId#
+	    	</isNotNull>
+	    	<isNotNull property="amount" prepend="AND">
+				amount = #amount#
+			</isNotNull>
+			<isNotNull property="fee" prepend="AND">
+				fee = #fee#
+			</isNotNull>
+			<isNotNull property="memo" prepend="AND">
+				memo = #memo#
+			</isNotNull>
+			<isNotNull property="txnSeq" prepend="AND">
+				txn_seq = #txnSeq#
+			</isNotNull>
+			<isNotNull property="hostNo" prepend="AND">
+				host_no = #hostNo#
+			</isNotNull>		
+			<isNotNull property="operId" prepend="AND">
+				oper_id = #operId#
+			</isNotNull>
+			<isNotNull property="txnType" prepend="AND">
+				txn_type = #txnType#
+			</isNotNull>
+			<isNotNull property="merchantId" prepend="AND">
+				merchant_id = #merchantId#
+			</isNotNull>
+			<isNotNull property="bankId" prepend="AND">
+				bank_id = #bankId#
+			</isNotNull>
+			<isNotNull property="externalOrderNo" prepend="AND">
+				external_order_no = #externalOrderNo#
+			</isNotNull>
+			<isNotNull property="refundOrderNo" prepend="AND">
+				refund_order_no = #refundOrderNo#
+			</isNotNull>
+			<isNotNull property="status" prepend="AND">
+				status = #status#
+			</isNotNull>
+			<isNotNull property="reverseFlag" prepend="AND">
+				reverse_flag = #reverseFlag#
+			</isNotNull>    	
+			<isNotNull property="reserver1" prepend="AND">
+				reserver1 = #reserver1#
+			</isNotNull>
+			<isNotNull property="reserver2" prepend="AND">
+				reserver2 = #reserver2#
+			</isNotNull>
+			<isNotNull property="reserver3" prepend="AND">
+				reserver3 = #reserver3#
+			</isNotNull> 
+			<isNotNull property="reserver4" prepend="AND">
+				reserver4 = #reserver4#
+			</isNotNull>
+			<isNotNull property="updateDateTime" prepend="AND">
+				update_datetime = #updateDateTime#
+			</isNotNull> 				
+    	</dynamic>		
+	</sql>
+	
+	
+    <insert id="insert" parameterClass="AccountOperInfo">
+    	INSERT INTO 
+    		acm_account_oper_info(<include refid="columns"/>) 
+    	VALUES 
+				(#accountSn#,
+				#interfaceName#,
+				#source#,
+				#fromAccountId#,
+				#toAccountId#,
+				#amount#,
+				#fee#,
+				#memo#,
+				#txnSeq#,
+				#hostNo#,
+				#operId#,
+				#txnType#,
+				#merchantId#,
+				#bankId#,
+				#bankAccount#,
+				#externalOrderNo#,
+				#refundOrderNo#,
+				#status#,
+				#reverseFlag#,
+				#reserver1#,
+				#reserver2#,
+				#reserver3#,
+				#reserver4#,
+				#updateDateTime#)
+    </insert>
+    
+    <update id="update">
+    	UPDATE
+    		acm_account_oper_info
+    	<dynamic prepend="SET">
+				<isNotNull property="interfaceName" prepend=",">
+		    		interface_name = #interfaceName#
+		    	</isNotNull>
+	    	<isNotNull property="source"  prepend=",">
+	    		source = #source#
+	    	</isNotNull>
+	    	<isNotNull property="fromAccountId"  prepend=",">
+	    		from_account_id = #fromAccountId#
+	    	</isNotNull>
+	    	<isNotNull property="toAccountId"  prepend=",">
+	    		to_account_id = #toAccountId#
+	    	</isNotNull>
+	    	<isNotNull property="amount"   prepend=",">
+				amount = #amount#
+			</isNotNull>
+			<isNotNull property="fee"   prepend=",">
+				fee = #fee#
+			</isNotNull>
+			<isNotNull property="memo"   prepend=",">
+				memo = #memo#
+			</isNotNull>
+			<isNotNull property="txnSeq"   prepend=",">
+				txn_seq = #txnSeq#
+			</isNotNull>
+			<isNotNull property="hostNo"   prepend=",">
+				host_no = #hostNo#
+			</isNotNull>		
+			<isNotNull property="operId"   prepend=",">
+				oper_id = #operId#
+			</isNotNull>
+			<isNotNull property="txnType"   prepend=",">
+				txn_type = #txnType#
+			</isNotNull>
+			<isNotNull property="merchantId"   prepend=",">
+				merchant_id = #merchantId#
+			</isNotNull>
+			<isNotNull property="bankId"  prepend=",">
+				bank_id = #bankId#
+			</isNotNull>
+			<isNotNull property="bankAccount"  prepend=",">
+				bank_account = #bankAccount#
+			</isNotNull>
+			<isNotNull property="externalOrderNo"  prepend=",">
+				external_order_no = #externalOrderNo#
+			</isNotNull>
+			<isNotNull property="refundOrderNo"   prepend=",">
+				refund_order_no = #refundOrderNo#
+			</isNotNull>
+			<isNotNull property="status"   prepend=",">
+				status = #status#
+			</isNotNull>
+			<isNotNull property="reverseFlag"   prepend=",">
+				reverse_flag = #reverseFlag#
+			</isNotNull>    	
+			<isNotNull property="reserver1"   prepend=",">
+				reserver1 = #reserver1#
+			</isNotNull>
+			<isNotNull property="reserver2"   prepend=",">
+				reserver2 = #reserver2#
+			</isNotNull>
+			<isNotNull property="reserver3"   prepend=",">
+				reserver3 = #reserver3#
+			</isNotNull> 
+			<isNotNull property="reserver4"   prepend=",">
+				reserver4 = #reserver4#
+			</isNotNull>
+			<isNotNull property="updateDateTime"   prepend=",">
+				update_datetime = #updateDateTime#
+			</isNotNull> 	
+    	</dynamic>
+    	WHERE
+    		account_sn = #accountSn#
+    </update>
+    
+	<select id="select" parameterClass="AccountOperInfo" resultMap="AccountOperInfoResultMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_account_oper_info
+		<include refid="conditions"/>
+    </select>
+
+	<select id="selectCount" parameterClass="AccountOperInfo" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_account_oper_info
+		<include refid="conditions"/>
+    </select>    
+    <select id="selectTimesDayCount" parameterClass="AccountOperInfoQuery" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_account_oper_info
+		<dynamic prepend="WHERE">
+	    	(from_account_id = #fromAccountId#
+	    		and
+			<isNotNull property="txnType" prepend="AND">
+				txn_type = #txnType#
+			</isNotNull>
+			<isNotNull property="beginDate" prepend="AND">
+			 <![CDATA[
+				update_datetime > #beginDate#
+			]]> 
+			</isNotNull> 
+			<isNotNull property="endDate" prepend="AND">
+			 <![CDATA[
+				update_datetime < #endDate#
+			]]> 
+			</isNotNull> 
+			)or
+			(to_account_id = #toAccountId#
+			<isNotNull property="txnType" prepend="AND">
+				txn_type = #txnType#
+			</isNotNull>
+			<isNotNull property="beginDate" prepend="AND">
+			 <![CDATA[
+				update_datetime > #beginDate#
+			]]> 
+			</isNotNull> 
+			<isNotNull property="endDate" prepend="AND">
+			 <![CDATA[
+				update_datetime < #endDate#
+			]]> 
+			</isNotNull> )
+    	</dynamic>
+    </select>
+    <select id="selectAmountDayCount" parameterClass="AccountOperInfoQuery" resultClass="java.math.BigDecimal">
+    	SELECT 
+    		SUM(amount)
+    	FROM
+    		acm_account_oper_info
+		<dynamic prepend="WHERE">
+	    	(from_account_id = #fromAccountId#
+	    		and
+			<isNotNull property="txnType" prepend="AND">
+				txn_type = #txnType#
+			</isNotNull>
+			<isNotNull property="beginDate" prepend="AND">
+			 <![CDATA[
+				update_datetime > #beginDate#
+			]]> 
+			</isNotNull> 
+			<isNotNull property="endDate" prepend="AND">
+			 <![CDATA[
+				update_datetime < #endDate#
+			]]> 
+			</isNotNull> 
+			)or
+			(to_account_id = #toAccountId#
+			<isNotNull property="txnType" prepend="AND">
+				txn_type = #txnType#
+			</isNotNull>
+			<isNotNull property="beginDate" prepend="AND">
+			 <![CDATA[
+				update_datetime > #beginDate#
+			]]> 
+			</isNotNull> 
+			<isNotNull property="endDate" prepend="AND">
+			 <![CDATA[
+				update_datetime < #endDate#
+			]]> 
+			</isNotNull> )
+    	</dynamic>
+    </select>
+</sqlMap>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.cssweb.payment.account.pojo.UserMobileAccountInfo">
+	<typeAlias alias="UserMobileAccountInfo" type="com.cssweb.payment.account.pojo.UserMobileAccountInfo"/>
+	<resultMap id="UserMobileAccountInfoMap" class="com.cssweb.payment.account.pojo.UserMobileAccountInfo">
+		<result property="id" column="ID"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="accountId" column="ACCOUNT_ID"/>
+		<result property="prepaidAccountId" column="PREPAID_ACCOUNT_ID"/>
+		<result property="tkLogicalId" column="TK_LOGICAL_ID"/>
+		<result property="cardUniqueData" column="CARD_UNIQUE_DATA"/>
+		<result property="seIdName" column="SE_ID_NAME"/>
+		<result property="iccid" column="ICCID"/>
+		<result property="seType" column="SE_TYPE"/>
+		<result property="seId" column="SE_ID"/>
+		<result property="serviceId" column="SERVICE_ID"/>
+		<result property="serviceVersion" column="SERVICE_VERSION"/>
+		<result property="status" column="STATUS"/>
+		<result property="personalFile" column="PERSONAL_FILE"/>
+		<result property="createDatetime" column="CREATE_DATETIME"/>
+		<result property="reserve1" column="RESERVE1"/>
+		<result property="reserve2" column="RESERVE2"/>
+		<result property="reserve3" column="RESERVE3"/>
+		<result property="reserve4" column="RESERVE4"/>
+		<result property="updateDatetime" column="UPDATE_DATETIME"/>
+	</resultMap>
+
+	<!-- 表中公用抽取的列 -->
+	<sql id="columns">
+		ID,USER_ID,ACCOUNT_ID,PREPAID_ACCOUNT_ID,TK_LOGICAL_ID,CARD_UNIQUE_DATA,SE_ID_NAME,ICCID,SE_TYPE,SE_ID,SERVICE_ID,SERVICE_VERSION,STATUS,PERSONAL_FILE,CREATE_DATETIME,RESERVE1,RESERVE2,RESERVE3,RESERVE4,UPDATE_DATETIME
+	</sql>
+	
+	<!-- Ext CRUD模板开始 共四条SQL @author zhaojc@cssweb.com.cn -->
+
+	<!-- 1. 唯一的查询语句 select  ,对应getDataList (数据列表) 和 getDataById (修改数据时使用);
+		   无需关心分页，程序会自动生成分页sql（根据com.cssweb.common.dao.dialect.Dialect）
+	-->
+	
+	<sql id="conditions">
+    	<dynamic prepend="WHERE">
+	    	<isNotNull property="id" prepend="AND">
+	    	 	id = #id#
+	    	</isNotNull>
+	    	<isNotNull property="userId" prepend="AND">
+	    		USER_ID = #userId#
+	    	</isNotNull>
+	    	<isNotNull property="accountId" prepend="AND">
+	    		ACCOUNT_ID = #accountId#
+	    	</isNotNull>
+	    	<isNotNull property="prepaidAccountId" prepend="AND">
+	    		PREPAID_ACCOUNT_ID = #prepaidAccountId#
+	    	</isNotNull>
+	    	<isNotNull property="tkLogicalId" prepend="AND">
+	    		TK_LOGICAL_ID = #tkLogicalId#
+	    	</isNotNull>
+	    	<isNotNull property="cardUniqueData" prepend="AND">
+	    		CARD_UNIQUE_DATA = #cardUniqueData#
+	    	</isNotNull>
+	    	<isNotNull property="seIdName" prepend="AND">
+	    		SE_ID_NAME = #seIdName#
+	    	</isNotNull>
+	    	<isNotNull property="iccid" prepend="AND">
+	    		ICCID = #iccid#
+	    	</isNotNull>
+	    	<isNotNull property="seType" prepend="AND">
+	    		SE_TYPE = #seType#
+	    	</isNotNull>
+	    	<isNotNull property="seId" prepend="AND">
+	    		SE_ID = #seId#
+	    	</isNotNull>
+	    	<isNotNull property="serviceId" prepend="AND">
+	    		SERVICE_ID = #serviceId#
+	    	</isNotNull>
+	    	<isNotNull property="serviceVersion" prepend="AND">
+	    		SERVICE_VERSION = #serviceVersion#
+	    	</isNotNull>
+	    	<isNotNull property="status" prepend="AND">
+	    		STATUS = #status#
+	    	</isNotNull>
+	    	<isNotNull property="personalFile" prepend="AND">
+	    		PERSONAL_FILE = #personalFile#
+	    	</isNotNull>
+	    	<isNotNull property="createDatetime" prepend="AND">
+				CREATE_DATETIME = #createDatetime#
+			</isNotNull>
+			<isNotNull property="reserve1" prepend="AND">
+				reserve1 = #reserve1#
+			</isNotNull>
+			<isNotNull property="reserve2" prepend="AND">
+				reserve2 = #reserve2#
+			</isNotNull>
+			<isNotNull property="reserve3" prepend="AND">
+				reserve3 = #reserve3#
+			</isNotNull>
+			<isNotNull property="reserve4" prepend="AND">
+				reserve4 = #reserve4#
+			</isNotNull>
+			<isNotNull property="updateDatetime" prepend="AND">
+				update_datetime = #updateDatetime#
+			</isNotNull>    		
+    	</dynamic>		
+	</sql>
+
+	
+    <insert id="insert">
+     insert into acm_user_mobile_account_info (ID,USER_ID,ACCOUNT_ID,PREPAID_ACCOUNT_ID,TK_LOGICAL_ID,CARD_UNIQUE_DATA,SE_ID_NAME,ICCID,SE_TYPE,SE_ID,SERVICE_ID,SERVICE_VERSION,STATUS,PERSONAL_FILE,CREATE_DATETIME,RESERVE1,RESERVE2,RESERVE3,RESERVE4,UPDATE_DATETIME
+     ) values (#id#,#userId#,#accountId#,#prepaidAccountId#,#tkLogicalId#,#cardUniqueData#,#seIdName#,#iccid#,#seType#,#seId#,#serviceId#,#serviceVersion#,#status#,#personalFile#,#createDatetime#,#reserve1#,#reserve2#,#reserve3#,#reserve4#,#updateDatetime#);
+    </insert>
+	
+	<update id="update">
+    	UPDATE
+    		acm_user_mobile_account_info
+    	<dynamic prepend="SET">
+				<isNotNull property="userId" prepend=",">
+		    		USER_ID = #userId#
+		    	</isNotNull>
+				<isNotNull property="accountId" prepend=",">
+					ACCOUNT_ID = #accountId#
+				</isNotNull>
+				<isNotNull property="prepaidAccountId" prepend=",">
+	    			PREPAID_ACCOUNT_ID = #prepaidAccountId#
+	    		</isNotNull>
+				<isNotNull property="tkLogicalId" prepend=",">
+	    			TK_LOGICAL_ID = #tkLogicalId#
+		    	</isNotNull>
+		    	<isNotNull property="cardUniqueData" prepend=",">
+		    		CARD_UNIQUE_DATA = #cardUniqueData#
+		    	</isNotNull>
+		    	<isNotNull property="seIdName" prepend=",">
+		    		SE_ID_NAME = #seIdName#
+		    	</isNotNull>
+		    	<isNotNull property="iccid" prepend=",">
+		    		ICCID = #iccid#
+		    	</isNotNull>
+		    	<isNotNull property="seType" prepend=",">
+		    		SE_TYPE = #seType#
+		    	</isNotNull>
+		    	<isNotNull property="seId" prepend=",">
+		    		SE_ID = #seId#
+		    	</isNotNull>
+		    	<isNotNull property="serviceId" prepend=",">
+		    		SERVICE_ID = #serviceId#
+		    	</isNotNull>
+		    	<isNotNull property="serviceVersion" prepend=",">
+		    		SERVICE_VERSION = #serviceVersion#
+		    	</isNotNull>
+				<isNotNull property="status" prepend=",">
+					STATUS = #status#
+				</isNotNull>
+				<isNotNull property="personalFile" prepend=",">
+	    			PERSONAL_FILE = #personalFile#
+	    		</isNotNull>
+				<isNotNull property="createDatetime" prepend=",">
+					CREATE_DATETIME = #createDatetime#
+				</isNotNull>
+				<isNotNull property="reserve1"  prepend=",">
+					reserve1 = #reserve1#
+				</isNotNull>
+				<isNotNull property="reserve2" prepend=",">
+					reserve2 = #reserve2#
+				</isNotNull>
+				<isNotNull property="reserve3"  prepend=",">
+					reserve3 = #reserve3#
+				</isNotNull>
+				<isNotNull property="reserve4" prepend=",">
+					reserve4 = #reserve4#
+				</isNotNull>
+				<isNotNull property="updateDatetime"  prepend=",">
+					update_datetime = #updateDatetime#
+				</isNotNull>				    	
+    	</dynamic>
+    	WHERE
+    		ID = #id#
+    </update>
+
+	<select id="select" parameterClass="UserMobileAccountInfo" resultMap="UserMobileAccountInfoMap">
+    	SELECT 
+    		*
+    	FROM
+    		acm_user_mobile_account_info
+		<include refid="conditions"/>
+    </select>
+    
+	<select id="selectCount" parameterClass="UserMobileAccountInfo" resultClass="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+    		acm_user_mobile_account_info
+		<include refid="conditions"/>
+    </select> 
+	
+    
+   
+    
+	
+</sqlMap>
